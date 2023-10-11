@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luguel/app/modules/presentation/slide_page.dart';
+import 'package:luguel/app/modules/presentation/pages/slide_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
