@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/modules/presentation/presentation_store.dart';
 import 'package:flutter/material.dart';
@@ -77,22 +78,26 @@ class PresentationPageState extends State<PresentationPage> with SingleTickerPro
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 25,),
-                        Text(
+                        AutoSizeText(
                           "Bem Vindo ao 👋",
                           style: theme.textTheme.titleMedium!.copyWith(),
                           textAlign: TextAlign.left,
+                          maxFontSize: 50,
                         ),
                         const SizedBox(height: 10,),
-                        Text(
+                        AutoSizeText(
                           "Luguel",
                           style: theme.textTheme.titleLarge!.copyWith(),
                           textAlign: TextAlign.left,
+                          maxFontSize: 80,
+
                         ),
                         const SizedBox(height: 25,),
-                        Text(
+                        AutoSizeText(
                           "Encontre seu lar perfeito! Onde a Casa dos seus sonhos se torna um aluguel da realidade!",
                           style: theme.textTheme.labelSmall!.copyWith(),
                           textAlign: TextAlign.left,
+                          maxFontSize: 30,
                         ),
                         const SizedBox(height: 30,),
                       ],
