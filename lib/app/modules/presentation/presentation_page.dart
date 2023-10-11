@@ -78,7 +78,7 @@ class PresentationPageState extends State<PresentationPage> with SingleTickerPro
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 25,),
+                        const SizedBox(height: 105,),
                         AutoSizeText(
                           "Bem Vindo ao 👋",
                           style: theme.textTheme.titleMedium!.copyWith(),
