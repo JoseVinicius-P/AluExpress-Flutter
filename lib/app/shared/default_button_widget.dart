@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 class DefaultButtonWidget extends StatelessWidget {
   final Function onTap;
   final String text;
-  final Icon icon;
+  final Icon? icon;
   final Color background;
   final Color textColor;
+  final bool? shadow;
   const DefaultButtonWidget({
-    super.key, required this.onTap, required this.text, required this.icon, required this.background, required this.textColor,
+    super.key, required this.onTap, required this.text, this.icon, required this.background, required this.textColor, this.shadow,
   });
 
   @override
@@ -35,7 +36,7 @@ class DefaultButtonWidget extends StatelessWidget {
                   color: background,
                   boxShadow: [
                     BoxShadow(
-                      color: background.withOpacity(0.4),
+                      color: shadow != null && shadow! ? background.withOpacity(0.4) : Colors.transparent,
                       spreadRadius: 0.1,
                       blurRadius: 15,
                       offset: const Offset(2, 10),
@@ -55,7 +56,7 @@ class DefaultButtonWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    icon,
+                    if(icon != null) icon!,
                   ],
                 ),
               ),

@@ -108,6 +108,7 @@ class PresentationPageState extends State<PresentationPage> with SingleTickerPro
                           icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
                           background: MyColors.primaryColor,
                           textColor: Colors.white,
+                          shadow: true,
                         ),
                         const SizedBox(height: 30,),
                       ],
