@@ -186,7 +186,7 @@ class SlidePageState extends State<SlidePage> {
                     builder: (context, triple) {
                       int current = triple.state as int;
                       return DefaultButtonWidget(
-                        onTap: current != 2 ? () => _controller.animateToPage(current + 1) : (){},
+                        onTap: current != 2 ? () => _controller.animateToPage(current + 1, duration: const Duration(milliseconds: 800), curve: Curves.fastEaseInToSlowEaseOut) : (){},
                         text: current != 2 ? "Continuar" : "Finalizar",
                         icon: Icon(
                           current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
