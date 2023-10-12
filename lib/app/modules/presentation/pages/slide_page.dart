@@ -14,119 +14,130 @@ class SlidePage extends StatefulWidget {
   @override
   SlidePageState createState() => SlidePageState();
 }
-class SlidePageState extends State<SlidePage> {
+class SlidePageState extends State<SlidePage>{
   final SlideStore store = Modular.get();
-  final CarouselController _controller = CarouselController();
-  List<Widget> elementsList = [
-    Stack(
-      children: [
-        const Image(
-          image: AssetImage('assets/images/slide1.png'),
-          fit: BoxFit.cover,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 32.sh),
-              const AutoSizeText(
-                "Encontre \na casa \nque \nsempre \nsonhou!",
-                style: TextStyle(
-                    fontSize: 35,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              const SizedBox(height: 10,),
-              const Expanded(
-                child: AutoSizeText(
-                  "No Luguel você pode encontrar uma grande diversidade de casas e apartamentos, tudo de acordo com a cidade que você mora!",
+  final CarouselController _carouselController = CarouselController();
+  late List<Widget> elementsList;
+
+  @override
+  void initState() {
+    super.initState();
+    elementsList = [
+      Stack(
+        children: [
+          const Image(
+            image: AssetImage('assets/images/slide1.png'),
+            fit: BoxFit.cover,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 32.sh),
+                const AutoSizeText(
+                  "Encontre \na casa \nque \nsempre \nsonhou!",
                   style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.grey,
+                      fontSize: 35,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold
                   ),
                 ),
-              ),
-
-            ],
-          ),
-        )
-      ],
-    ),
-    Stack(
-      children: [
-        const Image(
-          image: AssetImage('assets/images/slide2.png'),
-          fit: BoxFit.cover,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 32.sh),
-              const AutoSizeText(
-                "Divulgue \nseus imóveis \npara um \ngrande base de \nclientes",
-                style: TextStyle(
-                    fontSize: 35,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              const SizedBox(height: 10,),
-              const Expanded(
-                child: AutoSizeText(
-                  "Aqui você pode divulgar seus imóveis sem nenhum custo, encontrando inquilinos com mais velocidade!",
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.grey,
+                const SizedBox(height: 10,),
+                const Expanded(
+                  child: AutoSizeText(
+                    "No Luguel você pode encontrar uma grande diversidade de casas e apartamentos, tudo de acordo com a cidade que você mora!",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
-              ),
 
-            ],
+              ],
+            ),
+          )
+        ],
+      ),
+      Stack(
+        children: [
+          const Image(
+            image: AssetImage('assets/images/slide2.png'),
+            fit: BoxFit.cover,
           ),
-        )
-      ],
-    ),
-    Stack(
-      children: [
-        const Image(
-          image: AssetImage('assets/images/slide3.png'),
-          fit: BoxFit.cover,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 32.sh),
-              const AutoSizeText(
-                "Alugue \ncom \nrapidez e \ncomodidade!",
-                style: TextStyle(
-                    fontSize: 35,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              const SizedBox(height: 10,),
-              const Expanded(
-                child: AutoSizeText(
-                  "Com apenas alguns minutos você consegue ver todas as casa disponíveis na sua cidade, alugando sem precisar procurar manualmente",
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 32.sh),
+                const AutoSizeText(
+                  "Divulgue \nseus imóveis \npara um \ngrande base de \nclientes",
                   style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.grey,
+                      fontSize: 35,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold
                   ),
                 ),
-              ),
+                const SizedBox(height: 10,),
+                const Expanded(
+                  child: AutoSizeText(
+                    "Aqui você pode divulgar seus imóveis sem nenhum custo, encontrando inquilinos com mais velocidade!",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
 
-            ],
+              ],
+            ),
+          )
+        ],
+      ),
+      Stack(
+        children: [
+          const Image(
+            image: AssetImage('assets/images/slide3.png'),
+            fit: BoxFit.cover,
           ),
-        )
-      ],
-    ),
-  ];
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 32.sh),
+                const AutoSizeText(
+                  "Alugue \ncom \nrapidez e \ncomodidade!",
+                  style: TextStyle(
+                      fontSize: 35,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                const SizedBox(height: 10,),
+                const Expanded(
+                  child: AutoSizeText(
+                    "Com apenas alguns minutos você consegue ver todas as casa disponíveis na sua cidade, alugando sem precisar procurar manualmente",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+
+              ],
+            ),
+          )
+        ],
+      ),
+    ];
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +149,7 @@ class SlidePageState extends State<SlidePage> {
       body: Column(
         children: [
           CarouselSlider(
-            carouselController: _controller,
+            carouselController: _carouselController,
             options: CarouselOptions(
               height: 70.sh,
               enlargeCenterPage: false,
@@ -157,7 +168,7 @@ class SlidePageState extends State<SlidePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: elementsList.asMap().entries.map((entry) {
                   return GestureDetector(
-                    onTap: () => _controller.animateToPage(entry.key),
+                    onTap: () => _carouselController.animateToPage(entry.key),
                     child: Container(
                       width: 1.sh,
                       height: 1.sh,
@@ -186,7 +197,7 @@ class SlidePageState extends State<SlidePage> {
                     builder: (context, triple) {
                       int current = triple.state as int;
                       return DefaultButtonWidget(
-                        onTap: current != 2 ? () => _controller.animateToPage(current + 1, duration: const Duration(milliseconds: 800), curve: Curves.fastEaseInToSlowEaseOut) : (){},
+                        onTap: current != 2 ? () => _carouselController.animateToPage(current + 1, duration: const Duration(milliseconds: 800), curve: Curves.fastEaseInToSlowEaseOut) : (){},
                         text: current != 2 ? "Continuar" : "Finalizar",
                         icon: Icon(
                           current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
