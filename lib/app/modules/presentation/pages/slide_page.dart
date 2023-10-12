@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -16,12 +17,9 @@ class SlidePageState extends State<SlidePage> {
   List<Widget> elementsList = [
     Stack(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(30)),
-          child: Image(
-            image: AssetImage('assets/images/slide1.png'),
-            fit: BoxFit.cover,
-          ),
+        const Image(
+          image: AssetImage('assets/images/slide1.png'),
+          fit: BoxFit.cover,
         ),
         Padding(
           padding: const EdgeInsets.all(15.0),
@@ -29,7 +27,7 @@ class SlidePageState extends State<SlidePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 32.sh),
-              AutoSizeText(
+              const AutoSizeText(
                 "Encontre \na casa \nque \nsempre \nsonhou!",
                 style: TextStyle(
                     fontSize: 35,
@@ -38,7 +36,7 @@ class SlidePageState extends State<SlidePage> {
                 ),
               ),
               const SizedBox(height: 10,),
-              Expanded(
+              const Expanded(
                 child: AutoSizeText(
                   "No Luguel você pode encontrar uma grande diversidade de casas e apartamentos, tudo de acordo com a cidade que você mora!",
                   style: TextStyle(
@@ -55,12 +53,9 @@ class SlidePageState extends State<SlidePage> {
     ),
     Stack(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(30)),
-          child: Image(
-            image: AssetImage('assets/images/slide2.png'),
-            fit: BoxFit.cover,
-          ),
+        const Image(
+          image: AssetImage('assets/images/slide2.png'),
+          fit: BoxFit.cover,
         ),
         Padding(
           padding: const EdgeInsets.all(15.0),
@@ -68,7 +63,7 @@ class SlidePageState extends State<SlidePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 32.sh),
-              AutoSizeText(
+              const AutoSizeText(
                 "Divulgue \nseus imóveis \npara um \ngrande base de \nclientes",
                 style: TextStyle(
                     fontSize: 35,
@@ -77,7 +72,7 @@ class SlidePageState extends State<SlidePage> {
                 ),
               ),
               const SizedBox(height: 10,),
-              Expanded(
+              const Expanded(
                 child: AutoSizeText(
                   "Aqui você pode divulgar seus imóveis sem nenhum custo, encontrando inquilinos com mais velocidade!",
                   style: TextStyle(
@@ -94,12 +89,9 @@ class SlidePageState extends State<SlidePage> {
     ),
     Stack(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(30)),
-          child: Image(
-            image: AssetImage('assets/images/slide3.png'),
-            fit: BoxFit.cover,
-          ),
+        const Image(
+          image: AssetImage('assets/images/slide3.png'),
+          fit: BoxFit.cover,
         ),
         Padding(
           padding: const EdgeInsets.all(15.0),
@@ -107,7 +99,7 @@ class SlidePageState extends State<SlidePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 32.sh),
-              AutoSizeText(
+              const AutoSizeText(
                 "Alugue \ncom \nrapidez e \ncomodidade!",
                 style: TextStyle(
                     fontSize: 35,
@@ -116,7 +108,7 @@ class SlidePageState extends State<SlidePage> {
                 ),
               ),
               const SizedBox(height: 10,),
-              Expanded(
+              const Expanded(
                 child: AutoSizeText(
                   "Com apenas alguns minutos você consegue ver todas as casa disponíveis na sua cidade, alugando sem precisar procurar manualmente",
                   style: TextStyle(
@@ -175,6 +167,31 @@ class SlidePageState extends State<SlidePage> {
                 ),
               );
             }).toList(),
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(15.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  DefaultButtonWidget(
+                    onTap: (){},
+                    text: "Continuar",
+                    icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
+                    background: MyColors.primaryColor,
+                    textColor: Colors.white,
+                  ),
+                  const SizedBox(height: 20,),
+                  DefaultButtonWidget(
+                    onTap: (){},
+                    text: "Pular",
+                    background: MyColors.secondaryColor,
+                    textColor: MyColors.primaryColor,
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
