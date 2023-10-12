@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:luguel/app/modules/presentation/presentation_store.dart';
+import 'package:luguel/app/modules/presentation/stores/presentation_store.dart';
  
 void main() {
   late PresentationStore store;
