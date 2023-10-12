@@ -41,6 +41,7 @@ dependencies:
   responsive_builder: ^0.7.0
   #Para Text que se redimencionam automaticamente
   auto_size_text: ^3.0.0
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
