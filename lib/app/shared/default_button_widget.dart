@@ -1,12 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:luguel/app/shared/my_colors.dart';
 
 class DefaultButtonWidget extends StatelessWidget {
   final Function onTap;
   final String text;
+  final Icon icon;
+  final Color background;
+  final Color textColor;
   const DefaultButtonWidget({
-    super.key, required this.onTap, required this.text,
+    super.key, required this.onTap, required this.text, required this.icon, required this.background, required this.textColor,
   });
 
   @override
@@ -30,10 +32,10 @@ class DefaultButtonWidget extends StatelessWidget {
                     style: BorderStyle.solid,
                     color: Colors.transparent,
                   ),
-                  color: MyColors.primaryColor,
+                  color: background,
                   boxShadow: [
                     BoxShadow(
-                      color: MyColors.primaryColor.withOpacity(0.4),
+                      color: background.withOpacity(0.4),
                       spreadRadius: 0.1,
                       blurRadius: 15,
                       offset: const Offset(2, 10),
@@ -49,11 +51,11 @@ class DefaultButtonWidget extends StatelessWidget {
                     AutoSizeText(
                       maxLines: 1,
                       text,
-                      style: theme.textTheme.labelSmall,
+                      style: theme.textTheme.labelSmall?.copyWith(color: textColor),
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,)
+                    icon,
                   ],
                 ),
               ),

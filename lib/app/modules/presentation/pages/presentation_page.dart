@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/modules/presentation/presentation_store.dart';
 import 'package:flutter/material.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
+import 'package:luguel/app/shared/my_colors.dart';
 
 class PresentationPage extends StatefulWidget {
   final String title;
@@ -101,7 +102,13 @@ class PresentationPageState extends State<PresentationPage> with SingleTickerPro
                           maxFontSize: 30,
                         ),
                         const SizedBox(height: 35,),
-                        DefaultButtonWidget(onTap: () => Modular.to.pushNamed("/presentation_slide"), text: "Vamos começar",),
+                        DefaultButtonWidget(
+                          onTap: () => Modular.to.pushNamed("/presentation_slide"),
+                          text: "Vamos começar",
+                          icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
+                          background: MyColors.primaryColor,
+                          textColor: Colors.white,
+                        ),
                         const SizedBox(height: 30,),
                       ],
                     ),
