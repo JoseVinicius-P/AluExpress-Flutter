@@ -108,7 +108,7 @@ class PresentationPageState extends State<PresentationPage> with SingleTickerPro
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(35),
                                   //Se a authenticação estiver sendo feita o botão não funcionará
-                                  onTap: (){},
+                                  onTap: () => Modular.to.pushNamed("/presentation_slide"),
                                   child: Container(
                                     decoration: BoxDecoration(
                                         borderRadius: const BorderRadius.all(
