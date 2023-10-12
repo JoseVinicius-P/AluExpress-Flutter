@@ -1,6 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_triple/flutter_triple.dart';
+import 'package:luguel/app/modules/presentation/stores/slide_store.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -12,7 +15,7 @@ class SlidePage extends StatefulWidget {
   SlidePageState createState() => SlidePageState();
 }
 class SlidePageState extends State<SlidePage> {
-  int _currentSlide = 0;
+  final SlideStore store = Modular.get();
   final CarouselController _controller = CarouselController();
   List<Widget> elementsList = [
     Stack(
@@ -143,44 +146,55 @@ class SlidePageState extends State<SlidePage> {
               enableInfiniteScroll: false,
               viewportFraction: 1,
               onPageChanged: (index, reason) {
-                setState(() {
-                  _currentSlide = index;
-                });
+                store.updateCurrentSlide(index);
               }),
             items: elementsList,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: elementsList.asMap().entries.map((entry) {
-              return GestureDetector(
-                onTap: () => _controller.animateToPage(entry.key),
-                child: Container(
-                  width: 1.sh,
-                  height: 1.sh,
-                  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: (Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white
-                          : MyColors.primaryColor)
-                          .withOpacity(_currentSlide == entry.key ? 0.7 : 0.1)),
-                ),
+          TripleBuilder(
+            store: store,
+            builder: (context, triple) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: elementsList.asMap().entries.map((entry) {
+                  return GestureDetector(
+                    onTap: () => _controller.animateToPage(entry.key),
+                    child: Container(
+                      width: 1.sh,
+                      height: 1.sh,
+                      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: (Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : MyColors.primaryColor)
+                              .withOpacity(triple.state == entry.key ? 0.7 : 0.1)),
+                    ),
+                  );
+                }).toList(),
               );
-            }).toList(),
+            }
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  DefaultButtonWidget(
-                    onTap: (){},
-                    text: "Continuar",
-                    icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
-                    background: MyColors.primaryColor,
-                    textColor: Colors.white,
+                  TripleBuilder(
+                    store: store,
+                    builder: (context, triple) {
+                      int current = triple.state as int;
+                      return DefaultButtonWidget(
+                        onTap: current != 2 ? () => _controller.animateToPage(current + 1) : (){},
+                        text: current != 2 ? "Continuar" : "Finalizar",
+                        icon: Icon(
+                          current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
+                          color: Colors.white,),
+                        background: MyColors.primaryColor,
+                        textColor: Colors.white,
+                      );
+                    }
                   ),
                   const SizedBox(height: 20,),
                   DefaultButtonWidget(
