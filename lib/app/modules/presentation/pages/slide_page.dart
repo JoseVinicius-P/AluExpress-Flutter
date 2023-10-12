@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:luguel/app/shared/my_colors.dart';
@@ -12,18 +13,123 @@ class SlidePage extends StatefulWidget {
 class SlidePageState extends State<SlidePage> {
   int _currentSlide = 0;
   final CarouselController _controller = CarouselController();
-  final List<Widget> elementsList = [
-    Container(
-      color: Colors.red,
+  List<Widget> elementsList = [
+    Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+          child: Image(
+            image: AssetImage('assets/images/slide1.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 32.sh),
+              AutoSizeText(
+                "Encontre \na casa \nque \nsempre \nsonhou!",
+                style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+              const SizedBox(height: 10,),
+              Expanded(
+                child: AutoSizeText(
+                  "No Luguel você pode encontrar uma grande diversidade de casas e apartamentos, tudo de acordo com a cidade que você mora!",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+
+            ],
+          ),
+        )
+      ],
     ),
-    Container(
-      color: Colors.green,
+    Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+          child: Image(
+            image: AssetImage('assets/images/slide2.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 32.sh),
+              AutoSizeText(
+                "Divulgue \nseus imóveis \npara um \ngrande base de \nclientes",
+                style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+              const SizedBox(height: 10,),
+              Expanded(
+                child: AutoSizeText(
+                  "Aqui você pode divulgar seus imóveis sem nenhum custo, encontrando inquilinos com mais velocidade!",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+
+            ],
+          ),
+        )
+      ],
     ),
-    Container(
-      color: Colors.blue,
-    ),
-    Container(
-      color: Colors.orange,
+    Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(30)),
+          child: Image(
+            image: AssetImage('assets/images/slide3.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 32.sh),
+              AutoSizeText(
+                "Alugue \ncom \nrapidez e \ncomodidade!",
+                style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+              const SizedBox(height: 10,),
+              Expanded(
+                child: AutoSizeText(
+                  "Com apenas alguns minutos você consegue ver todas as casa disponíveis na sua cidade, alugando sem precisar procurar manualmente",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+
+            ],
+          ),
+        )
+      ],
     ),
   ];
 
@@ -41,13 +147,9 @@ class SlidePageState extends State<SlidePage> {
             options: CarouselOptions(
               height: 70.sh,
               enlargeCenterPage: false,
-              autoPlay: true,
-              aspectRatio: 16 / 9,
-              autoPlayCurve: Curves.fastEaseInToSlowEaseOut,
-              enableInfiniteScroll: true,
-              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+              autoPlay: false,
+              enableInfiniteScroll: false,
               viewportFraction: 1,
-              autoPlayInterval: const Duration(seconds: 15),
               onPageChanged: (index, reason) {
                 setState(() {
                   _currentSlide = index;
