@@ -131,12 +131,19 @@ class PresentationPageState extends State<PresentationPage> with SingleTickerPro
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(14),
-                                      child: AutoSizeText(
-                                        maxLines: 1,
-                                        'Vamos começar',
-                                        style: theme.textTheme.labelSmall,
-                                        textAlign: TextAlign.center,
-                                        overflow: TextOverflow.ellipsis,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          AutoSizeText(
+                                            maxLines: 1,
+                                            'Vamos começar',
+                                            style: theme.textTheme.labelSmall,
+                                            textAlign: TextAlign.center,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,)
+                                        ],
                                       ),
                                     ),
                                   ),
