@@ -47,14 +47,20 @@ class PresentationPageState extends State<PresentationPage>{
           ),
           child: Column(
             children: [
-              GradiendBackgroundWidget(
-                  child: Center(
-                    child: SizedBox(
-                      width: 100.sw,
-                      height: 100.sw,
-                      child: const Center(child: WelcomeWidget()),
+              Expanded(
+                child: GradiendBackgroundWidget(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 100.sw,
+                          height: 100.sw,
+                          child: const Center(child: WelcomeWidget()),
+                        ),
+                      ],
                     ),
-                  ),
+                ),
               ),
             ],
           ),
