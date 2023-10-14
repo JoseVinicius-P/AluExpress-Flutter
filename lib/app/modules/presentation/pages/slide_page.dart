@@ -19,9 +19,7 @@ class SlidePageState extends State<SlidePage>{
   final CarouselController _carouselController = CarouselController();
   late List<Widget> elementsList;
 
-  @override
-  void initState() {
-    super.initState();
+  void initElementsList (){
     elementsList = [
       Stack(
         children: [
@@ -33,18 +31,25 @@ class SlidePageState extends State<SlidePage>{
             padding: const EdgeInsets.all(15.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.max,
               children: [
-                SizedBox(height: 32.sh),
-                const AutoSizeText(
-                  "Encontre \na casa \nque \nsempre \nsonhou!",
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold
+                const Spacer(),
+                Flexible(
+                  child: SizedBox(
+                    width: 40.sw,
+                    child: const AutoSizeText(
+                      "Encontre a casa que sempre sonhou!",
+                      style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10,),
-                const Expanded(
+                const Flexible(
                   child: AutoSizeText(
                     "No Luguel você pode encontrar uma grande diversidade de casas e apartamentos, tudo de acordo com a cidade que você mora!",
                     style: TextStyle(
@@ -53,7 +58,6 @@ class SlidePageState extends State<SlidePage>{
                     ),
                   ),
                 ),
-
               ],
             ),
           )
@@ -69,18 +73,25 @@ class SlidePageState extends State<SlidePage>{
             padding: const EdgeInsets.all(15.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.max,
               children: [
-                SizedBox(height: 32.sh),
-                const AutoSizeText(
-                  "Divulgue \nseus imóveis \npara um \ngrande base de \nclientes",
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold
+                const Spacer(),
+                Flexible(
+                  child: SizedBox(
+                    width: 40.sw,
+                    child: const AutoSizeText(
+                      "Divulgue seus imóveis para um grande base de clientes",
+                      style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10,),
-                const Expanded(
+                const Flexible(
                   child: AutoSizeText(
                     "Aqui você pode divulgar seus imóveis sem nenhum custo, encontrando inquilinos com mais velocidade!",
                     style: TextStyle(
@@ -105,18 +116,25 @@ class SlidePageState extends State<SlidePage>{
             padding: const EdgeInsets.all(15.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.max,
               children: [
-                SizedBox(height: 32.sh),
-                const AutoSizeText(
-                  "Alugue \ncom \nrapidez e \ncomodidade!",
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold
+                const Spacer(),
+                Flexible(
+                  child: SizedBox(
+                    width: 40.sw,
+                    child: const AutoSizeText(
+                      "Alugue com rapidez, sem sair de casa!",
+                      style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10,),
-                const Expanded(
+                const Flexible(
                   child: AutoSizeText(
                     "Com apenas alguns minutos você consegue ver todas as casa disponíveis na sua cidade, alugando sem precisar procurar manualmente",
                     style: TextStyle(
@@ -135,12 +153,19 @@ class SlidePageState extends State<SlidePage>{
   }
 
   @override
+  void initState() {
+    super.initState();
+
+  }
+
+  @override
   void dispose() {
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    initElementsList();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -152,18 +177,20 @@ class SlidePageState extends State<SlidePage>{
             flex: 3,
             child: Column(
               children: [
-                CarouselSlider(
-                  carouselController: _carouselController,
-                  options: CarouselOptions(
-                    height: 70.sh,
-                    enlargeCenterPage: false,
-                    autoPlay: false,
-                    enableInfiniteScroll: false,
-                    viewportFraction: 1,
-                    onPageChanged: (index, reason) {
-                      store.updateCurrentSlide(index);
-                    }),
-                  items: elementsList,
+                Flexible(
+                  child: CarouselSlider(
+                    carouselController: _carouselController,
+                    options: CarouselOptions(
+                      height: 70.sh,
+                      enlargeCenterPage: false,
+                      autoPlay: false,
+                      enableInfiniteScroll: false,
+                      viewportFraction: 1,
+                      onPageChanged: (index, reason) {
+                        store.updateCurrentSlide(index);
+                      }),
+                    items: elementsList,
+                  ),
                 ),
                 TripleBuilder(
                     store: store,
