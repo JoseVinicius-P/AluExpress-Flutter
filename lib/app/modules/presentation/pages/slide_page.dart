@@ -169,91 +169,108 @@ class SlidePageState extends State<SlidePage>{
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+            color: Colors.white,
+            shadows: [
+              BoxShadow(
+                color: Colors.black,
+                offset: Offset(0, 0),
+                blurRadius: 20,
+              )
+            ]
+        ),
         forceMaterialTransparency: true,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Column(
-              children: [
-                Flexible(
-                  child: CarouselSlider(
-                    carouselController: _carouselController,
-                    options: CarouselOptions(
-                      height: 70.sh,
-                      enlargeCenterPage: false,
-                      autoPlay: false,
-                      enableInfiniteScroll: false,
-                      viewportFraction: 1,
-                      onPageChanged: (index, reason) {
-                        store.updateCurrentSlide(index);
-                      }),
-                    items: elementsList,
-                  ),
-                ),
-                TripleBuilder(
-                    store: store,
-                    builder: (context, triple) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: elementsList.asMap().entries.map((entry) {
-                          return GestureDetector(
-                            onTap: () => _carouselController.animateToPage(entry.key),
-                            child: Container(
-                              width: 1.sh,
-                              height: 1.sh,
-                              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: (Theme.of(context).brightness == Brightness.dark
-                                      ? Colors.white
-                                      : MyColors.primaryColor)
-                                      .withOpacity(triple.state == entry.key ? 0.7 : 0.1)),
-                            ),
-                          );
-                        }).toList(),
-                      );
-                    }
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
+      //Usado para interceptar quando a tela é fechada (Botão de fechar é pressionado, botão de voltar do sipositivo
+      body: WillPopScope(
+        onWillPop: () async{
+          _carouselController.jumpToPage(0);
+          return true;
+        },
+        child: Column(
+          children: [
+            Expanded(
+              flex: 3,
               child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TripleBuilder(
-                    store: store,
-                    builder: (context, triple) {
-                      int current = triple.state as int;
-                      return DefaultButtonWidget(
-                        onTap: current != 2 ? () => _carouselController.animateToPage(current + 1, duration: const Duration(milliseconds: 800), curve: Curves.fastEaseInToSlowEaseOut) : (){},
-                        text: current != 2 ? "Continuar" : "Finalizar",
-                        icon: Icon(
-                          current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
-                          color: Colors.white,),
-                        background: MyColors.primaryColor,
-                        textColor: Colors.white,
-                      );
-                    }
+                  Flexible(
+                    child: CarouselSlider(
+                      carouselController: _carouselController,
+                      options: CarouselOptions(
+                        height: 70.sh,
+                        enlargeCenterPage: false,
+                        autoPlay: false,
+                        enableInfiniteScroll: false,
+                        viewportFraction: 1,
+                        onPageChanged: (index, reason) {
+                          store.updateCurrentSlide(index);
+                        }),
+                      items: elementsList,
+                    ),
                   ),
-                  const SizedBox(height: 20,),
-                  DefaultButtonWidget(
-                    onTap: (){},
-                    text: "Pular",
-                    background: MyColors.secondaryColor,
-                    textColor: MyColors.primaryColor,
+                  TripleBuilder(
+                      store: store,
+                      builder: (context, triple) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: elementsList.asMap().entries.map((entry) {
+                            return GestureDetector(
+                              onTap: () => _carouselController.animateToPage(entry.key),
+                              child: Container(
+                                width: 1.sh,
+                                height: 1.sh,
+                                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: (Theme.of(context).brightness == Brightness.dark
+                                        ? Colors.white
+                                        : MyColors.primaryColor)
+                                        .withOpacity(triple.state == entry.key ? 0.7 : 0.1)),
+                              ),
+                            );
+                          }).toList(),
+                        );
+                      }
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TripleBuilder(
+                      store: store,
+                      builder: (context, triple) {
+                        int current = triple.state as int;
+                        return DefaultButtonWidget(
+                          onTap: current != 2 ? () => _carouselController.animateToPage(current + 1, duration: const Duration(milliseconds: 800), curve: Curves.fastEaseInToSlowEaseOut) : (){},
+                          text: current != 2 ? "Continuar" : "Finalizar",
+                          icon: Icon(
+                            current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
+                            color: Colors.white,),
+                          background: MyColors.primaryColor,
+                          textColor: Colors.white,
+                        );
+                      }
+                    ),
+                    const SizedBox(height: 20,),
+                    DefaultButtonWidget(
+                      onTap: (){},
+                      text: "Pular",
+                      background: MyColors.secondaryColor,
+                      textColor: MyColors.primaryColor,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
