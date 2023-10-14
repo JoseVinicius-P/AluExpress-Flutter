@@ -41,38 +41,38 @@ class PresentationPageState extends State<PresentationPage> with SingleTickerPro
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            //Widget esponsavel por animar
-            AnimatedBuilder(
-              animation: _animationController,
-              builder: (context, child) {
-                return Transform.scale(
-                  scale: _animation.value,
-                  child: Container(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height,
-                    color: Colors.white,
-                    child: const Image(
-                      image: AssetImage('assets/images/presentation_background.jpg'),
-                      fit: BoxFit.cover,),
-                  ),
-                );
-              },
-            ),
-            Column(
-              children: [
-                const Spacer(),
-                Container(
+      body: Stack(
+        children: [
+          //Widget esponsavel por animar
+          AnimatedBuilder(
+            animation: _animationController,
+            builder: (context, child) {
+              return Transform.scale(
+                scale: _animation.value,
+                child: Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Colors.transparent, Colors.black.withOpacity(0.5), Colors.black.withOpacity(0.7)],
-                      ),
-                  ),
+                  height: MediaQuery.of(context).size.height,
+                  color: Colors.white,
+                  child: const Image(
+                    image: AssetImage('assets/images/presentation_background.jpg'),
+                    fit: BoxFit.cover,),
+                ),
+              );
+            },
+          ),
+          Column(
+            children: [
+              const Spacer(),
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.transparent, Colors.black.withOpacity(0.5), Colors.black.withOpacity(0.7)],
+                    ),
+                ),
+                child: SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(25.0),
                     child: Column(
@@ -110,15 +110,15 @@ class PresentationPageState extends State<PresentationPage> with SingleTickerPro
                           textColor: Colors.white,
                           shadow: true,
                         ),
-                        const SizedBox(height: 30,),
+                        const SizedBox(height: 20,),
                       ],
                     ),
                   ),
                 ),
-              ],
-            )
-          ],
-        ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
