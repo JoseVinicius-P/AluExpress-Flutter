@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:luguel/app/modules/presentation/stores/slide_store.dart';
+import 'package:luguel/app/modules/presentation/interfaces/i_slide_store.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -15,7 +15,7 @@ class SlidePage extends StatefulWidget {
   SlidePageState createState() => SlidePageState();
 }
 class SlidePageState extends State<SlidePage>{
-  final SlideStore store = Modular.get();
+  final ISlideStore store = Modular.get();
   final CarouselController _carouselController = CarouselController();
   late List<Widget> elementsList;
 
