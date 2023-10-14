@@ -148,44 +148,52 @@ class SlidePageState extends State<SlidePage>{
       ),
       body: Column(
         children: [
-          CarouselSlider(
-            carouselController: _carouselController,
-            options: CarouselOptions(
-              height: 70.sh,
-              enlargeCenterPage: false,
-              autoPlay: false,
-              enableInfiniteScroll: false,
-              viewportFraction: 1,
-              onPageChanged: (index, reason) {
-                store.updateCurrentSlide(index);
-              }),
-            items: elementsList,
-          ),
-          TripleBuilder(
-            store: store,
-            builder: (context, triple) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: elementsList.asMap().entries.map((entry) {
-                  return GestureDetector(
-                    onTap: () => _carouselController.animateToPage(entry.key),
-                    child: Container(
-                      width: 1.sh,
-                      height: 1.sh,
-                      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: (Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : MyColors.primaryColor)
-                              .withOpacity(triple.state == entry.key ? 0.7 : 0.1)),
-                    ),
-                  );
-                }).toList(),
-              );
-            }
+          Expanded(
+            flex: 3,
+            child: Column(
+              children: [
+                CarouselSlider(
+                  carouselController: _carouselController,
+                  options: CarouselOptions(
+                    height: 70.sh,
+                    enlargeCenterPage: false,
+                    autoPlay: false,
+                    enableInfiniteScroll: false,
+                    viewportFraction: 1,
+                    onPageChanged: (index, reason) {
+                      store.updateCurrentSlide(index);
+                    }),
+                  items: elementsList,
+                ),
+                TripleBuilder(
+                    store: store,
+                    builder: (context, triple) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: elementsList.asMap().entries.map((entry) {
+                          return GestureDetector(
+                            onTap: () => _carouselController.animateToPage(entry.key),
+                            child: Container(
+                              width: 1.sh,
+                              height: 1.sh,
+                              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: (Theme.of(context).brightness == Brightness.dark
+                                      ? Colors.white
+                                      : MyColors.primaryColor)
+                                      .withOpacity(triple.state == entry.key ? 0.7 : 0.1)),
+                            ),
+                          );
+                        }).toList(),
+                      );
+                    }
+                ),
+              ],
+            ),
           ),
           Expanded(
+            flex: 1,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
