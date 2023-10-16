@@ -17,39 +17,32 @@ class SlidePage extends StatefulWidget {
 class SlidePageState extends State<SlidePage>{
   final ISlideStore store = Modular.get();
   final CarouselController _carouselController = CarouselController();
-  late List<Widget> elementsList;
 
-  void initElementsList (){
-    elementsList = [
-      const SlidePageWidget(
+  List<Widget> getElementsList(bool expandImage){
+    return [
+      SlidePageWidget(
           slidePath: 'assets/images/slide1.png',
           title: "Encontre a casa que sempre sonhou!",
-          subtitle: "No Luguel você pode encontrar uma grande diversidade de casas e apartamentos, tudo de acordo com a cidade que você mora!"),
-      const SlidePageWidget(
+          subtitle: "No Luguel você pode encontrar uma grande diversidade de casas e apartamentos, tudo de acordo com a cidade que você mora!",
+          expandImage: expandImage,
+      ),
+      SlidePageWidget(
           slidePath: 'assets/images/slide2.png',
           title: "Divulgue seus imóveis para um grande base de clientes",
-          subtitle: "Aqui você pode divulgar seus imóveis sem nenhum custo, encontrando inquilinos com mais velocidade!"),
-      const SlidePageWidget(
+          subtitle: "Aqui você pode divulgar seus imóveis sem nenhum custo, encontrando inquilinos com mais velocidade!",
+        expandImage: expandImage,
+      ),
+      SlidePageWidget(
           slidePath: 'assets/images/slide3.png',
           title: "Alugue com rapidez, sem sair de casa!",
-          subtitle: "Com apenas alguns minutos você consegue ver todas as casa disponíveis na sua cidade, alugando sem precisar procurar manualmente"),
+          subtitle: "Com apenas alguns minutos você consegue ver todas as casa disponíveis na sua cidade, alugando sem precisar procurar manualmente",
+        expandImage: expandImage,
+      ),
     ];
   }
 
   @override
-  void initState() {
-    super.initState();
-
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    initElementsList();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -80,16 +73,16 @@ class SlidePageState extends State<SlidePage>{
                   children: [
                     CarouselSliderWidget(
                       carouselController: _carouselController,
-                      elementsList: elementsList,
                       onPageChanged: (index) => store.updateCurrentSlide(index),
                       axis: Axis.horizontal,
+                      children: getElementsList(false),
                     ),
                     TripleBuilder(
                         store: store,
                         builder: (context, triple) {
                           return SlideIndicatorWidget(
                             seletedItem: triple.state as int,
-                            numberOfItems: elementsList.length,
+                            numberOfItems: getElementsList(false).length,
                             axis: Axis.horizontal,
                             onItemTap: (index) => _carouselController.animateToPage(
                                 index,
@@ -147,9 +140,9 @@ class SlidePageState extends State<SlidePage>{
                     children: [
                       CarouselSliderWidget(
                         carouselController: _carouselController,
-                        elementsList: elementsList,
                         onPageChanged: (index) => store.updateCurrentSlide(index),
                         axis: Axis.vertical,
+                        children: getElementsList(true),
                       ),
                       const SizedBox(width: 10,),
                       TripleBuilder(
@@ -157,7 +150,7 @@ class SlidePageState extends State<SlidePage>{
                           builder: (context, triple) {
                             return SlideIndicatorWidget(
                                 seletedItem: triple.state as int,
-                                numberOfItems: elementsList.length,
+                                numberOfItems: getElementsList(true).length,
                                 axis: Axis.vertical,
                                 onItemTap: (index) => _carouselController.animateToPage(
                                     index,
@@ -218,56 +211,36 @@ class SlidePageWidget extends StatelessWidget {
     required this.slidePath,
     required this.title,
     required this.subtitle,
+    required this.expandImage,
   });
 
   final String slidePath;
   final String title;
   final String subtitle;
+  final bool expandImage;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Stack(
-        children: [
-          Container(
-            constraints: const BoxConstraints.expand(),
-            child: Image(
-              image: AssetImage(slidePath),
-              fit: BoxFit.cover,
-            ),
+    return Stack(
+      children: [
+        Container(
+          constraints: expandImage ? const BoxConstraints.expand() : const BoxConstraints(),
+          child: Image(
+            image: AssetImage(slidePath),
+            fit: BoxFit.cover,
           ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                const Spacer(),
-                Flexible(
-                  child: SizedBox(
-                    width: 40.sw,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(20)),
-                          color: Colors.white.withOpacity(0.99)
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: AutoSizeText(
-                          title,
-                          style: const TextStyle(
-                              fontSize: 35,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10,),
-                Flexible(
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const Spacer(),
+              Flexible(
+                child: SizedBox(
+                  width: 40.sw,
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -276,20 +249,40 @@ class SlidePageWidget extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: AutoSizeText(
-                        subtitle,
+                        title,
                         style: const TextStyle(
-                          fontSize: 15,
-                          color: Colors.grey,
+                            fontSize: 35,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
                         ),
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
-          )
-        ],
-      ),
+              ),
+              const SizedBox(height: 10,),
+              Flexible(
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      color: Colors.white.withOpacity(0.99)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: AutoSizeText(
+                      subtitle,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }
@@ -298,12 +291,12 @@ class CarouselSliderWidget extends StatelessWidget {
   const CarouselSliderWidget({
     super.key,
     required CarouselController carouselController,
-    required this.elementsList, required this.onPageChanged,
+    required this.children, required this.onPageChanged,
     required this.axis,
   }) : _carouselController = carouselController;
 
   final CarouselController _carouselController;
-  final List<Widget> elementsList;
+  final List<Widget> children;
   final Function(int) onPageChanged;
   final Axis axis;
 
@@ -322,7 +315,7 @@ class CarouselSliderWidget extends StatelessWidget {
             onPageChanged: (index, reason) {
               onPageChanged(index);
             }),
-        items: elementsList,
+        items: children,
       ),
     );
   }
