@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
@@ -18,7 +17,6 @@ class SlidePage extends StatefulWidget {
 }
 class SlidePageState extends State<SlidePage>{
   final ISlideStore store = Modular.get();
-  final CarouselController _carouselController = CarouselController();
 
   List<Widget> getElementsList(bool expandImage){
     return [
@@ -63,7 +61,7 @@ class SlidePageState extends State<SlidePage>{
       //Usado para interceptar quando a tela é fechada (Botão de fechar é pressionado, botão de voltar do sipositivo
       body: WillPopScope(
         onWillPop: () async{
-          _carouselController.jumpToPage(0);
+          store.setCarouselPage(0);
           return true;
         },
         child: OrientationLayoutBuilder(
@@ -74,7 +72,7 @@ class SlidePageState extends State<SlidePage>{
                 child: Column(
                   children: [
                     CarouselSliderWidget(
-                      carouselController: _carouselController,
+                      carouselController: store.getCarouselController(),
                       onPageChanged: (index) => store.updateCurrentSlide(index),
                       axis: Axis.horizontal,
                       children: getElementsList(false),
@@ -86,10 +84,7 @@ class SlidePageState extends State<SlidePage>{
                             seletedItem: triple.state as int,
                             numberOfItems: getElementsList(false).length,
                             axis: Axis.horizontal,
-                            onItemTap: (index) => _carouselController.animateToPage(
-                                index,
-                                duration: const Duration(milliseconds: 800),
-                                curve: Curves.fastEaseInToSlowEaseOut)
+                            onItemTap: (index) => store.setCarouselPage(index),
                           );
                         }
                     ),
@@ -109,7 +104,7 @@ class SlidePageState extends State<SlidePage>{
                           builder: (context, triple) {
                             int current = triple.state as int;
                             return DefaultButtonWidget(
-                              onTap: current != 2 ? () => _carouselController.animateToPage(current + 1, duration: const Duration(milliseconds: 800), curve: Curves.fastEaseInToSlowEaseOut) : (){},
+                              onTap: current != 2 ? () => store.setCarouselPage(current + 1) : (){},
                               text: current != 2 ? "Continuar" : "Finalizar",
                               icon: Icon(
                                 current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
@@ -141,7 +136,7 @@ class SlidePageState extends State<SlidePage>{
                   child: Row(
                     children: [
                       CarouselSliderWidget(
-                        carouselController: _carouselController,
+                        carouselController: store.getCarouselController(),
                         onPageChanged: (index) => store.updateCurrentSlide(index),
                         axis: Axis.vertical,
                         children: getElementsList(true),
@@ -154,10 +149,7 @@ class SlidePageState extends State<SlidePage>{
                                 seletedItem: triple.state as int,
                                 numberOfItems: getElementsList(true).length,
                                 axis: Axis.vertical,
-                                onItemTap: (index) => _carouselController.animateToPage(
-                                    index,
-                                    duration: const Duration(milliseconds: 800),
-                                    curve: Curves.fastEaseInToSlowEaseOut)
+                                onItemTap: (index) => store.setCarouselPage(index)
                             );
                           }
                       ),
@@ -177,7 +169,7 @@ class SlidePageState extends State<SlidePage>{
                             builder: (context, triple) {
                               int current = triple.state as int;
                               return DefaultButtonWidget(
-                                onTap: current != 2 ? () => _carouselController.animateToPage(current + 1, duration: const Duration(milliseconds: 800), curve: Curves.fastEaseInToSlowEaseOut) : (){},
+                                onTap: current != 2 ? () => store.setCarouselPage(current + 1) : (){},
                                 text: current != 2 ? "Continuar" : "Finalizar",
                                 icon: Icon(
                                   current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
