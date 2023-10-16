@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:luguel/app/modules/presentation/interfaces/i_slide_store.dart';
+import 'package:luguel/app/modules/presentation/widgets/carousel_slider_widget.dart';
 import 'package:luguel/app/modules/presentation/widgets/slide_page_widget.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
@@ -200,40 +201,6 @@ class SlidePageState extends State<SlidePage>{
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class CarouselSliderWidget extends StatelessWidget {
-  const CarouselSliderWidget({
-    super.key,
-    required CarouselController carouselController,
-    required this.children, required this.onPageChanged,
-    required this.axis,
-  }) : _carouselController = carouselController;
-
-  final CarouselController _carouselController;
-  final List<Widget> children;
-  final Function(int) onPageChanged;
-  final Axis axis;
-
-  @override
-  Widget build(BuildContext context) {
-    return Flexible(
-      child: CarouselSlider(
-        carouselController: _carouselController,
-        options: CarouselOptions(
-            scrollDirection: axis,
-            height: 70.sh,
-            enlargeCenterPage: false,
-            autoPlay: false,
-            enableInfiniteScroll: false,
-            viewportFraction: 1,
-            onPageChanged: (index, reason) {
-              onPageChanged(index);
-            }),
-        items: children,
       ),
     );
   }
