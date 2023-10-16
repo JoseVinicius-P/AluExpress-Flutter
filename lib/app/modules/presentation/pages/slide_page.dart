@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:luguel/app/modules/presentation/interfaces/i_slide_store.dart';
 import 'package:luguel/app/modules/presentation/widgets/carousel_slider_widget.dart';
+import 'package:luguel/app/modules/presentation/widgets/slide_indicator_widget.dart';
 import 'package:luguel/app/modules/presentation/widgets/slide_page_widget.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
@@ -202,57 +203,6 @@ class SlidePageState extends State<SlidePage>{
           ),
         ),
       ),
-    );
-  }
-}
-
-class SlideIndicatorWidget extends StatelessWidget {
-  const SlideIndicatorWidget({
-    super.key,
-    required this.numberOfItems,
-    this.onItemTap,
-    required this.seletedItem,
-    required this.axis,
-  });
-
-  final int numberOfItems;
-  final Function(int)? onItemTap;
-  final int seletedItem;
-  final Axis axis;
-
-  List<Widget> generateItems(){
-    return List.generate(numberOfItems, (index) =>
-        GestureDetector(
-          onTap: onItemTap != null ? () => onItemTap!(index) : (){},
-          child: Container(
-            width: 1.sh,
-            height: 1.sh,
-            margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: MyColors.primaryColor.withOpacity(seletedItem == index ? 0.7 : 0.1)
-            ),
-          ),
-        ));
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Builder(
-      builder: (context){
-        if(axis == Axis.horizontal){
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: generateItems(),
-          );
-        }else{
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: generateItems(),
-          );
-        }
-      },
     );
   }
 }
