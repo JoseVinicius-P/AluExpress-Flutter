@@ -140,18 +140,6 @@ class SlidePageState extends State<SlidePage>{
                       axis: Axis.vertical,
                       children: getElementsList(true),
                     ),
-                    const SizedBox(width: 10,),
-                    TripleBuilder(
-                        store: store,
-                        builder: (context, triple) {
-                          return SlideIndicatorWidget(
-                              seletedItem: triple.state as int,
-                              numberOfItems: getElementsList(true).length,
-                              axis: Axis.vertical,
-                              onItemTap: (index) => store.setCarouselPage(index)
-                          );
-                        }
-                    ),
                   ],
                 ),
               ),
@@ -159,31 +147,49 @@ class SlidePageState extends State<SlidePage>{
                 flex: 1,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: Row(
                     children: [
                       TripleBuilder(
                           store: store,
                           builder: (context, triple) {
-                            int current = triple.state as int;
-                            return DefaultButtonWidget(
-                              onTap: current != 2 ? () => store.setCarouselPage(current + 1) : (){},
-                              text: current != 2 ? "Continuar" : "Finalizar",
-                              icon: Icon(
-                                current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
-                                color: Colors.white,),
-                              background: MyColors.primaryColor,
-                              textColor: Colors.white,
+                            return SlideIndicatorWidget(
+                                seletedItem: triple.state as int,
+                                numberOfItems: getElementsList(true).length,
+                                axis: Axis.vertical,
+                                onItemTap: (index) => store.setCarouselPage(index)
                             );
                           }
                       ),
-                      const SizedBox(height: 20,),
-                      DefaultButtonWidget(
-                        onTap: (){},
-                        text: "Pular",
-                        background: MyColors.secondaryColor,
-                        textColor: MyColors.primaryColor,
+                      const SizedBox(width: 10,),
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TripleBuilder(
+                                store: store,
+                                builder: (context, triple) {
+                                  int current = triple.state as int;
+                                  return DefaultButtonWidget(
+                                    onTap: current != 2 ? () => store.setCarouselPage(current + 1) : (){},
+                                    text: current != 2 ? "Continuar" : "Finalizar",
+                                    icon: Icon(
+                                      current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
+                                      color: Colors.white,),
+                                    background: MyColors.primaryColor,
+                                    textColor: Colors.white,
+                                  );
+                                }
+                            ),
+                            const SizedBox(height: 20,),
+                            DefaultButtonWidget(
+                              onTap: (){},
+                              text: "Pular",
+                              background: MyColors.secondaryColor,
+                              textColor: MyColors.primaryColor,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
