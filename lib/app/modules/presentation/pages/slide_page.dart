@@ -127,71 +127,69 @@ class SlidePageState extends State<SlidePage>{
               ),
             ],
           ),
-          landscape: (context) => Center(
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Row(
+          landscape: (context) => Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Row(
+                  children: [
+                    CarouselSliderWidget(
+                      carouselController: store.getCarouselController(),
+                      onPageChanged: (index) => store.updateCurrentSlide(index),
+                      axis: Axis.vertical,
+                      children: getElementsList(true),
+                    ),
+                    const SizedBox(width: 10,),
+                    TripleBuilder(
+                        store: store,
+                        builder: (context, triple) {
+                          return SlideIndicatorWidget(
+                              seletedItem: triple.state as int,
+                              numberOfItems: getElementsList(true).length,
+                              axis: Axis.vertical,
+                              onItemTap: (index) => store.setCarouselPage(index)
+                          );
+                        }
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CarouselSliderWidget(
-                        carouselController: store.getCarouselController(),
-                        onPageChanged: (index) => store.updateCurrentSlide(index),
-                        axis: Axis.vertical,
-                        children: getElementsList(true),
-                      ),
-                      const SizedBox(width: 10,),
                       TripleBuilder(
                           store: store,
                           builder: (context, triple) {
-                            return SlideIndicatorWidget(
-                                seletedItem: triple.state as int,
-                                numberOfItems: getElementsList(true).length,
-                                axis: Axis.vertical,
-                                onItemTap: (index) => store.setCarouselPage(index)
+                            int current = triple.state as int;
+                            return DefaultButtonWidget(
+                              onTap: current != 2 ? () => store.setCarouselPage(current + 1) : (){},
+                              text: current != 2 ? "Continuar" : "Finalizar",
+                              icon: Icon(
+                                current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
+                                color: Colors.white,),
+                              background: MyColors.primaryColor,
+                              textColor: Colors.white,
                             );
                           }
+                      ),
+                      const SizedBox(height: 20,),
+                      DefaultButtonWidget(
+                        onTap: (){},
+                        text: "Pular",
+                        background: MyColors.secondaryColor,
+                        textColor: MyColors.primaryColor,
                       ),
                     ],
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TripleBuilder(
-                            store: store,
-                            builder: (context, triple) {
-                              int current = triple.state as int;
-                              return DefaultButtonWidget(
-                                onTap: current != 2 ? () => store.setCarouselPage(current + 1) : (){},
-                                text: current != 2 ? "Continuar" : "Finalizar",
-                                icon: Icon(
-                                  current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
-                                  color: Colors.white,),
-                                background: MyColors.primaryColor,
-                                textColor: Colors.white,
-                              );
-                            }
-                        ),
-                        const SizedBox(height: 20,),
-                        DefaultButtonWidget(
-                          onTap: (){},
-                          text: "Pular",
-                          background: MyColors.secondaryColor,
-                          textColor: MyColors.primaryColor,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
