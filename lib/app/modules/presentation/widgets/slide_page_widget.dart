@@ -21,7 +21,7 @@ class SlidePageWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          constraints: expandImage ? const BoxConstraints.expand() : const BoxConstraints(),
+          constraints: expandImage ? const BoxConstraints.expand() : BoxConstraints.tightFor(width: 100.sw),
           child: Image(
             image: AssetImage(slidePath),
             fit: BoxFit.cover,
