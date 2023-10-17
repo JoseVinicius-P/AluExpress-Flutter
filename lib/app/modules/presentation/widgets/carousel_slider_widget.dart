@@ -22,7 +22,7 @@ class CarouselSliderWidget extends StatelessWidget {
         carouselController: _carouselController,
         options: CarouselOptions(
             scrollDirection: axis,
-            height: 70.sh,
+            height: 100.sh,
             enlargeCenterPage: false,
             autoPlay: false,
             enableInfiniteScroll: false,
