@@ -1,3 +1,4 @@
+import 'package:luguel/app/modules/authentication/authentication_module.dart';
 import 'package:luguel/app/modules/presentation/interfaces/i_presentation_store.dart';
 import 'package:luguel/app/modules/presentation/interfaces/i_slide_store.dart';
 import 'package:luguel/app/modules/presentation/stores/slide_store.dart';
@@ -17,6 +18,7 @@ class PresentationModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, args) => const PresentationPage()),
     ChildRoute('/presentation_slide', child: (_, args) => const SlidePage(), transition: TransitionType.rightToLeftWithFade),
+    ModuleRoute('/authentication', module: AuthenticationModule())
   ];
 
 }

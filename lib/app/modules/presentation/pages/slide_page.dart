@@ -104,7 +104,7 @@ class SlidePageState extends State<SlidePage>{
                           builder: (context, triple) {
                             int current = triple.state as int;
                             return DefaultButtonWidget(
-                              onTap: current != 2 ? () => store.setCarouselPage(current + 1) : (){},
+                              onTap: current != 2 ? () => store.setCarouselPage(current + 1) : () => Modular.to.navigate('/authentication/'),
                               text: current != 2 ? "Continuar" : "Finalizar",
                               icon: Icon(
                                 current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
@@ -116,7 +116,7 @@ class SlidePageState extends State<SlidePage>{
                       ),
                       const SizedBox(height: 20,),
                       DefaultButtonWidget(
-                        onTap: (){},
+                        onTap: () => Modular.to.navigate('/authentication/'),
                         text: "Pular",
                         background: MyColors.secondaryColor,
                         textColor: MyColors.primaryColor,
