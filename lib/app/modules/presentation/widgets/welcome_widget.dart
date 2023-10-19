@@ -44,7 +44,7 @@ class WelcomeWidget extends StatelessWidget {
               onTap: () => Modular.to.pushNamed("/presentation_slide"),
               text: "Vamos começar",
               icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
-              background: MyColors.primaryColor,
+              backgroundColor: MyColors.primaryColor,
               textColor: Colors.white,
               shadow: true,
             ),

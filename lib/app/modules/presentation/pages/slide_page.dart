@@ -109,7 +109,7 @@ class SlidePageState extends State<SlidePage>{
                               icon: Icon(
                                 current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
                                 color: Colors.white,),
-                              background: MyColors.primaryColor,
+                              backgroundColor: MyColors.primaryColor,
                               textColor: Colors.white,
                             );
                           }
@@ -118,7 +118,7 @@ class SlidePageState extends State<SlidePage>{
                       DefaultButtonWidget(
                         onTap: () => Modular.to.navigate('/authentication/'),
                         text: "Pular",
-                        background: MyColors.secondaryColor,
+                        backgroundColor: MyColors.secondaryColor,
                         textColor: MyColors.primaryColor,
                       ),
                     ],
@@ -176,7 +176,7 @@ class SlidePageState extends State<SlidePage>{
                                     icon: Icon(
                                       current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
                                       color: Colors.white,),
-                                    background: MyColors.primaryColor,
+                                    backgroundColor: MyColors.primaryColor,
                                     textColor: Colors.white,
                                   );
                                 }
@@ -185,7 +185,7 @@ class SlidePageState extends State<SlidePage>{
                             DefaultButtonWidget(
                               onTap: (){},
                               text: "Pular",
-                              background: MyColors.secondaryColor,
+                              backgroundColor: MyColors.secondaryColor,
                               textColor: MyColors.primaryColor,
                             ),
                           ],

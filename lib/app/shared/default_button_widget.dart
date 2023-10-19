@@ -5,11 +5,11 @@ class DefaultButtonWidget extends StatelessWidget {
   final Function onTap;
   final String text;
   final Icon? icon;
-  final Color background;
+  final Color backgroundColor;
   final Color textColor;
   final bool? shadow;
   const DefaultButtonWidget({
-    super.key, required this.onTap, required this.text, this.icon, required this.background, required this.textColor, this.shadow,
+    super.key, required this.onTap, required this.text, this.icon, required this.backgroundColor, required this.textColor, this.shadow,
   });
 
   @override
@@ -33,10 +33,10 @@ class DefaultButtonWidget extends StatelessWidget {
                     style: BorderStyle.solid,
                     color: Colors.transparent,
                   ),
-                  color: background,
+                  color: backgroundColor,
                   boxShadow: [
                     BoxShadow(
-                      color: shadow != null && shadow! ? background.withOpacity(0.4) : Colors.transparent,
+                      color: shadow != null && shadow! ? backgroundColor.withOpacity(0.4) : Colors.transparent,
                       spreadRadius: 0.1,
                       blurRadius: 15,
                       offset: const Offset(2, 10),

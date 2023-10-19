@@ -19,7 +19,7 @@ main() {
                 onTap: (){},
                 text: "teste",
                 icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
-                background: MyColors.primaryColor,
+                backgroundColor: MyColors.primaryColor,
                 textColor: Colors.white,
               )
           )
