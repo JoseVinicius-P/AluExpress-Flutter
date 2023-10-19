@@ -68,7 +68,7 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
                               maxLines: 1,
                               minFontSize: 2.5.sw.roundToDouble(),
                               'Continuar com o google',
-                              style: theme.textTheme.labelMedium!.copyWith(fontSize: 5.sw.roundToDouble()),
+                              style: theme.textTheme.labelSmall!.copyWith( color: Colors.black),
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,
                             ),
