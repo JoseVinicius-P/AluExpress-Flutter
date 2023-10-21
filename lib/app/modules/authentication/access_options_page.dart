@@ -156,7 +156,7 @@ class TitleWidget extends StatelessWidget {
         children: [
           AutoSizeText(
             "Como vamos\nentrar?",
-            style: theme.textTheme.titleMedium!.copyWith(color: Colors.black),
+            style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 10.sw),
             textAlign: TextAlign.center,
           ),
         ],
