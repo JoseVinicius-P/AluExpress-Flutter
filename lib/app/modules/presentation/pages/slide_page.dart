@@ -18,7 +18,7 @@ class SlidePage extends StatefulWidget {
 class SlidePageState extends State<SlidePage>{
   final ISlideStore store = Modular.get();
 
-  List<Widget> getElementsList(bool expandImage){
+  List<Widget> _buildElementsList(bool expandImage){
     return [
       SlidePageWidget(
           slidePath: 'assets/images/slide1.png',
@@ -41,8 +41,28 @@ class SlidePageState extends State<SlidePage>{
     ];
   }
 
+  final skipButtonWidget = DefaultButtonWidget(
+    onTap: () => Modular.to.navigate('/authentication/'),
+    text: "Pular",
+    backgroundColor: MyColors.secondaryColor,
+    textColor: MyColors.primaryColor,
+  );
+
+  Widget _buildNextButtonState(int currentSlide){
+    return DefaultButtonWidget(
+      onTap: currentSlide != 2 ? () => store.setCarouselPage(currentSlide + 1) : () => Modular.to.navigate('/authentication/'),
+      text: currentSlide != 2 ? "Continuar" : "Finalizar",
+      icon: Icon(
+        currentSlide != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
+        color: Colors.white,),
+      backgroundColor: MyColors.primaryColor,
+      textColor: Colors.white,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -75,14 +95,14 @@ class SlidePageState extends State<SlidePage>{
                       carouselController: store.getCarouselController(),
                       onPageChanged: (index) => store.updateCurrentSlide(index),
                       axis: Axis.horizontal,
-                      children: getElementsList(false),
+                      children: _buildElementsList(false),
                     ),
                     TripleBuilder(
                         store: store,
                         builder: (context, triple) {
                           return SlideIndicatorWidget(
                             seletedItem: triple.state as int,
-                            numberOfItems: getElementsList(false).length,
+                            numberOfItems: _buildElementsList(false).length,
                             axis: Axis.horizontal,
                             onItemTap: (index) => store.setCarouselPage(index),
                           );
@@ -100,27 +120,11 @@ class SlidePageState extends State<SlidePage>{
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TripleBuilder(
-                          store: store,
-                          builder: (context, triple) {
-                            int current = triple.state as int;
-                            return DefaultButtonWidget(
-                              onTap: current != 2 ? () => store.setCarouselPage(current + 1) : () => Modular.to.navigate('/authentication/'),
-                              text: current != 2 ? "Continuar" : "Finalizar",
-                              icon: Icon(
-                                current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
-                                color: Colors.white,),
-                              backgroundColor: MyColors.primaryColor,
-                              textColor: Colors.white,
-                            );
-                          }
-                      ),
+                        store: store,
+                        builder: (context, triple) => _buildNextButtonState(triple.state as int),
+                        ),
                       const SizedBox(height: 20,),
-                      DefaultButtonWidget(
-                        onTap: () => Modular.to.navigate('/authentication/'),
-                        text: "Pular",
-                        backgroundColor: MyColors.secondaryColor,
-                        textColor: MyColors.primaryColor,
-                      ),
+                      skipButtonWidget,
                     ],
                   ),
                 ),
@@ -138,7 +142,7 @@ class SlidePageState extends State<SlidePage>{
                       carouselController: store.getCarouselController(),
                       onPageChanged: (index) => store.updateCurrentSlide(index),
                       axis: Axis.vertical,
-                      children: getElementsList(true),
+                      children: _buildElementsList(true),
                     ),
                   ],
                 ),
@@ -154,7 +158,7 @@ class SlidePageState extends State<SlidePage>{
                           builder: (context, triple) {
                             return SlideIndicatorWidget(
                                 seletedItem: triple.state as int,
-                                numberOfItems: getElementsList(true).length,
+                                numberOfItems: _buildElementsList(true).length,
                                 axis: Axis.vertical,
                                 onItemTap: (index) => store.setCarouselPage(index)
                             );
@@ -167,27 +171,11 @@ class SlidePageState extends State<SlidePage>{
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TripleBuilder(
-                                store: store,
-                                builder: (context, triple) {
-                                  int current = triple.state as int;
-                                  return DefaultButtonWidget(
-                                    onTap: current != 2 ? () => store.setCarouselPage(current + 1) : (){},
-                                    text: current != 2 ? "Continuar" : "Finalizar",
-                                    icon: Icon(
-                                      current != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
-                                      color: Colors.white,),
-                                    backgroundColor: MyColors.primaryColor,
-                                    textColor: Colors.white,
-                                  );
-                                }
+                              store: store,
+                              builder: (context, triple) => _buildNextButtonState(triple.state as int),
                             ),
                             const SizedBox(height: 20,),
-                            DefaultButtonWidget(
-                              onTap: (){},
-                              text: "Pular",
-                              backgroundColor: MyColors.secondaryColor,
-                              textColor: MyColors.primaryColor,
-                            ),
+                            skipButtonWidget,
                           ],
                         ),
                       ),
