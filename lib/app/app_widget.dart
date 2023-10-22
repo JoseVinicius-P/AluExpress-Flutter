@@ -15,7 +15,10 @@ class AppWidget extends StatelessWidget {
       routerDelegate: Modular.routerDelegate,
       routeInformationParser: Modular.routeInformationParser,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        splashFactory: InkRipple.splashFactory,
+        splashColor: Colors.black.withOpacity(0.1),
+        colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),
+        scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,
         textTheme: TextTheme(
           titleMedium: TextStyle(fontSize: 10.sw, color: Colors.white),
