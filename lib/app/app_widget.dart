@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/shared/my_colors.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class AppWidget extends StatelessWidget {
   @override
@@ -16,10 +17,10 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         useMaterial3: true,
-        textTheme: const TextTheme(
-          titleMedium: TextStyle(fontSize: 40, color: Colors.white),
-          titleLarge: TextStyle(fontSize: 70, color: MyColors.primaryColor, fontWeight: FontWeight.bold),
-          labelSmall: TextStyle(fontSize: 15, color: Colors.white),
+        textTheme: TextTheme(
+          titleMedium: TextStyle(fontSize: 10.sw, color: Colors.white),
+          titleLarge: TextStyle(fontSize: 18.sw, color: MyColors.primaryColor, fontWeight: FontWeight.bold),
+          labelSmall: TextStyle(fontSize: 4.sw, color: Colors.white),
         ),
       ),
     );
