@@ -114,7 +114,7 @@ class SlidePageState extends State<SlidePage>{
               Expanded(
                 flex: 1,
                 child: Padding(
-                  padding: EdgeInsets.all(5.sw),
+                  padding: EdgeInsets.symmetric(horizontal: 5.sw, vertical: 10),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
