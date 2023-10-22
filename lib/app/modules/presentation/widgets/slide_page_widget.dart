@@ -18,6 +18,7 @@ class SlidePageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Stack(
       children: [
         Container(
@@ -47,11 +48,8 @@ class SlidePageWidget extends StatelessWidget {
                       padding: const EdgeInsets.all(5.0),
                       child: AutoSizeText(
                         title,
-                        style: const TextStyle(
-                            fontSize: 35,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold
-                        ),
+                        style: theme.textTheme.titleMedium?.copyWith(color: Colors.black,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -68,10 +66,7 @@ class SlidePageWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(5.0),
                     child: AutoSizeText(
                       subtitle,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        color: Colors.grey,
-                      ),
+                      style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontSize: 3.5.sw),
                     ),
                   ),
                 ),
