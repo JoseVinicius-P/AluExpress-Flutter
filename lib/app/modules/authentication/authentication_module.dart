@@ -1,4 +1,4 @@
-import 'package:luguel/app/modules/authentication/access_options_page.dart';
+import 'package:luguel/app/modules/authentication/pages/access_options_page.dart';
 import 'package:luguel/app/modules/authentication/authentication_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

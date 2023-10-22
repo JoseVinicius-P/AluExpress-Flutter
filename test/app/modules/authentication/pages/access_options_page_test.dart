@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:luguel/app/modules/authentication/access_options_page.dart';
+import 'package:luguel/app/modules/authentication/pages/access_options_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:modular_test/modular_test.dart';
 import 'package:responsive_builder/responsive_builder.dart';
