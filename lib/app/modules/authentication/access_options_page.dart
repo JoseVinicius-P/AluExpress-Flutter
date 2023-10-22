@@ -15,23 +15,20 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-        leading: IconButton(
-          onPressed: () => SystemNavigator.pop(),
-          icon: const Icon(Icons.close_rounded, color: Colors.black,),
-        ),
-      ),
       body: Padding(
         padding: EdgeInsets.all(5.sw),
         child: OrientationLayoutBuilder(
           portrait: (context) => Column(
             children: [
               const TitleWidget(),
-              OptionsAccessWidget(
-                onTapGoogleButton: (){},
-                onTapSignEmailWithPassword: (){},
-                onTapCreateAccount: (){},
+              const SizedBox(height: 50),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: OptionsAccessWidget(
+                  onTapGoogleButton: (){},
+                  onTapSignEmailWithPassword: (){},
+                  onTapCreateAccount: (){},
+                ),
               ),
             ],
           ),

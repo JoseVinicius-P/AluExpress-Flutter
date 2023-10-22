@@ -20,10 +20,10 @@ class OptionsAccessWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Expanded(
+    return Flexible(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            const Spacer(),
             GoogleButtonWidget(onTap: onTapGoogleButton),
             const SizedBox(height: 35),
             const DividerWidget(),
@@ -35,7 +35,7 @@ class OptionsAccessWidget extends StatelessWidget {
               textColor: Colors.white,
               shadow: true,
             ),
-            const Spacer(),
+            const SizedBox(height: 50),
             Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
