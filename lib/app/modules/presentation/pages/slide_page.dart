@@ -114,7 +114,7 @@ class SlidePageState extends State<SlidePage>{
               Expanded(
                 flex: 1,
                 child: Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: EdgeInsets.all(5.sw),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -150,7 +150,7 @@ class SlidePageState extends State<SlidePage>{
               Expanded(
                 flex: 1,
                 child: Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: EdgeInsets.all(5.sw),
                   child: Row(
                     children: [
                       TripleBuilder(

@@ -45,7 +45,7 @@ class SlidePageWidget extends StatelessWidget {
                         color: Colors.white.withOpacity(0.99)
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding: EdgeInsets.all(2.sw),
                       child: AutoSizeText(
                         title,
                         style: theme.textTheme.titleMedium?.copyWith(color: Colors.black,
@@ -63,7 +63,7 @@ class SlidePageWidget extends StatelessWidget {
                       color: Colors.white.withOpacity(0.99)
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(5.0),
+                    padding: EdgeInsets.all(2.sw),
                     child: AutoSizeText(
                       subtitle,
                       style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontSize: 3.5.sw),
