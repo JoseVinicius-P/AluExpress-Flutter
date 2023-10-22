@@ -23,7 +23,7 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: EdgeInsets.all(5.sw),
         child: OrientationLayoutBuilder(
           portrait: (context) => const Column(
             children: [
