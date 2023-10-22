@@ -23,7 +23,7 @@ class GoogleButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(17),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: EdgeInsets.all(1.6.sh),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,13 +34,15 @@ class GoogleButtonWidget extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               const SizedBox(width: 8),
-              AutoSizeText(
-                maxLines: 1,
-                minFontSize: 2.5.sw.roundToDouble(),
-                'Continuar com o google',
-                style: theme.textTheme.labelSmall!.copyWith( color: Colors.black),
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
+              Flexible(
+                child: AutoSizeText(
+                  maxLines: 1,
+                  minFontSize: 2.5.sw.roundToDouble(),
+                  'Continuar com o google',
+                  style: theme.textTheme.labelSmall!.copyWith( color: Colors.black),
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class DefaultButtonWidget extends StatelessWidget {
   final Function onTap;
@@ -44,17 +45,19 @@ class DefaultButtonWidget extends StatelessWidget {
                   ]
               ),
               child: Padding(
-                padding: const EdgeInsets.all(14),
+                padding: EdgeInsets.all(1.6.sh),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AutoSizeText(
-                      maxLines: 1,
-                      text,
-                      style: theme.textTheme.labelSmall?.copyWith(color: textColor),
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
+                    Flexible(
+                      child: AutoSizeText(
+                        maxLines: 1,
+                        text,
+                        style: theme.textTheme.labelSmall?.copyWith(color: textColor),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     if(icon != null) icon!,
                   ],

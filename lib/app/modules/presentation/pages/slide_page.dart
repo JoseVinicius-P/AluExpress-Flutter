@@ -119,12 +119,14 @@ class SlidePageState extends State<SlidePage>{
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TripleBuilder(
-                        store: store,
-                        builder: (context, triple) => _buildNextButtonState(triple.state as int),
-                        ),
+                      Flexible(
+                        child: TripleBuilder(
+                          store: store,
+                          builder: (context, triple) => _buildNextButtonState(triple.state as int),
+                          ),
+                      ),
                       const SizedBox(height: 20,),
-                      skipButtonWidget,
+                      Flexible(child: skipButtonWidget),
                     ],
                   ),
                 ),

@@ -36,22 +36,24 @@ class OptionsAccessWidget extends StatelessWidget {
               shadow: true,
             ),
             const SizedBox(height: 50),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AutoSizeText(
-                  "Não tem conta?",
-                  style: theme.textTheme.labelSmall!.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
-                ),
-                TextButton(
-                  onPressed: () => onTapCreateAccount(),
-                  child: AutoSizeText(
-                    "Criar agora",
-                    style: theme.textTheme.labelSmall!.copyWith(color: MyColors.primaryColor),
+            Flexible(
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AutoSizeText(
+                    "Não tem conta?",
+                    style: theme.textTheme.labelSmall!.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
                   ),
-                )
-              ],
+                  TextButton(
+                    onPressed: () => onTapCreateAccount(),
+                    child: AutoSizeText(
+                      "Criar agora",
+                      style: theme.textTheme.labelSmall!.copyWith(color: MyColors.primaryColor),
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         )
