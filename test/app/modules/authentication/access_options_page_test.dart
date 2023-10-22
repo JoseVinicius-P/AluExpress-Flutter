@@ -12,7 +12,7 @@ Widget buildTestableWidget(Widget widget) =>
 main() {
   group('AccessOptionsPage', () {
     testWidgets('has a title and message', (WidgetTester tester) async {
-      await tester.pumpWidget(buildTestableWidget(AccessOptionsPage(title: 'T')));
+      await tester.pumpWidget(buildTestableWidget(AccessOptionsPage()));
       final titleFinder = find.text('T');
       expect(titleFinder, findsOneWidget);
     });
