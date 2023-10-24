@@ -32,14 +32,17 @@ class TextFieldWidget extends StatefulWidget {
 class _TextFieldWidgetState extends State<TextFieldWidget> {
   final FocusNode _focusNode = FocusNode();
   String text = "";
+  late bool isPassword;
+  bool obscureText = true;
 
   @override
   void initState() {
     super.initState();
-
     _focusNode.addListener(() {
       setState(() {});
     });
+
+    isPassword = widget.keyboardType == TextInputType.visiblePassword;
   }
 
   @override
@@ -84,6 +87,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               this.text = text;
             });
           },
+          obscureText: obscureText,
           focusNode: _focusNode,
           //definindo estilo do texto
           style: theme.textTheme.labelSmall!.copyWith(color: Colors.black),
@@ -106,6 +110,14 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             hintText: widget.hint,
             hintStyle: theme.textTheme.labelSmall!.copyWith(color: getColor()),
             prefixIcon: Icon(widget.icon, color: getColor()),
+            suffixIcon: IconButton(
+              onPressed: isPassword ? (){
+                setState(() {
+                  obscureText = !obscureText;
+                });
+              } : (){},
+              icon: Icon(obscureText ? Icons.visibility_off_rounded : Icons.visibility_rounded, color: isPassword ? getColor() : Colors.transparent),
+            ),
             filled: true,
           ),
         ),

@@ -32,6 +32,13 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                         enable: true,
                         icon: Icons.email_rounded,
                         keyboardType: TextInputType.emailAddress
+                    ),
+                    SizedBox(height: 5,),
+                    TextFieldWidget(
+                        hint: 'Senha',
+                        enable: true,
+                        icon: Icons.lock,
+                        keyboardType: TextInputType.visiblePassword
                     )
                   ],
                 )
