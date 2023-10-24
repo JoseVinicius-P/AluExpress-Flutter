@@ -30,7 +30,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                     TextFieldWidget(
                         hint: 'Email',
                         enable: true,
-                        icon: Icons.email,
+                        icon: Icons.email_rounded,
                         keyboardType: TextInputType.emailAddress
                     )
                   ],

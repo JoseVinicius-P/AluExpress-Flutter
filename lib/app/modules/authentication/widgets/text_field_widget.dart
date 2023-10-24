@@ -31,6 +31,34 @@ class TextFieldWidget extends StatefulWidget {
 
 class _TextFieldWidgetState extends State<TextFieldWidget> {
   final FocusNode _focusNode = FocusNode();
+  String text = "";
+
+  @override
+  void initState() {
+    super.initState();
+
+    _focusNode.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose(); // Importante descartar o FocusNode ao final
+    super.dispose();
+  }
+
+  Color getColor(){
+    if(widget.error != null){
+      return Colors.red;
+    }else if(_focusNode.hasFocus){
+      return MyColors.primaryColor;
+    }else if(text.isEmpty){
+      return Colors.grey;
+    }else{
+      return Colors.black;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,58 +66,47 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(15),
+        TextFormField(
+          controller: widget.controller,
+          maxLengthEnforcement: MaxLengthEnforcement.none,
+          enabled: widget.enable,
+          inputFormatters: widget.maskFormatter != null ?
+          [
+            widget.maskFormatter!,
+            LengthLimitingTextInputFormatter(widget.maxLength),
+          ] :
+          [
+            LengthLimitingTextInputFormatter(widget.maxLength)
+          ],
+          keyboardType: widget.keyboardType,
+          onChanged: (text){
+            setState(() {
+              this.text = text;
+            });
+          },
+          focusNode: _focusNode,
+          //definindo estilo do texto
+          style: theme.textTheme.labelSmall!.copyWith(color: Colors.black),
+          cursorColor: Colors.black,
+          //retirando autocorreção de texto
+          autocorrect: false,
+          //definindo estilo do container do textfield
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 17.0),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(15),
             ),
-            border: Border.all(
-              width: 0,
-              style: BorderStyle.solid,
-              color: widget.error == null || widget.error == "" ? Colors.transparent : Colors.red
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: MyColors.primaryColor),
+              borderRadius: BorderRadius.circular(15),
             ),
-            color: MyColors.grayLight
-          ),
-          child: TextFormField(
-            controller: widget.controller,
-            maxLengthEnforcement: MaxLengthEnforcement.none,
-            enabled: widget.enable,
-            inputFormatters: widget.maskFormatter != null ?
-            [
-              widget.maskFormatter!,
-              LengthLimitingTextInputFormatter(widget.maxLength),
-            ] :
-            [
-              LengthLimitingTextInputFormatter(widget.maxLength)
-            ],
-            keyboardType: widget.keyboardType,
-            onChanged: (text){},
-            onTap: () {
-
-            },
-            focusNode: _focusNode,
-            //definindo estilo do texto
-            style: theme.textTheme.labelMedium,
-            cursorColor: Colors.black,
-            //retirando autocorreção de texto
-            autocorrect: false,
-            //definindo estilo do container do textfield
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 17.0),
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              //Definindo hint usando varivel da classe personalizada MyStrings
-              hintText: widget.hint,
-              hintStyle: theme.textTheme.labelMedium!.copyWith(color: widget.error == null || widget.error == "" ? Colors.black : Colors.red),
-              prefixIcon: Icon(widget.icon, color: widget.error == null || widget.error == "" ? Colors.black : Colors.red),
-              filled: false,
-            ),
+            fillColor: _focusNode.hasFocus ? MyColors.secondaryColor : MyColors.grayLight,
+            //Definindo hint usando varivel da classe personalizada MyStrings
+            hintText: widget.hint,
+            hintStyle: theme.textTheme.labelSmall!.copyWith(color: getColor()),
+            prefixIcon: Icon(widget.icon, color: getColor()),
+            filled: true,
           ),
         ),
         const SizedBox(height: 5,),
