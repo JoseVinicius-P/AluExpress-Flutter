@@ -12,7 +12,7 @@ Widget buildTestableWidget(Widget widget) =>
 main() {
   group('CreateAccountPage', () {
     testWidgets('has a title and message', (WidgetTester tester) async {
-      await tester.pumpWidget(buildTestableWidget(CreateAccountPage(title: 'T')));
+      await tester.pumpWidget(buildTestableWidget(CreateAccountPage()));
       final titleFinder = find.text('T');
       expect(titleFinder, findsOneWidget);
     });
