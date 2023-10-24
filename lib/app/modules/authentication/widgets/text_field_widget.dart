@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:luguel/app/shared/my_colors.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class TextFieldWidget extends StatefulWidget {
@@ -29,6 +30,7 @@ class TextFieldWidget extends StatefulWidget {
 }
 
 class _TextFieldWidgetState extends State<TextFieldWidget> {
+  final FocusNode _focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +44,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               Radius.circular(15),
             ),
             border: Border.all(
-              width: 1,
+              width: 0,
               style: BorderStyle.solid,
-              color: widget.error == null || widget.error == "" ? Colors.grey : Colors.red
+              color: widget.error == null || widget.error == "" ? Colors.transparent : Colors.red
             ),
+            color: MyColors.grayLight
           ),
           child: TextFormField(
             controller: widget.controller,
@@ -61,6 +64,10 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             ],
             keyboardType: widget.keyboardType,
             onChanged: (text){},
+            onTap: () {
+
+            },
+            focusNode: _focusNode,
             //definindo estilo do texto
             style: theme.textTheme.labelMedium,
             cursorColor: Colors.black,
