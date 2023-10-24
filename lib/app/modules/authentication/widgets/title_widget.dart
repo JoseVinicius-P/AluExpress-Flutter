@@ -17,10 +17,16 @@ class TitleWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AutoSizeText(
-            text,
-            style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 10.sw),
-            textAlign: textAlign,
+          Row(
+            children: [
+              Expanded(
+                child: AutoSizeText(
+                  text,
+                  style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 10.sw),
+                  textAlign: textAlign,
+                ),
+              ),
+            ],
           ),
         ],
       ),
