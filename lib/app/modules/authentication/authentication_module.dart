@@ -1,6 +1,7 @@
 import 'package:luguel/app/modules/authentication/pages/access_options_page.dart';
 import 'package:luguel/app/modules/authentication/authentication_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:luguel/app/modules/authentication/pages/create_account_page.dart';
 
 class AuthenticationModule extends Module {
   @override
@@ -9,6 +10,7 @@ class AuthenticationModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, args) => const AccessOptionsPage()),
+    ChildRoute('/create_account', child: (_, args) => const CreateAccountPage()),
   ];
 
 }

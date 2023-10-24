@@ -15,7 +15,7 @@ class OptionsAccessWidget extends StatelessWidget {
 
   final Function onTapGoogleButton;
   final Function onTapSignEmailWithPassword;
-  final Function onTapCreateAccount;
+  final void Function()? onTapCreateAccount;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class OptionsAccessWidget extends StatelessWidget {
                 ),
                 Flexible(
                   child: TextButton(
-                    onPressed: () => onTapCreateAccount(),
+                    onPressed: onTapCreateAccount,
                     child: AutoSizeText(
                       "Criar agora",
                       style: theme.textTheme.labelSmall!.copyWith(color: MyColors.primaryColor),

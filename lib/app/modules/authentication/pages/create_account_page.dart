@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CreateAccountPage extends StatefulWidget {
-  final String title;
-  const CreateAccountPage({Key? key, this.title = 'CreateAccountPage'}) : super(key: key);
+  const CreateAccountPage({Key? key}) : super(key: key);
   @override
   CreateAccountPageState createState() => CreateAccountPageState();
 }
@@ -10,11 +9,22 @@ class CreateAccountPageState extends State<CreateAccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(widget.title),
+        forceMaterialTransparency: true,
       ),
       body: Column(
-        children: <Widget>[],
+        children: [
+          Expanded(
+            child: SizedBox()
+          ),
+          Expanded(
+              child: SizedBox()
+          ),
+          Expanded(
+              child: SizedBox()
+          ),
+        ],
       ),
     );
   }
