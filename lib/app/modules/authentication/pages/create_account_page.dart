@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/title_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -24,7 +25,16 @@ class CreateAccountPageState extends State<CreateAccountPage> {
               textAlign: TextAlign.left,
             ),
             Expanded(
-                child: SizedBox()
+                child: Column(
+                  children: [
+                    TextFieldWidget(
+                        hint: 'Email',
+                        enable: true,
+                        icon: Icons.email,
+                        keyboardType: TextInputType.emailAddress
+                    )
+                  ],
+                )
             ),
             Expanded(
                 child: SizedBox()
