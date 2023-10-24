@@ -4,8 +4,11 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class TitleWidget extends StatelessWidget {
   const TitleWidget({
-    super.key,
+    super.key, required this.text, required this.textAlign,
   });
+
+  final String text;
+  final TextAlign textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +18,9 @@ class TitleWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AutoSizeText(
-            "Como vamos\nentrar?",
+            text,
             style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 10.sw),
-            textAlign: TextAlign.center,
+            textAlign: textAlign,
           ),
         ],
       ),
