@@ -26,7 +26,7 @@ class OptionsAccessWidget extends StatelessWidget {
           children: [
             GoogleButtonWidget(onTap: onTapGoogleButton),
             const SizedBox(height: 35),
-            const DividerWidget(),
+            const DividerWidget(text: "ou"),
             const SizedBox(height: 35),
             DefaultButtonWidget(
               onTap: () => onTapSignEmailWithPassword(),

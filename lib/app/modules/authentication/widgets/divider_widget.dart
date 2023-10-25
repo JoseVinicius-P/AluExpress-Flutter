@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class DividerWidget extends StatelessWidget {
   const DividerWidget({
-    super.key,
+    super.key, required this.text,
   });
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class DividerWidget extends StatelessWidget {
           Expanded(child: Container(color: Colors.grey.withOpacity(0.5), height: 1)),
           const SizedBox(width: 8,),
           Text(
-            "ou",
+            text,
             style: theme.textTheme.labelSmall!.copyWith(color: Colors.black.withOpacity(0.6), fontWeight: FontWeight.normal, fontSize: 18),
           ),
           const SizedBox(width: 8,),

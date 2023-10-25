@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:luguel/app/modules/authentication/widgets/divider_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/title_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
@@ -14,6 +15,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         forceMaterialTransparency: true,
@@ -48,7 +50,11 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                 )
             ),
             Expanded(
-                child: SizedBox()
+                child: Column(
+                  children: [
+                    DividerWidget(text: "ou continue com")
+                  ],
+                )
             ),
           ],
         ),
@@ -87,6 +93,10 @@ class _ChekboxRememberMeState extends State<ChekboxRememberMe> {
         Checkbox(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0), // Personaliza o arredondamento
+          ),
+          side: const BorderSide(
+            color: MyColors.primaryColor,
+            width: 2,
           ),
           value: isChecked,
           activeColor: MyColors.primaryColor,
