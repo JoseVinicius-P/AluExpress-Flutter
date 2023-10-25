@@ -4,10 +4,11 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 class GoogleButtonWidget extends StatelessWidget {
   const GoogleButtonWidget({
-    super.key, required this.onTap,
+    super.key, required this.onTap, this.withText,
   });
 
   final Function onTap;
+  final bool? withText;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +24,9 @@ class GoogleButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(17),
         ),
         child: Padding(
-          padding: EdgeInsets.all(1.6.sh),
+          padding: withText == null || withText! ? EdgeInsets.all(1.6.sh) :
+          EdgeInsets.symmetric(horizontal: 4.sh, vertical: 2.sh),
           child: Row(
-            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(
@@ -33,8 +34,8 @@ class GoogleButtonWidget extends StatelessWidget {
                 width: 6.sw,
                 fit: BoxFit.cover,
               ),
-              const SizedBox(width: 8),
-              Flexible(
+              SizedBox(width: withText == null || withText! ? 8 : 0),
+              withText == null || withText! ? Flexible(
                 child: AutoSizeText(
                   maxLines: 1,
                   minFontSize: 2.5.sw.roundToDouble(),
@@ -43,7 +44,7 @@ class GoogleButtonWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                 ),
-              ),
+              ): SizedBox(),
             ],
           ),
         ),
