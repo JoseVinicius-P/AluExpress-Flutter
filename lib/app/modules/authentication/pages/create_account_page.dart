@@ -15,6 +15,7 @@ class CreateAccountPage extends StatefulWidget {
 class CreateAccountPageState extends State<CreateAccountPage> {
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
@@ -24,8 +25,9 @@ class CreateAccountPageState extends State<CreateAccountPage> {
       body: Padding(
         padding: EdgeInsets.all(5.sw),
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
-            TitleWidget(
+            const TitleWidget(
               text: 'Criando sua \nconta',
               textAlign: TextAlign.left,
             ),
@@ -33,14 +35,14 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    TextFieldWidget(
+                    const TextFieldWidget(
                         hint: 'Email',
                         enable: true,
                         icon: Icons.email_rounded,
                         keyboardType: TextInputType.emailAddress
                     ),
-                    SizedBox(height: 5,),
-                    TextFieldWidget(
+                    const SizedBox(height: 5,),
+                    const TextFieldWidget(
                         hint: 'Senha',
                         enable: true,
                         icon: Icons.lock,
@@ -52,16 +54,42 @@ class CreateAccountPageState extends State<CreateAccountPage> {
             ),
             Expanded(
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    DividerWidget(text: "ou continue com"),
-                    SizedBox(height: 25,),
+                    const DividerWidget(text: "ou continue com"),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         GoogleButtonWidget(onTap: (){}, withText: false,)
                       ],
+                    ),
+                    const SizedBox(height: 25,),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: AutoSizeText(
+                            "Já tem uma conta?",
+                            style: theme.textTheme.labelSmall!.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
+                            maxLines: 1,
+                            softWrap: true,
+                          ),
+                        ),
+                        Flexible(
+                          child: TextButton(
+                            onPressed: (){},
+                            child: AutoSizeText(
+                              "Fazer Login",
+                              style: theme.textTheme.labelSmall!.copyWith(color: MyColors.primaryColor),
+                              maxLines: 1,
+                              softWrap: true,
+                            ),
+                          ),
+                        )
+                      ],
                     )
-
                   ],
                 )
             ),
