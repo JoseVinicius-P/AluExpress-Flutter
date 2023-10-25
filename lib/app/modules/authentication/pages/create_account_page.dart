@@ -1,6 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/title_widget.dart';
+import 'package:luguel/app/shared/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class CreateAccountPage extends StatefulWidget {
@@ -26,6 +28,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
             ),
             Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     TextFieldWidget(
                         hint: 'Email',
@@ -39,7 +42,8 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                         enable: true,
                         icon: Icons.lock,
                         keyboardType: TextInputType.visiblePassword
-                    )
+                    ),
+                    ChekboxRememberMe(checked: true, onChanged: (isChecked){},)
                   ],
                 )
             ),
@@ -49,6 +53,56 @@ class CreateAccountPageState extends State<CreateAccountPage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ChekboxRememberMe extends StatefulWidget {
+  const ChekboxRememberMe({
+    super.key, required this.onChanged, required this.checked,
+  });
+  final Function(bool?) onChanged;
+  final bool checked;
+
+  @override
+  State<ChekboxRememberMe> createState() => _ChekboxRememberMeState();
+}
+
+class _ChekboxRememberMeState extends State<ChekboxRememberMe> {
+  late bool isChecked;
+
+  @override
+  void initState() {
+    super.initState();
+    isChecked = widget.checked;
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Checkbox(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0), // Personaliza o arredondamento
+          ),
+          value: isChecked,
+          activeColor: MyColors.primaryColor,
+          onChanged: (isChecked){
+            setState(() {
+              this.isChecked = isChecked!;
+            });
+            widget.onChanged(isChecked);
+          },
+        ),
+        AutoSizeText(
+          "Lembrar de mim",
+          style: theme.textTheme.labelSmall!.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+          maxLines: 1,
+        ),
+      ],
     );
   }
 }
