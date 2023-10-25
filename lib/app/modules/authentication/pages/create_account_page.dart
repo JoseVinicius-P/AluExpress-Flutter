@@ -4,6 +4,7 @@ import 'package:luguel/app/modules/authentication/widgets/divider_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/google_button_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/title_widget.dart';
+import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -27,11 +28,15 @@ class CreateAccountPageState extends State<CreateAccountPage> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            const TitleWidget(
-              text: 'Criando sua \nconta',
-              textAlign: TextAlign.left,
+            Expanded(
+              flex: 1,
+              child: const TitleWidget(
+                text: 'Criando sua \nconta',
+                textAlign: TextAlign.left,
+              ),
             ),
             Expanded(
+              flex: 2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -48,7 +53,14 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                         icon: Icons.lock,
                         keyboardType: TextInputType.visiblePassword
                     ),
-                    ChekboxRememberMe(checked: true, onChanged: (isChecked){},)
+                    ChekboxRememberMe(checked: true, onChanged: (isChecked){},),
+                    DefaultButtonWidget(
+                      onTap: (){},
+                      text: 'Criar',
+                      backgroundColor: MyColors.primaryColor,
+                      textColor: Colors.white,
+                      shadow: true,
+                    )
                   ],
                 )
             ),
