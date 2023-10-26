@@ -29,17 +29,17 @@ class CreateAccountPageState extends State<CreateAccountPage> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Expanded(
-              flex: 1,
-              child: const TitleWidget(
-                text: 'Criando sua \nconta',
-                textAlign: TextAlign.left,
-              ),
-            ),
-            Expanded(
-              flex: 2,
+              flex: 3,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    const Spacer(),
+                    const SizedBox(height: 50,),
+                    const TitleWidget(
+                      text: 'Criando sua \nconta',
+                      textAlign: TextAlign.left,
+                    ),
+                    const Spacer(),
                     const TextFieldWidget(
                         hint: 'Email',
                         enable: true,
@@ -54,22 +54,26 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                         keyboardType: TextInputType.visiblePassword
                     ),
                     ChekboxRememberMe(checked: true, onChanged: (isChecked){},),
+                    const SizedBox(height: 15,),
                     DefaultButtonWidget(
                       onTap: (){},
-                      text: 'Criar',
+                      text: 'Criar conta',
                       backgroundColor: MyColors.primaryColor,
                       textColor: Colors.white,
                       shadow: true,
-                    )
+                    ),
+                    const Spacer(),
                   ],
                 )
             ),
             Expanded(
+              flex: 1,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const DividerWidget(text: "ou continue com"),
+                    const SizedBox(height: 15,),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
