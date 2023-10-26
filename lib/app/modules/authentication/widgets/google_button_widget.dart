@@ -30,7 +30,7 @@ class GoogleButtonWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Image(
-                image: const AssetImage('assets/images/icon_google.png'),
+                image: AssetImage('assets/images/icon_google.png'),
                 width: 20,
                 fit: BoxFit.cover,
               ),
@@ -44,7 +44,7 @@ class GoogleButtonWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                 ),
-              ): SizedBox(),
+              ): const SizedBox(),
             ],
           ),
         ),
