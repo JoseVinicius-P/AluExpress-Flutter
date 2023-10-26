@@ -4,6 +4,7 @@ import 'package:luguel/app/modules/authentication/widgets/divider_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/google_button_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/title_widget.dart';
+import 'package:luguel/app/modules/authentication/widgets/vertical_divider_widget.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -16,7 +17,6 @@ class CreateAccountPage extends StatefulWidget {
 class CreateAccountPageState extends State<CreateAccountPage> {
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
@@ -25,93 +25,169 @@ class CreateAccountPageState extends State<CreateAccountPage> {
       ),
       body: Padding(
         padding: EdgeInsets.all(5.sw),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Expanded(
-              flex: 3,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    const SizedBox(height: 50,),
-                    const TitleWidget(
-                      text: 'Criando sua \nconta',
-                      textAlign: TextAlign.left,
-                    ),
-                    const Spacer(),
-                    const TextFieldWidget(
-                        hint: 'Email',
-                        enable: true,
-                        icon: Icons.email_rounded,
-                        keyboardType: TextInputType.emailAddress
-                    ),
-                    const SizedBox(height: 5,),
-                    const TextFieldWidget(
-                        hint: 'Senha',
-                        enable: true,
-                        icon: Icons.lock,
-                        keyboardType: TextInputType.visiblePassword
-                    ),
-                    ChekboxRememberMe(checked: true, onChanged: (isChecked){},),
-                    const SizedBox(height: 15,),
-                    DefaultButtonWidget(
-                      onTap: (){},
-                      text: 'Criar conta',
-                      backgroundColor: MyColors.primaryColor,
-                      textColor: Colors.white,
-                      shadow: true,
-                    ),
-                    const Spacer(),
-                  ],
-                )
-            ),
-            Expanded(
-              flex: 1,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const DividerWidget(text: "ou continue com"),
-                    const SizedBox(height: 15,),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
+        child: OrientationLayoutBuilder(
+          portrait: (context) {
+            return Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const Expanded(
+                  flex: 3,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        GoogleButtonWidget(onTap: (){}, withText: false,)
-                      ],
-                    ),
-                    const SizedBox(height: 25,),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          child: AutoSizeText(
-                            "Já tem uma conta?",
-                            style: theme.textTheme.labelSmall!.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
-                            maxLines: 1,
-                            softWrap: true,
-                          ),
+                        Spacer(),
+                        SizedBox(height: 50,),
+                        TitleWidget(
+                          text: 'Criar sua \nconta',
+                          textAlign: TextAlign.left,
                         ),
-                        Flexible(
-                          child: TextButton(
-                            onPressed: (){},
-                            child: AutoSizeText(
-                              "Fazer Login",
-                              style: theme.textTheme.labelSmall!.copyWith(color: MyColors.primaryColor),
-                              maxLines: 1,
-                              softWrap: true,
-                            ),
-                          ),
-                        )
+                        Spacer(),
+                        FormWidget(),
+                        Spacer(),
                       ],
                     )
-                  ],
-                )
-            ),
-          ],
+                ),
+                Expanded(
+                  flex: 1,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const DividerWidget(text: "ou continue com"),
+                        const SizedBox(height: 15,),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            GoogleButtonWidget(onTap: (){}, withText: false,)
+                          ],
+                        ),
+                        const SizedBox(height: 25,),
+                        const AccountExistsWidget()
+                      ],
+                    )
+                ),
+              ],
+            );
+          },
+          landscape: (context) {
+            return Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const Expanded(
+                  flex: 1,
+                  child: TitleWidget(
+                    text: 'Criar sua \nconta',
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                const Expanded(
+                  flex: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Spacer(),
+                        FormWidget(),
+                        Spacer(),
+                        AccountExistsWidget(),
+                      ],
+                    )
+                ),
+                Expanded(
+                  flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(width: 25,),
+                        const VerticalDividerWidget(text: "ou continue com"),
+                        const SizedBox(width: 25,),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            GoogleButtonWidget(onTap: (){}, withText: false,)
+                          ],
+                        ),
+                      ],
+                    )
+                ),
+              ],
+            );
+          },
         ),
       ),
+    );
+  }
+}
+
+class AccountExistsWidget extends StatelessWidget {
+  const AccountExistsWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Flexible(
+          child: AutoSizeText(
+            "Já tem uma conta?",
+            style: theme.textTheme.labelSmall!.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
+            maxLines: 1,
+            softWrap: true,
+          ),
+        ),
+        Flexible(
+          child: TextButton(
+            onPressed: (){},
+            child: AutoSizeText(
+              "Fazer Login",
+              style: theme.textTheme.labelSmall!.copyWith(color: MyColors.primaryColor),
+              maxLines: 1,
+              softWrap: true,
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class FormWidget extends StatelessWidget {
+  const FormWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const TextFieldWidget(
+            hint: 'Email',
+            enable: true,
+            icon: Icons.email_rounded,
+            keyboardType: TextInputType.emailAddress
+        ),
+        const SizedBox(height: 5,),
+        const TextFieldWidget(
+            hint: 'Senha',
+            enable: true,
+            icon: Icons.lock,
+            keyboardType: TextInputType.visiblePassword
+        ),
+        ChekboxRememberMe(checked: true, onChanged: (isChecked){},),
+        const SizedBox(height: 15,),
+        DefaultButtonWidget(
+          onTap: (){},
+          text: 'Criar conta',
+          backgroundColor: MyColors.primaryColor,
+          textColor: Colors.white,
+          shadow: true,
+        ),
+      ],
     );
   }
 }
