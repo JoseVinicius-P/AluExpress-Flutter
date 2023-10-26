@@ -25,13 +25,13 @@ class GoogleButtonWidget extends StatelessWidget {
         ),
         child: Padding(
           padding: withText == null || withText! ? const EdgeInsets.all(13) :
-          const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+          const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image(
+              const Image(
                 image: const AssetImage('assets/images/icon_google.png'),
-                width: 6.sw,
+                width: 20,
                 fit: BoxFit.cover,
               ),
               SizedBox(width: withText == null || withText! ? 8 : 0),

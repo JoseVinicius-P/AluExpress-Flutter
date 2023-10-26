@@ -4,7 +4,6 @@ import 'package:luguel/app/modules/authentication/widgets/divider_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/google_button_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/title_widget.dart';
-import 'package:luguel/app/modules/authentication/widgets/vertical_divider_widget.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -30,7 +29,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
             return Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                const Expanded(
+                Expanded(
                   flex: 3,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,6 +42,13 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                         ),
                         Spacer(),
                         FormWidget(),
+                        DefaultButtonWidget(
+                          onTap: (){},
+                          text: 'Criar conta',
+                          backgroundColor: MyColors.primaryColor,
+                          textColor: Colors.white,
+                          shadow: true,
+                        ),
                         Spacer(),
                       ],
                     )
@@ -77,36 +83,36 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                   flex: 1,
                   child: TitleWidget(
                     text: 'Criar sua \nconta',
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                   ),
                 ),
-                const Expanded(
-                  flex: 2,
+                Expanded(
+                  flex: 1,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Spacer(),
                         FormWidget(),
-                        Spacer(),
-                        AccountExistsWidget(),
-                      ],
-                    )
-                ),
-                Expanded(
-                  flex: 1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(width: 25,),
-                        const VerticalDividerWidget(text: "ou continue com"),
-                        const SizedBox(width: 25,),
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            GoogleButtonWidget(onTap: (){}, withText: false,)
+                            Flexible(child: GoogleButtonWidget(onTap: (){}, withText: false,)),
+                            const SizedBox(width: 10,),
+                            Flexible(
+                              child: DefaultButtonWidget(
+                                onTap: (){},
+                                text: 'Criar conta',
+                                backgroundColor: MyColors.primaryColor,
+                                textColor: Colors.white,
+                                shadow: true,
+                              ),
+                            ),
+
                           ],
                         ),
+                        Spacer(),
+                        AccountExistsWidget(),
                       ],
                     )
                 ),
@@ -180,13 +186,6 @@ class FormWidget extends StatelessWidget {
         ),
         ChekboxRememberMe(checked: true, onChanged: (isChecked){},),
         const SizedBox(height: 15,),
-        DefaultButtonWidget(
-          onTap: (){},
-          text: 'Criar conta',
-          backgroundColor: MyColors.primaryColor,
-          textColor: Colors.white,
-          shadow: true,
-        ),
       ],
     );
   }
