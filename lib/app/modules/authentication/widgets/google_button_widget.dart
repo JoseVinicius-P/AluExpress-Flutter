@@ -24,8 +24,8 @@ class GoogleButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(17),
         ),
         child: Padding(
-          padding: withText == null || withText! ? EdgeInsets.all(1.6.sh) :
-          EdgeInsets.symmetric(horizontal: 4.sh, vertical: 2.sh),
+          padding: withText == null || withText! ? const EdgeInsets.all(13) :
+          const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
