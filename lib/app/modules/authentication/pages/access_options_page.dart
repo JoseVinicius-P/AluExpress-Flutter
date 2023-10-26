@@ -26,9 +26,11 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
         child: OrientationLayoutBuilder(
           portrait: (context) => Column(
             children: [
-              const TitleWidget(
-                textAlign: TextAlign.center,
-                text: "Como vamos\nentrar?",
+              const Expanded(
+                child: TitleWidget(
+                  textAlign: TextAlign.center,
+                  text: "Como vamos\nentrar?",
+                ),
               ),
               const SizedBox(height: 50),
               Align(
@@ -40,9 +42,11 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
           landscape: (context) => Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const TitleWidget(
-                textAlign: TextAlign.center,
-                text: "Como vamos\nentrar?",
+              const Expanded(
+                child: TitleWidget(
+                  textAlign: TextAlign.center,
+                  text: "Como vamos\nentrar?",
+                ),
               ),
               optionsAccessWidget,
             ],

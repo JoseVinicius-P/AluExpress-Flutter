@@ -13,23 +13,21 @@ class TitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: AutoSizeText(
-                  text,
-                  style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 10.sw),
-                  textAlign: textAlign,
-                ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: AutoSizeText(
+                text,
+                style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 10.sw),
+                textAlign: textAlign,
               ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
