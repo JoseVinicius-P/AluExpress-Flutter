@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class DefaultButtonWidget extends StatelessWidget {
   final Function onTap;
@@ -45,7 +44,7 @@ class DefaultButtonWidget extends StatelessWidget {
                   ]
               ),
               child: Padding(
-                padding: EdgeInsets.all(1.6.sh),
+                padding: const EdgeInsets.all(13),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
