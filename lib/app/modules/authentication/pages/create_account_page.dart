@@ -34,14 +34,14 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Spacer(),
-                        SizedBox(height: 50,),
-                        TitleWidget(
+                        const Spacer(),
+                        const Flexible(child: SizedBox(height: 50,)),
+                        const TitleWidget(
                           text: 'Criar sua \nconta',
                           textAlign: TextAlign.left,
                         ),
-                        Spacer(),
-                        FormWidget(),
+                        const Spacer(),
+                        const FormWidget(),
                         DefaultButtonWidget(
                           onTap: (){},
                           text: 'Criar conta',
@@ -49,7 +49,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                           textColor: Colors.white,
                           shadow: true,
                         ),
-                        Spacer(),
+                        const Spacer(),
                       ],
                     )
                 ),
@@ -60,14 +60,14 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const DividerWidget(text: "ou continue com"),
-                        const SizedBox(height: 15,),
+                        const Flexible(child: SizedBox(height: 15,)),
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             GoogleButtonWidget(onTap: (){}, withText: false,)
                           ],
                         ),
-                        const SizedBox(height: 25,),
+                        const Flexible(child: SizedBox(height: 25,)),
                         const AccountExistsWidget()
                       ],
                     )
@@ -92,8 +92,8 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Spacer(),
-                        FormWidget(),
+                        const Spacer(),
+                        const FormWidget(),
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -111,8 +111,8 @@ class CreateAccountPageState extends State<CreateAccountPage> {
 
                           ],
                         ),
-                        Spacer(),
-                        AccountExistsWidget(),
+                        const Spacer(),
+                        const AccountExistsWidget(),
                       ],
                     )
                 ),
@@ -185,7 +185,7 @@ class FormWidget extends StatelessWidget {
             keyboardType: TextInputType.visiblePassword
         ),
         ChekboxRememberMe(checked: true, onChanged: (isChecked){},),
-        const SizedBox(height: 15,),
+        const Flexible(child: SizedBox(height: 15,)),
       ],
     );
   }
