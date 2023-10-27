@@ -23,6 +23,7 @@ class TitleWidget extends StatelessWidget {
                 text,
                 style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 10.sw),
                 textAlign: textAlign,
+                maxLines: 2,
               ),
             ),
           ],
