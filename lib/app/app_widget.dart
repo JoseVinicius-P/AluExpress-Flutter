@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/shared/my_colors.dart';
@@ -8,9 +7,6 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Flutter Slidy',
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
       routerDelegate: Modular.routerDelegate,
       routeInformationParser: Modular.routeInformationParser,
       theme: ThemeData(

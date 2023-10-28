@@ -35,14 +35,16 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  #Arquitetura Modular
   flutter_modular: ^5.0.3
+  #Para reatividade
   flutter_triple: ^3.0.0
   #Para facilitar a implementação da responsividade
   responsive_builder: ^0.7.0
   #Para Text que se redimencionam automaticamente
   auto_size_text: ^3.0.0
+  #Para Carrosel de widget
   carousel_slider: ^4.2.1
-  device_preview: ^1.1.0
   #Mascara de texto
   mask_text_input_formatter: ^2.4.0
 
