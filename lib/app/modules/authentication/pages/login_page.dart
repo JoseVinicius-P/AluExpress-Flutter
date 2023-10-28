@@ -16,8 +16,8 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
 
   var questionAndButton = QuestionAndButtonWidget(
-    question: "Já tem uma conta?",
-    buttonText: "Fazer Login",
+    question: "Não tem uma conta?",
+    buttonText: "Criar agora",
     onPressed: (){},
   );
   var form = FormWidget(
@@ -25,9 +25,9 @@ class LoginPageState extends State<LoginPage> {
     onChangedPassword: (text){},
     onChangedRememberMe: (isChecked){},
   );
-  var createAccountButton = DefaultButtonWidget(
+  var loginButton = DefaultButtonWidget(
     onTap: (){},
-    text: 'Criar conta',
+    text: 'Login',
     backgroundColor: MyColors.primaryColor,
     textColor: Colors.white,
     shadow: true,
@@ -64,7 +64,7 @@ class LoginPageState extends State<LoginPage> {
                         ),
                         const Spacer(),
                         form,
-                        createAccountButton,
+                        loginButton,
                         const Spacer(),
                       ],
                     )
@@ -112,7 +112,7 @@ class LoginPageState extends State<LoginPage> {
                             Flexible(child: googleButton),
                             const SizedBox(width: 10,),
                             Flexible(
-                                child: createAccountButton
+                                child: loginButton
                             ),
 
                           ],
