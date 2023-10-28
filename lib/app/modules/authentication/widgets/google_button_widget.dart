@@ -7,14 +7,14 @@ class GoogleButtonWidget extends StatelessWidget {
     super.key, required this.onTap, this.withText,
   });
 
-  final Function onTap;
+  final void Function() onTap;
   final bool? withText;
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return InkWell(
-      onTap: () => onTap(),
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(

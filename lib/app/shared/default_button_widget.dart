@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class DefaultButtonWidget extends StatelessWidget {
-  final Function onTap;
+  final void Function() onTap;
   final String text;
   final Icon? icon;
   final Color backgroundColor;
@@ -21,8 +21,7 @@ class DefaultButtonWidget extends StatelessWidget {
         Expanded(
           child: InkWell(
             borderRadius: BorderRadius.circular(35),
-            //Se a authenticação estiver sendo feita o botão não funcionará
-            onTap: () => onTap(),
+            onTap: onTap,
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(

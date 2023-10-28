@@ -12,7 +12,7 @@ class SlideIndicatorWidget extends StatelessWidget {
   });
 
   final int numberOfItems;
-  final Function(int)? onItemTap;
+  final void Function(int)? onItemTap;
   final int seletedItem;
   final Axis axis;
 

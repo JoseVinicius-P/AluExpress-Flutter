@@ -10,7 +10,7 @@ class FormWidget extends StatelessWidget {
     required this.onChangedRememberMe,
   });
 
-  final Function(String) onChangedEmail;
+  final void Function(String) onChangedEmail;
   final Function(String) onChangedPassword;
   final Function(bool) onChangedRememberMe;
 

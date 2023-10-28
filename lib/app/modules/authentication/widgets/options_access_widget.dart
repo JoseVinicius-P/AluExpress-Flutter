@@ -13,9 +13,9 @@ class OptionsAccessWidget extends StatelessWidget {
     required this.onTapCreateAccount,
   });
 
-  final Function onTapGoogleButton;
-  final Function onTapSignEmailWithPassword;
-  final void Function()? onTapCreateAccount;
+  final void Function() onTapGoogleButton;
+  final void Function() onTapSignEmailWithPassword;
+  final void Function() onTapCreateAccount;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class OptionsAccessWidget extends StatelessWidget {
             const DividerWidget(text: "ou"),
             const SizedBox(height: 35),
             DefaultButtonWidget(
-              onTap: () => onTapSignEmailWithPassword(),
+              onTap: onTapSignEmailWithPassword,
               text: "Entrar com email e senha",
               backgroundColor: MyColors.primaryColor,
               textColor: Colors.white,
