@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:luguel/app/modules/authentication/widgets/divider_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/google_button_widget.dart';
+import 'package:luguel/app/modules/authentication/widgets/question_and_button_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/title_widget.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
@@ -69,7 +70,11 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                           ],
                         ),
                         const Flexible(child: SizedBox(height: 25,)),
-                        const AccountExistsWidget()
+                        QuestionAndButtonWidget(
+                          question: "Já tem uma conta?",
+                          textButton: "Fazer Login",
+                          onPressed: (){},
+                        ),
                       ],
                     )
                 ),
@@ -113,7 +118,11 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                           ],
                         ),
                         const Spacer(),
-                        const AccountExistsWidget(),
+                        QuestionAndButtonWidget(
+                          question: "Já tem uma conta?",
+                          textButton: "Fazer Login",
+                          onPressed: (){},
+                        ),
                       ],
                     )
                 ),
@@ -122,42 +131,6 @@ class CreateAccountPageState extends State<CreateAccountPage> {
           },
         ),
       ),
-    );
-  }
-}
-
-class AccountExistsWidget extends StatelessWidget {
-  const AccountExistsWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Flexible(
-          child: AutoSizeText(
-            "Já tem uma conta?",
-            style: theme.textTheme.labelSmall!.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
-            maxLines: 1,
-            softWrap: true,
-          ),
-        ),
-        Flexible(
-          child: TextButton(
-            onPressed: (){},
-            child: AutoSizeText(
-              "Fazer Login",
-              style: theme.textTheme.labelSmall!.copyWith(color: MyColors.primaryColor),
-              maxLines: 1,
-              softWrap: true,
-            ),
-          ),
-        )
-      ],
     );
   }
 }
