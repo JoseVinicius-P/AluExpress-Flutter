@@ -14,6 +14,7 @@ class GoogleButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return InkWell(
+      borderRadius: BorderRadius.circular(17),
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
