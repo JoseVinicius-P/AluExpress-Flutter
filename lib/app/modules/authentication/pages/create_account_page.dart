@@ -19,7 +19,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
   var questionAndButton = QuestionAndButtonWidget(
     question: "Já tem uma conta?",
     buttonText: "Fazer Login",
-    onPressed: () => Modular.to.pushNamed("./login"),
+    onPressed: () => Modular.to.pushReplacementNamed("./login"),
   );
   var form = FormWidget(
       onChangedEmail: (text){},
