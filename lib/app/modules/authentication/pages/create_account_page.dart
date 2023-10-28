@@ -36,7 +36,8 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                       children: [
                         const Spacer(),
                         const Flexible(child: SizedBox(height: 50,)),
-                        const TitleWidget(
+                        // ignore: prefer_const_constructors
+                        TitleWidget(
                           text: 'Criar sua \nconta',
                           textAlign: TextAlign.left,
                         ),
