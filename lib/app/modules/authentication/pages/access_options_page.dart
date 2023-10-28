@@ -13,7 +13,7 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
 
   var optionsAccessWidget = OptionsAccessWidget(
     onTapGoogleButton: (){},
-    onTapSignEmailWithPassword: (){},
+    onTapSignEmailWithPassword: () => Modular.to.pushNamed("./login"),
     onTapCreateAccount: () => Modular.to.pushNamed('./create_account'),
   );
 

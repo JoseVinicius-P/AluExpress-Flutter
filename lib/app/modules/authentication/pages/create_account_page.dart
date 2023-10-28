@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/modules/authentication/widgets/divider_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/form_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/google_button_widget.dart';
@@ -18,7 +19,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
   var questionAndButton = QuestionAndButtonWidget(
     question: "Já tem uma conta?",
     buttonText: "Fazer Login",
-    onPressed: (){},
+    onPressed: () => Modular.to.pushNamed("./login"),
   );
   var form = FormWidget(
       onChangedEmail: (text){},
