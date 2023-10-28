@@ -25,6 +25,14 @@ class CreateAccountPageState extends State<CreateAccountPage> {
       onChangedPassword: (text){},
       onChangedRememberMe: (isChecked){},
   );
+  var createAccountButton = DefaultButtonWidget(
+    onTap: (){},
+    text: 'Criar conta',
+    backgroundColor: MyColors.primaryColor,
+    textColor: Colors.white,
+    shadow: true,
+  );
+  var googleButton = GoogleButtonWidget(onTap: (){}, withText: false,);
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +63,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                         ),
                         const Spacer(),
                         form,
-                        DefaultButtonWidget(
-                          onTap: (){},
-                          text: 'Criar conta',
-                          backgroundColor: MyColors.primaryColor,
-                          textColor: Colors.white,
-                          shadow: true,
-                        ),
+                        createAccountButton,
                         const Spacer(),
                       ],
                     )
@@ -74,11 +76,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                       children: [
                         const DividerWidget(text: "ou continue com"),
                         const Flexible(child: SizedBox(height: 15,)),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            GoogleButtonWidget(onTap: (){}, withText: false,)
-                          ],
+                        Row(mainAxisSize: MainAxisSize.min, children: [googleButton],
                         ),
                         const Flexible(child: SizedBox(height: 25,)),
                         questionAndButton,
@@ -110,16 +108,10 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Flexible(child: GoogleButtonWidget(onTap: (){}, withText: false,)),
+                            Flexible(child: googleButton),
                             const SizedBox(width: 10,),
                             Flexible(
-                              child: DefaultButtonWidget(
-                                onTap: (){},
-                                text: 'Criar conta',
-                                backgroundColor: MyColors.primaryColor,
-                                textColor: Colors.white,
-                                shadow: true,
-                              ),
+                              child: createAccountButton
                             ),
 
                           ],
