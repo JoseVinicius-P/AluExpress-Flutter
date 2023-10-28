@@ -33,6 +33,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
     shadow: true,
   );
   var googleButton = GoogleButtonWidget(onTap: (){}, withText: false,);
+  final String title = 'Criar sua \nconta';
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +59,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                         const Flexible(child: SizedBox(height: 50,)),
                         // ignore: prefer_const_constructors
                         TitleWidget(
-                          text: 'Criar sua \nconta',
+                          text: title,
                           textAlign: TextAlign.left,
                         ),
                         const Spacer(),
@@ -90,10 +91,10 @@ class CreateAccountPageState extends State<CreateAccountPage> {
             return Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                const Expanded(
+                Expanded(
                   flex: 1,
                   child: TitleWidget(
-                    text: 'Criar sua \nconta',
+                    text: title,
                     textAlign: TextAlign.center,
                   ),
                 ),
