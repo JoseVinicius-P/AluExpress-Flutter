@@ -5,11 +5,11 @@ import 'package:luguel/app/shared/my_colors.dart';
 
 class QuestionAndButtonWidget extends StatelessWidget {
   const QuestionAndButtonWidget({
-    super.key, required this.question, required this.textButton, required this.onPressed,
+    super.key, required this.question, required this.buttonText, required this.onPressed,
   });
 
   final String question;
-  final String textButton;
+  final String buttonText;
   final void Function()? onPressed;
 
   @override
@@ -31,7 +31,7 @@ class QuestionAndButtonWidget extends StatelessWidget {
           child: TextButton(
             onPressed: onPressed,
             child: AutoSizeText(
-              textButton,
+              buttonText,
               style: theme.textTheme.labelSmall!.copyWith(color: MyColors.primaryColor),
               maxLines: 1,
               softWrap: true,

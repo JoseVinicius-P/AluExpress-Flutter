@@ -12,7 +12,7 @@ Widget buildTestableWidget(Widget widget) =>
 main() {
   group('QuestionAndButtonWidget', () {
     testWidgets('has a title and message', (WidgetTester tester) async {
-      await tester.pumpWidget(buildTestableWidget(QuestionAndButtonWidget(textButton: "",question: "",onPressed: (){},)));
+      await tester.pumpWidget(buildTestableWidget(QuestionAndButtonWidget(buttonText: "",question: "",onPressed: (){},)));
       final titleFinder = find.text('T');
       expect(titleFinder, findsOneWidget);
     });

@@ -72,7 +72,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                         const Flexible(child: SizedBox(height: 25,)),
                         QuestionAndButtonWidget(
                           question: "Já tem uma conta?",
-                          textButton: "Fazer Login",
+                          buttonText: "Fazer Login",
                           onPressed: (){},
                         ),
                       ],
@@ -120,7 +120,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                         const Spacer(),
                         QuestionAndButtonWidget(
                           question: "Já tem uma conta?",
-                          textButton: "Fazer Login",
+                          buttonText: "Fazer Login",
                           onPressed: (){},
                         ),
                       ],
