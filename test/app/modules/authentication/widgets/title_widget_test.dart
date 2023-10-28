@@ -11,7 +11,7 @@ Widget buildTestableWidget(Widget widget) =>
 main() {
   group('TitleWidget', () {
     testWidgets('has a title and message', (WidgetTester tester) async {
-      await tester.pumpWidget(buildTestableWidget(const TitleWidget()));
+      await tester.pumpWidget(buildTestableWidget(const TitleWidget(text: "",textAlign: TextAlign.center,)));
       final titleFinder = find.text('T');
       expect(titleFinder, findsOneWidget);
     });
