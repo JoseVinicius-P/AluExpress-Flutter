@@ -12,6 +12,7 @@ class TextFieldWidget extends StatefulWidget {
   final TextInputType keyboardType;
   final int? maxLength;
   final TextEditingController? controller;
+  final Function(String)? onChanged;
 
   const TextFieldWidget({
     Key? key,
@@ -22,7 +23,8 @@ class TextFieldWidget extends StatefulWidget {
     required this.keyboardType,
     this.maxLength,
     this.controller,
-    this.error
+    this.error,
+    this.onChanged
   }) : super(key: key);
 
   @override
@@ -34,6 +36,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   String text = "";
   late bool isPassword;
   bool obscureText = true;
+
 
   @override
   void initState() {
@@ -86,6 +89,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             setState(() {
               this.text = text;
             });
+            widget.onChanged?.call(text);
           },
           obscureText: obscureText,
           focusNode: _focusNode,

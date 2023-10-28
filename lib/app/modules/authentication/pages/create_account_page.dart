@@ -1,9 +1,8 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:luguel/app/modules/authentication/widgets/divider_widget.dart';
+import 'package:luguel/app/modules/authentication/widgets/form_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/google_button_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/question_and_button_widget.dart';
-import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/title_widget.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
@@ -15,6 +14,18 @@ class CreateAccountPage extends StatefulWidget {
   CreateAccountPageState createState() => CreateAccountPageState();
 }
 class CreateAccountPageState extends State<CreateAccountPage> {
+
+  var questionAndButton = QuestionAndButtonWidget(
+    question: "Já tem uma conta?",
+    buttonText: "Fazer Login",
+    onPressed: (){},
+  );
+  var form = FormWidget(
+      onChangedEmail: (text){},
+      onChangedPassword: (text){},
+      onChangedRememberMe: (isChecked){},
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +54,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                           textAlign: TextAlign.left,
                         ),
                         const Spacer(),
-                        const FormWidget(),
+                        form,
                         DefaultButtonWidget(
                           onTap: (){},
                           text: 'Criar conta',
@@ -70,11 +81,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                           ],
                         ),
                         const Flexible(child: SizedBox(height: 25,)),
-                        QuestionAndButtonWidget(
-                          question: "Já tem uma conta?",
-                          buttonText: "Fazer Login",
-                          onPressed: (){},
-                        ),
+                        questionAndButton,
                       ],
                     )
                 ),
@@ -99,7 +106,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Spacer(),
-                        const FormWidget(),
+                        form,
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -118,11 +125,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                           ],
                         ),
                         const Spacer(),
-                        QuestionAndButtonWidget(
-                          question: "Já tem uma conta?",
-                          buttonText: "Fazer Login",
-                          onPressed: (){},
-                        ),
+                        questionAndButton,
                       ],
                     )
                 ),
@@ -131,90 +134,6 @@ class CreateAccountPageState extends State<CreateAccountPage> {
           },
         ),
       ),
-    );
-  }
-}
-
-class FormWidget extends StatelessWidget {
-  const FormWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const TextFieldWidget(
-            hint: 'Email',
-            enable: true,
-            icon: Icons.email_rounded,
-            keyboardType: TextInputType.emailAddress
-        ),
-        const SizedBox(height: 5,),
-        const TextFieldWidget(
-            hint: 'Senha',
-            enable: true,
-            icon: Icons.lock,
-            keyboardType: TextInputType.visiblePassword
-        ),
-        ChekboxRememberMe(checked: true, onChanged: (isChecked){},),
-        const Flexible(child: SizedBox(height: 15,)),
-      ],
-    );
-  }
-}
-
-class ChekboxRememberMe extends StatefulWidget {
-  const ChekboxRememberMe({
-    super.key, required this.onChanged, required this.checked,
-  });
-  final Function(bool?) onChanged;
-  final bool checked;
-
-  @override
-  State<ChekboxRememberMe> createState() => _ChekboxRememberMeState();
-}
-
-class _ChekboxRememberMeState extends State<ChekboxRememberMe> {
-  late bool isChecked;
-
-  @override
-  void initState() {
-    super.initState();
-    isChecked = widget.checked;
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Checkbox(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0), // Personaliza o arredondamento
-          ),
-          side: const BorderSide(
-            color: MyColors.primaryColor,
-            width: 2,
-          ),
-          value: isChecked,
-          activeColor: MyColors.primaryColor,
-          onChanged: (isChecked){
-            setState(() {
-              this.isChecked = isChecked!;
-            });
-            widget.onChanged(isChecked);
-          },
-        ),
-        AutoSizeText(
-          "Lembrar de mim",
-          style: theme.textTheme.labelSmall!.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
-          maxLines: 1,
-        ),
-      ],
     );
   }
 }
