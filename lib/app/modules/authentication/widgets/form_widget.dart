@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:luguel/app/modules/authentication/widgets/checkbox_remember_me_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 
 class FormWidget extends StatelessWidget {
@@ -7,12 +6,10 @@ class FormWidget extends StatelessWidget {
     super.key,
     required this.onChangedEmail,
     required this.onChangedPassword,
-    required this.onChangedRememberMe,
   });
 
   final void Function(String) onChangedEmail;
   final Function(String) onChangedPassword;
-  final Function(bool) onChangedRememberMe;
 
 
   @override
@@ -35,11 +32,6 @@ class FormWidget extends StatelessWidget {
           keyboardType: TextInputType.visiblePassword,
           onChanged: (text) => onChangedPassword(text),
         ),
-        ChekboxRememberMeWidget(
-          checked: true,
-          onChanged: (isChecked) => onChangedRememberMe(isChecked ?? false),
-        ),
-        const Flexible(child: SizedBox(height: 15,)),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:luguel/app/modules/authentication/widgets/checkbox_remember_me_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/divider_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/form_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/google_button_widget.dart';
@@ -26,7 +27,10 @@ class CreateAccountPageState extends State<CreateAccountPage> {
     var form = FormWidget(
       onChangedEmail: (text){},
       onChangedPassword: (text){},
-      onChangedRememberMe: (isChecked){},
+    );
+    var checkboxRememberMe = ChekboxRememberMeWidget(
+      checked: true,
+      onChanged: (isChecked){},
     );
     var createAccountButton = DefaultButtonWidget(
       onTap: (){},
@@ -65,6 +69,8 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                         ),
                         const Spacer(),
                         form,
+                        checkboxRememberMe,
+                        const Flexible(child: SizedBox(height: 15,)),
                         createAccountButton,
                         const Spacer(),
                       ],
@@ -92,7 +98,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
             return Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Expanded(
+                const Expanded(
                   flex: 1,
                   child: TitleWidget(
                     text: title,
@@ -107,6 +113,8 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                       children: [
                         const Spacer(),
                         form,
+                        checkboxRememberMe,
+                        const Flexible(child: SizedBox(height: 15,)),
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [

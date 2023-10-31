@@ -12,7 +12,7 @@ Widget buildTestableWidget(Widget widget) =>
 main() {
   group('FormWidget', () {
     testWidgets('has a title and message', (WidgetTester tester) async {
-      await tester.pumpWidget(buildTestableWidget(FormWidget(onChangedEmail: (_){},onChangedPassword: (_){},onChangedRememberMe: (_){},)));
+      await tester.pumpWidget(buildTestableWidget(FormWidget(onChangedEmail: (_){},onChangedPassword: (_){},)));
       final titleFinder = find.text('T');
       expect(titleFinder, findsOneWidget);
     });
