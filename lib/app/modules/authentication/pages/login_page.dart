@@ -44,7 +44,7 @@ class LoginPageState extends State<LoginPage> {
     var googleButton = GoogleButtonWidget(onTap: (){}, withText: false,);
     const String title = 'Entrar na sua \nconta';
     var forgotMyPasswordButton = TextButton(
-      onPressed: (){},
+      onPressed: () => Modular.to.pushNamed("./forgot_password"),
       child: AutoSizeText(
         "Esqueci minha senha",
         style: theme.textTheme.labelSmall!.copyWith(color: MyColors.primaryColor),
