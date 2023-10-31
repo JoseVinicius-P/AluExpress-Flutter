@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/modules/authentication/widgets/checkbox_remember_me_widget.dart';
@@ -19,6 +20,7 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     var questionAndButton = QuestionAndButtonWidget(
       question: "Não tem uma conta?",
       buttonText: "Criar agora",
@@ -41,6 +43,15 @@ class LoginPageState extends State<LoginPage> {
     );
     var googleButton = GoogleButtonWidget(onTap: (){}, withText: false,);
     const String title = 'Entrar na sua \nconta';
+    var forgotMyPasswordButton = TextButton(
+      onPressed: (){},
+      child: AutoSizeText(
+        "Esqueci minha senha",
+        style: theme.textTheme.labelSmall!.copyWith(color: MyColors.primaryColor),
+        maxLines: 1,
+        softWrap: true,
+      ),
+    );
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -69,7 +80,13 @@ class LoginPageState extends State<LoginPage> {
                         ),
                         const Spacer(),
                         form,
-                        checkboxRememberMe,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(child: checkboxRememberMe),
+                            Flexible(child: forgotMyPasswordButton)
+                          ],
+                        ),
                         const Flexible(child: SizedBox(height: 15,)),
                         loginButton,
                         const Spacer(),
@@ -113,7 +130,13 @@ class LoginPageState extends State<LoginPage> {
                       children: [
                         const Spacer(),
                         form,
-                        checkboxRememberMe,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(child: checkboxRememberMe),
+                            Flexible(child: forgotMyPasswordButton)
+                          ],
+                        ),
                         const Flexible(child: SizedBox(height: 15,)),
                         Row(
                           mainAxisSize: MainAxisSize.min,
