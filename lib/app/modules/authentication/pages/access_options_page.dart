@@ -11,14 +11,13 @@ class AccessOptionsPage extends StatefulWidget {
 }
 class AccessOptionsPageState extends State<AccessOptionsPage> {
 
-  var optionsAccessWidget = OptionsAccessWidget(
-    onTapGoogleButton: (){},
-    onTapSignEmailWithPassword: () => Modular.to.pushNamed("./login"),
-    onTapCreateAccount: () => Modular.to.pushNamed('./create_account'),
-  );
-
   @override
   Widget build(BuildContext context) {
+    var optionsAccessWidget = OptionsAccessWidget(
+      onTapGoogleButton: (){},
+      onTapSignEmailWithPassword: () => Modular.to.pushNamed("./login"),
+      onTapCreateAccount: () => Modular.to.pushNamed('./create_account'),
+    );
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Padding(

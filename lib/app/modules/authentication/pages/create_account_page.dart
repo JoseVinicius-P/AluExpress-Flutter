@@ -16,28 +16,28 @@ class CreateAccountPage extends StatefulWidget {
 }
 class CreateAccountPageState extends State<CreateAccountPage> {
 
-  var questionAndButton = QuestionAndButtonWidget(
-    question: "Já tem uma conta?",
-    buttonText: "Fazer Login",
-    onPressed: () => Modular.to.pushReplacementNamed("./login"),
-  );
-  var form = FormWidget(
+  @override
+  Widget build(BuildContext context) {
+    var questionAndButton = QuestionAndButtonWidget(
+      question: "Já tem uma conta?",
+      buttonText: "Fazer Login",
+      onPressed: () => Modular.to.pushReplacementNamed("./login"),
+    );
+    var form = FormWidget(
       onChangedEmail: (text){},
       onChangedPassword: (text){},
       onChangedRememberMe: (isChecked){},
-  );
-  var createAccountButton = DefaultButtonWidget(
-    onTap: (){},
-    text: 'Criar conta',
-    backgroundColor: MyColors.primaryColor,
-    textColor: Colors.white,
-    shadow: true,
-  );
-  var googleButton = GoogleButtonWidget(onTap: (){}, withText: false,);
-  final String title = 'Criar sua \nconta';
+    );
+    var createAccountButton = DefaultButtonWidget(
+      onTap: (){},
+      text: 'Criar conta',
+      backgroundColor: MyColors.primaryColor,
+      textColor: Colors.white,
+      shadow: true,
+    );
+    var googleButton = GoogleButtonWidget(onTap: (){}, withText: false,);
+    const String title = 'Criar sua \nconta';
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,

@@ -16,28 +16,28 @@ class LoginPage extends StatefulWidget {
 }
 class LoginPageState extends State<LoginPage> {
 
-  var questionAndButton = QuestionAndButtonWidget(
-    question: "Não tem uma conta?",
-    buttonText: "Criar agora",
-    onPressed: () => Modular.to.pushReplacementNamed('./create_account'),
-  );
-  var form = FormWidget(
-    onChangedEmail: (text){},
-    onChangedPassword: (text){},
-    onChangedRememberMe: (isChecked){},
-  );
-  var loginButton = DefaultButtonWidget(
-    onTap: (){},
-    text: 'Login',
-    backgroundColor: MyColors.primaryColor,
-    textColor: Colors.white,
-    shadow: true,
-  );
-  var googleButton = GoogleButtonWidget(onTap: (){}, withText: false,);
-  final String title = 'Entrar na sua \nconta';
-
   @override
   Widget build(BuildContext context) {
+    var questionAndButton = QuestionAndButtonWidget(
+      question: "Não tem uma conta?",
+      buttonText: "Criar agora",
+      onPressed: () => Modular.to.pushReplacementNamed('./create_account'),
+    );
+    var form = FormWidget(
+      onChangedEmail: (text){},
+      onChangedPassword: (text){},
+      onChangedRememberMe: (isChecked){},
+    );
+    var loginButton = DefaultButtonWidget(
+      onTap: (){},
+      text: 'Login',
+      backgroundColor: MyColors.primaryColor,
+      textColor: Colors.white,
+      shadow: true,
+    );
+    var googleButton = GoogleButtonWidget(onTap: (){}, withText: false,);
+    const String title = 'Entrar na sua \nconta';
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
