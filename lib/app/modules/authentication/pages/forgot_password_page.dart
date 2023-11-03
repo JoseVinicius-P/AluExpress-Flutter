@@ -78,17 +78,17 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                           child: Image(
                             image: AssetImage('assets/images/padlock2.png'),
                             fit: BoxFit.cover,
-                            height: 28.sh,
+                            height: 22.sh,
                           ),
                         ),
                         Transform.scale(
                           scale: _scaleAnimation.value,
                           child: Opacity(
-                            opacity: 0.3,
+                            opacity: _scaleAnimation.value/4,
                             child: Image(
                               image: AssetImage('assets/images/shadow.png'),
                               fit: BoxFit.cover,
-                              height: 18.sh,
+                              height: 12.sh,
                             ),
                           ),
                         ),
