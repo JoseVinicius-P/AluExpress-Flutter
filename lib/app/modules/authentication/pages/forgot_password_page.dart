@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:luguel/app/shared/default_button_widget.dart';
+import 'package:luguel/app/shared/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -63,11 +65,12 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Center(
                 child: AnimatedBuilder(
                   animation: _floatAnimation,
                   builder: (context, child) {
@@ -97,9 +100,92 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                   }
                 )
               ),
-            )
-          ],
+              AutoSizeText(
+                "Selecione qual o contato você quer usar para redefinir sua senha.",
+                style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+              ),
+              SizedBox(height: 25,),
+              ContactMethodWidget(
+                icon: Icons.message_rounded,
+                nameOfContactMethod: "SMS",
+                contactMethod: "(62)  9 * * * - * * 94",
+              ),
+              SizedBox(height: 10,),
+              ContactMethodWidget(
+                icon: Icons.email_rounded,
+                nameOfContactMethod: "email",
+                contactMethod: "josev*****@gmail.com",
+              ),
+              Spacer(),
+              DefaultButtonWidget(
+                onTap: (){},
+                text: "Continuar",
+                backgroundColor: MyColors.primaryColor,
+                textColor: Colors.white,
+                shadow: true,
+                icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
+              )
+            ],
+          ),
         ),
+      ),
+    );
+  }
+}
+
+class ContactMethodWidget extends StatelessWidget {
+  const ContactMethodWidget({
+    super.key,
+    this.isSelected,
+    required this.icon,
+    required this.nameOfContactMethod,
+    required this.contactMethod,
+  });
+
+  final bool? isSelected;
+  final IconData icon;
+  final String nameOfContactMethod;
+  final String contactMethod;
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        border: Border.all(
+          color: MyColors.grayLight,
+          width: 2
+        ),
+      ),
+      padding: EdgeInsets.all(25),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: MyColors.primaryColor.withOpacity(0.05),
+            ),
+            padding: EdgeInsets.all(25),
+            child: Icon(icon, color: MyColors.primaryColor,),
+          ),
+          SizedBox(width: 15,),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AutoSizeText(
+                "Via $nameOfContactMethod:",
+                style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
+              ),
+              SizedBox(height: 8,),
+              AutoSizeText(
+                contactMethod,
+                style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
