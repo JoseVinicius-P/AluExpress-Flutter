@@ -11,6 +11,73 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProviderStateMixin {
 
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    var smsMethod = const ContactMethodWidget(
+      icon: Icons.message_rounded,
+      nameOfContactMethod: "SMS",
+      contactMethod: "(62)  9 * * * - * * 94",
+    );
+    var emailMethod = const ContactMethodWidget(
+      icon: Icons.email_rounded,
+      nameOfContactMethod: "email",
+      contactMethod: "josev*****@gmail.com",
+    );
+    var buttonNext = DefaultButtonWidget(
+      onTap: (){},
+      text: "Continuar",
+      backgroundColor: MyColors.primaryColor,
+      textColor: Colors.white,
+      shadow: true,
+      icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
+    );
+    var instructionText = AutoSizeText(
+      "Selecione qual o contato você quer usar para redefinir sua senha.",
+      style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+    );
+
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        forceMaterialTransparency: true,
+        title: Text(
+          "Esqueci minha senha",
+          style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 25),
+        ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const Center(
+                child: FloatingPadlockWidget(),
+              ),
+              instructionText,
+              const SizedBox(height: 25,),
+              smsMethod,
+              const SizedBox(height: 10,),
+              emailMethod,
+              const Spacer(),
+              buttonNext,
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class FloatingPadlockWidget extends StatefulWidget {
+  const FloatingPadlockWidget({Key? key}) : super(key: key);
+
+  @override
+  State<FloatingPadlockWidget> createState() => _FloatingPadlockWidgetState();
+}
+
+class _FloatingPadlockWidgetState extends State<FloatingPadlockWidget> with TickerProviderStateMixin{
   late AnimationController _controller;
   late Animation<double> _floatAnimation;
   late Animation<double> _scaleAnimation;
@@ -40,95 +107,35 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
   }
 
   @override
-  void initState() {
-    super.initState();
-
-
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     initializeAnimation();
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-        title: Text(
-          "Esqueci minha senha",
-          style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 25),
-        ),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Center(
-                child: AnimatedBuilder(
-                  animation: _floatAnimation,
-                  builder: (context, child) {
-                    return Column(
-                      children: [
-                        Transform.translate(
-                          offset: Offset(0, _floatAnimation.value),
-                          child: Image(
-                            image: AssetImage('assets/images/padlock2.png'),
-                            fit: BoxFit.cover,
-                            height: 22.sh,
-                          ),
-                        ),
-                        Transform.scale(
-                          scale: _scaleAnimation.value,
-                          child: Opacity(
-                            opacity: _scaleAnimation.value/4,
-                            child: Image(
-                              image: AssetImage('assets/images/shadow.png'),
-                              fit: BoxFit.cover,
-                              height: 12.sh,
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  }
-                )
+    return AnimatedBuilder(
+      animation: _floatAnimation,
+      builder: (context, child) {
+        return Column(
+          children: [
+            Transform.translate(
+              offset: Offset(0, _floatAnimation.value),
+              child: Image(
+                image: AssetImage('assets/images/padlock2.png'),
+                fit: BoxFit.cover,
+                height: 22.sh,
               ),
-              AutoSizeText(
-                "Selecione qual o contato você quer usar para redefinir sua senha.",
-                style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+            ),
+            Transform.scale(
+              scale: _scaleAnimation.value,
+              child: Opacity(
+                opacity: _scaleAnimation.value/4,
+                child: Image(
+                  image: AssetImage('assets/images/shadow.png'),
+                  fit: BoxFit.cover,
+                  height: 12.sh,
+                ),
               ),
-              SizedBox(height: 25,),
-              ContactMethodWidget(
-                icon: Icons.message_rounded,
-                nameOfContactMethod: "SMS",
-                contactMethod: "(62)  9 * * * - * * 94",
-              ),
-              SizedBox(height: 10,),
-              ContactMethodWidget(
-                icon: Icons.email_rounded,
-                nameOfContactMethod: "email",
-                contactMethod: "josev*****@gmail.com",
-              ),
-              Spacer(),
-              DefaultButtonWidget(
-                onTap: (){},
-                text: "Continuar",
-                backgroundColor: MyColors.primaryColor,
-                textColor: Colors.white,
-                shadow: true,
-                icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
-              )
-            ],
-          ),
-        ),
-      ),
+            ),
+          ],
+        );
+      }
     );
   }
 }
