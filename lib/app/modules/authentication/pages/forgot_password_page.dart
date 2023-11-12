@@ -60,7 +60,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                   instructionText,
                   const SizedBox(height: 25,),
                   smsMethod,
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 8,),
                   emailMethod,
                   const Spacer(),
                   buttonNext,
@@ -71,8 +71,8 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
               return Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Expanded(
-                    child: const Center(
+                  const Expanded(
+                    child: Center(
                       child: FloatingPadlockWidget(),
                     ),
                   ),
@@ -82,9 +82,24 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                     children: [
                       instructionText,
                       const SizedBox(height: 25,),
-                      smsMethod,
-                      const SizedBox(height: 10,),
-                      emailMethod,
+                      const Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Spacer(),
+                          ContactMethodDenseWidget(
+                            icon: Icons.message_rounded,
+                            nameOfContactMethod: "SMS",
+                            contactMethod: "(62)  9 * * * - * * 94",
+                          ),
+                          SizedBox(width: 5,),
+                          ContactMethodDenseWidget(
+                            icon: Icons.message_rounded,
+                            nameOfContactMethod: "SMS",
+                            contactMethod: "(62)  9 * * * - * * 94",
+                          ),
+                          Spacer()
+                        ],
+                      ),
                       const Spacer(),
                       buttonNext,
                     ],
@@ -115,7 +130,7 @@ class _FloatingPadlockWidgetState extends State<FloatingPadlockWidget> with Tick
   void initializeAnimation(){
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 3), // Defina a duração da animação aqui
+      duration: const Duration(seconds: 3), // Defina a duração da animação aqui
     );
 
     _floatAnimation = Tween(begin: 0.0, end: 10.0).animate(
@@ -147,7 +162,7 @@ class _FloatingPadlockWidgetState extends State<FloatingPadlockWidget> with Tick
             Transform.translate(
               offset: Offset(0, _floatAnimation.value),
               child: Image(
-                image: AssetImage('assets/images/padlock2.png'),
+                image: const AssetImage('assets/images/padlock2.png'),
                 fit: BoxFit.cover,
                 height: 22.sh,
               ),
@@ -157,7 +172,7 @@ class _FloatingPadlockWidgetState extends State<FloatingPadlockWidget> with Tick
               child: Opacity(
                 opacity: _scaleAnimation.value/4,
                 child: Image(
-                  image: AssetImage('assets/images/shadow.png'),
+                  image: const AssetImage('assets/images/shadow.png'),
                   fit: BoxFit.cover,
                   height: 12.sh,
                 ),
@@ -166,6 +181,65 @@ class _FloatingPadlockWidgetState extends State<FloatingPadlockWidget> with Tick
           ],
         );
       }
+    );
+  }
+}
+
+class ContactMethodDenseWidget extends StatelessWidget {
+  const ContactMethodDenseWidget({
+    super.key,
+    this.isSelected,
+    required this.icon,
+    required this.nameOfContactMethod,
+    required this.contactMethod,
+  });
+
+  final bool? isSelected;
+  final IconData icon;
+  final String nameOfContactMethod;
+  final String contactMethod;
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        border: Border.all(
+            color: MyColors.grayLight,
+            width: 2
+        ),
+      ),
+      padding: const EdgeInsets.only(bottom: 10, left: 15, right: 15, top: 10),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: MyColors.primaryColor.withOpacity(0.05),
+                ),
+                padding: const EdgeInsets.all(15),
+                child: Icon(icon, color: MyColors.primaryColor,),
+              ),
+              const SizedBox(height: 8,),
+              AutoSizeText(
+                "Via $nameOfContactMethod:",
+                style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
+              ),
+              const SizedBox(height: 8,),
+              AutoSizeText(
+                contactMethod,
+                style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
@@ -195,7 +269,7 @@ class ContactMethodWidget extends StatelessWidget {
           width: 2
         ),
       ),
-      padding: EdgeInsets.all(25),
+      padding: const EdgeInsets.all(25),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -204,10 +278,10 @@ class ContactMethodWidget extends StatelessWidget {
               shape: BoxShape.circle,
               color: MyColors.primaryColor.withOpacity(0.05),
             ),
-            padding: EdgeInsets.all(25),
+            padding: const EdgeInsets.all(25),
             child: Icon(icon, color: MyColors.primaryColor,),
           ),
-          SizedBox(width: 15,),
+          const SizedBox(width: 15,),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -215,7 +289,7 @@ class ContactMethodWidget extends StatelessWidget {
                 "Via $nameOfContactMethod:",
                 style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
               ),
-              SizedBox(height: 8,),
+              const SizedBox(height: 8,),
               AutoSizeText(
                 contactMethod,
                 style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
