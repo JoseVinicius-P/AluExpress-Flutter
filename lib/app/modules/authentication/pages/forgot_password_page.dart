@@ -1,5 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:luguel/app/modules/authentication/interfaces/i_forgot_password_store.dart';
+import 'package:luguel/app/modules/authentication/stores/forgot_password_store.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -10,20 +13,11 @@ class ForgotPasswordPage extends StatefulWidget {
   ForgotPasswordPageState createState() => ForgotPasswordPageState();
 }
 class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProviderStateMixin {
+  var store = Modular.get<IForgotPasswordStore>();
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var smsMethod = const ContactMethodWidget(
-      icon: Icons.message_rounded,
-      nameOfContactMethod: "SMS",
-      contactMethod: "(62)  9 * * * - * * 94",
-    );
-    var emailMethod = const ContactMethodWidget(
-      icon: Icons.email_rounded,
-      nameOfContactMethod: "email",
-      contactMethod: "josev*****@gmail.com",
-    );
     var buttonNext = DefaultButtonWidget(
       onTap: (){},
       text: "Continuar",
@@ -62,10 +56,20 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                         ),
                         instructionText,
                         const SizedBox(height: 25,),
-                        smsMethod,
+                        ContactMethodWidget(
+                          icon: Icons.message_rounded,
+                          nameOfContactMethod: "SMS",
+                          contactMethod: "(62)  9 * * * - * * 94",
+                          onTap: () => store.selectContactMethod(ForgotPasswordStore.smsMethod),
+                        ),
                         const SizedBox(height: 8,),
-                        emailMethod,
-                        SizedBox(height: 70,),
+                        ContactMethodWidget(
+                          icon: Icons.email_rounded,
+                          nameOfContactMethod: "email",
+                          contactMethod: "josev*****@gmail.com",
+                          onTap: () => store.selectContactMethod(ForgotPasswordStore.emailMethod),
+                        ),
+                        const SizedBox(height: 70,),
                       ],
                     ),
                   ),
@@ -99,7 +103,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                   children: [
                     instructionText,
                     const SizedBox(height: 25,),
-                    const Row(
+                    Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
@@ -107,14 +111,16 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                             icon: Icons.message_rounded,
                             nameOfContactMethod: "SMS",
                             contactMethod: "(62)  9 * * * - * * 94",
+                            onTap: () => store.selectContactMethod(ForgotPasswordStore.smsMethod),
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         Expanded(
                           child: ContactMethodDenseWidget(
                             icon: Icons.email_rounded,
                             nameOfContactMethod: "Email",
                             contactMethod: "jos*******@gmail.com",
+                            onTap: () => store.selectContactMethod(ForgotPasswordStore.emailMethod),
                           ),
                         ),
                       ],
@@ -210,58 +216,64 @@ class ContactMethodDenseWidget extends StatelessWidget {
     required this.icon,
     required this.nameOfContactMethod,
     required this.contactMethod,
+    required this.onTap,
   });
 
   final bool? isSelected;
   final IconData icon;
   final String nameOfContactMethod;
   final String contactMethod;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        border: Border.all(
-            color: MyColors.grayLight,
-            width: 2
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(25),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          border: Border.all(
+              color: MyColors.grayLight,
+              width: 2
+          ),
         ),
-      ),
-      padding: const EdgeInsets.only(bottom: 10, left: 15, right: 15, top: 10),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: MyColors.primaryColor.withOpacity(0.05),
+        padding: const EdgeInsets.only(bottom: 10, left: 15, right: 15, top: 10),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: MyColors.primaryColor.withOpacity(0.05),
+                    ),
+                    padding: const EdgeInsets.all(15),
+                    child: Icon(icon, color: MyColors.primaryColor,),
                   ),
-                  padding: const EdgeInsets.all(15),
-                  child: Icon(icon, color: MyColors.primaryColor,),
-                ),
-                const SizedBox(height: 8,),
-                AutoSizeText(
-                  "Via $nameOfContactMethod:",
-                  style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
-                  maxLines: 1,
-                ),
-                const SizedBox(height: 8,),
-                AutoSizeText(
-                  contactMethod,
-                  style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          )
-        ],
+                  const SizedBox(height: 8,),
+                  AutoSizeText(
+                    "Via $nameOfContactMethod:",
+                    style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
+                    maxLines: 1,
+                  ),
+                  const SizedBox(height: 8,),
+                  AutoSizeText(
+                    contactMethod,
+                    style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -274,52 +286,58 @@ class ContactMethodWidget extends StatelessWidget {
     required this.icon,
     required this.nameOfContactMethod,
     required this.contactMethod,
+    required this.onTap,
   });
 
   final bool? isSelected;
   final IconData icon;
   final String nameOfContactMethod;
   final String contactMethod;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        border: Border.all(
-          color: MyColors.grayLight,
-          width: 2
-        ),
-      ),
-      padding: const EdgeInsets.all(25),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: MyColors.primaryColor.withOpacity(0.05),
-            ),
-            padding: const EdgeInsets.all(25),
-            child: Icon(icon, color: MyColors.primaryColor,),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(25),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          border: Border.all(
+            color: MyColors.grayLight,
+            width: 2
           ),
-          const SizedBox(width: 15,),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AutoSizeText(
-                "Via $nameOfContactMethod:",
-                style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
+        ),
+        padding: const EdgeInsets.all(25),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: MyColors.primaryColor.withOpacity(0.05),
               ),
-              const SizedBox(height: 8,),
-              AutoSizeText(
-                contactMethod,
-                style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
-              ),
-            ],
-          )
-        ],
+              padding: const EdgeInsets.all(25),
+              child: Icon(icon, color: MyColors.primaryColor,),
+            ),
+            const SizedBox(width: 15,),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AutoSizeText(
+                  "Via $nameOfContactMethod:",
+                  style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
+                ),
+                const SizedBox(height: 8,),
+                AutoSizeText(
+                  contactMethod,
+                  style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
