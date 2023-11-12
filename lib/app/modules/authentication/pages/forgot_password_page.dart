@@ -46,12 +46,12 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
           style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 25),
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0),
-          child: OrientationLayoutBuilder(
-            portrait: (context) {
-              return Stack(
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0),
+        child: OrientationLayoutBuilder(
+          portrait: (context) {
+            return SafeArea(
+              child: Stack(
                 children: [
                   SingleChildScrollView(
                     child: Column(
@@ -74,14 +74,16 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                     child: buttonNext
                   ),
                 ],
-              );
-            },
-            landscape: (context) {
-              return Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Expanded(
+              ),
+            );
+          },
+          landscape: (context) {
+            return Row(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Expanded(
+                  child: SafeArea(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -90,41 +92,41 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                       ],
                     ),
                   ),
-                  Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      instructionText,
-                      const SizedBox(height: 25,),
-                      const Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: ContactMethodDenseWidget(
-                              icon: Icons.message_rounded,
-                              nameOfContactMethod: "SMS",
-                              contactMethod: "(62)  9 * * * - * * 94",
-                            ),
+                ),
+                Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    instructionText,
+                    const SizedBox(height: 25,),
+                    const Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: ContactMethodDenseWidget(
+                            icon: Icons.message_rounded,
+                            nameOfContactMethod: "SMS",
+                            contactMethod: "(62)  9 * * * - * * 94",
                           ),
-                          SizedBox(width: 5,),
-                          Expanded(
-                            child: ContactMethodDenseWidget(
-                              icon: Icons.email_rounded,
-                              nameOfContactMethod: "Email",
-                              contactMethod: "jos*******@gmail.com",
-                            ),
+                        ),
+                        SizedBox(width: 5,),
+                        Expanded(
+                          child: ContactMethodDenseWidget(
+                            icon: Icons.email_rounded,
+                            nameOfContactMethod: "Email",
+                            contactMethod: "jos*******@gmail.com",
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 50,),
-                      buttonNext,
-                    ],
-                  ),
-                    )
-                ],
-              );
-            },
-          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 25,),
+                    buttonNext,
+                  ],
+                ),
+                  )
+              ],
+            );
+          },
         ),
       ),
     );
