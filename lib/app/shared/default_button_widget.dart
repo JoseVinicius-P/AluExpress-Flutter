@@ -1,8 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:luguel/app/shared/my_colors.dart';
 
 class DefaultButtonWidget extends StatelessWidget {
-  final void Function() onTap;
+  final void Function()? onTap;
   final String text;
   final Icon? icon;
   final Color backgroundColor;
@@ -32,10 +33,10 @@ class DefaultButtonWidget extends StatelessWidget {
                     style: BorderStyle.solid,
                     color: Colors.transparent,
                   ),
-                  color: backgroundColor,
+                  color: onTap != null ? backgroundColor : MyColors.primaryColdColor,
                   boxShadow: [
                     BoxShadow(
-                      color: shadow != null && shadow! ? backgroundColor.withOpacity(0.4) : Colors.transparent,
+                      color: onTap != null && (shadow ?? false) ? backgroundColor.withOpacity(0.4) : Colors.transparent,
                       spreadRadius: 0.1,
                       blurRadius: 15,
                       offset: const Offset(2, 10),

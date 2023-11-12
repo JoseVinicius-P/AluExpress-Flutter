@@ -19,13 +19,18 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var buttonNext = DefaultButtonWidget(
-      onTap: (){},
-      text: "Continuar",
-      backgroundColor: MyColors.primaryColor,
-      textColor: Colors.white,
-      shadow: true,
-      icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
+    var buttonNext = TripleBuilder(
+      store: store,
+      builder: (context, triple) {
+        return DefaultButtonWidget(
+          onTap: triple.state! as int <= 1 ? (){} : null,
+          text: "Continuar",
+          backgroundColor: MyColors.primaryColor,
+          textColor: Colors.white,
+          shadow: true,
+          icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
+        );
+      }
     );
     var instructionText = AutoSizeText(
       "Selecione qual o contato você quer usar para redefinir sua senha.",
