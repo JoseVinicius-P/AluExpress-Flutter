@@ -1,5 +1,6 @@
+import 'package:luguel/app/modules/authentication/interfaces/i_forgot_password_store.dart';
+import 'package:luguel/app/modules/authentication/stores/forgot_password_store.dart';
 import 'package:luguel/app/modules/authentication/pages/access_options_page.dart';
-import 'package:luguel/app/modules/authentication/authentication_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/modules/authentication/pages/create_account_page.dart';
 import 'package:luguel/app/modules/authentication/pages/forgot_password_page.dart';
@@ -7,7 +8,9 @@ import 'package:luguel/app/modules/authentication/pages/login_page.dart';
 
 class AuthenticationModule extends Module {
   @override
-  final List<Bind> binds = [Bind.lazySingleton((i) => AuthenticationStore()),];
+  final List<Bind> binds = [
+    Bind.lazySingleton<IForgotPasswordStore>((i) => ForgotPasswordStore()),
+  ];
 
   @override
   final List<ModularRoute> routes = [
