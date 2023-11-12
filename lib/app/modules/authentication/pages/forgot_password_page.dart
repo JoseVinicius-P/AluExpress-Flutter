@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_triple/flutter_triple.dart';
 import 'package:luguel/app/modules/authentication/interfaces/i_forgot_password_store.dart';
 import 'package:luguel/app/modules/authentication/stores/forgot_password_store.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
@@ -56,18 +57,30 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                         ),
                         instructionText,
                         const SizedBox(height: 25,),
-                        ContactMethodWidget(
-                          icon: Icons.message_rounded,
-                          nameOfContactMethod: "SMS",
-                          contactMethod: "(62)  9 * * * - * * 94",
-                          onTap: () => store.selectContactMethod(ForgotPasswordStore.smsMethod),
+                        TripleBuilder(
+                          store: store,
+                          builder: (context, triple) {
+                            return ContactMethodWidget(
+                              icon: Icons.message_rounded,
+                              nameOfContactMethod: "SMS",
+                              contactMethod: "(62)  9 * * * - * * 94",
+                              onTap: () => store.selectContactMethod(ForgotPasswordStore.smsMethod),
+                              isSelected: triple.state == ForgotPasswordStore.smsMethod,
+                            );
+                          }
                         ),
                         const SizedBox(height: 8,),
-                        ContactMethodWidget(
-                          icon: Icons.email_rounded,
-                          nameOfContactMethod: "email",
-                          contactMethod: "josev*****@gmail.com",
-                          onTap: () => store.selectContactMethod(ForgotPasswordStore.emailMethod),
+                        TripleBuilder(
+                          store: store,
+                          builder: (context, triple) {
+                            return ContactMethodWidget(
+                              icon: Icons.email_rounded,
+                              nameOfContactMethod: "email",
+                              contactMethod: "josev*****@gmail.com",
+                              onTap: () => store.selectContactMethod(ForgotPasswordStore.emailMethod),
+                              isSelected: triple.state == ForgotPasswordStore.emailMethod,
+                            );
+                          }
                         ),
                         const SizedBox(height: 70,),
                       ],
@@ -107,20 +120,32 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
-                          child: ContactMethodDenseWidget(
-                            icon: Icons.message_rounded,
-                            nameOfContactMethod: "SMS",
-                            contactMethod: "(62)  9 * * * - * * 94",
-                            onTap: () => store.selectContactMethod(ForgotPasswordStore.smsMethod),
+                          child: TripleBuilder(
+                            store: store,
+                            builder: (context, triple) {
+                              return ContactMethodDenseWidget(
+                                icon: Icons.message_rounded,
+                                nameOfContactMethod: "SMS",
+                                contactMethod: "(62)  9 * * * - * * 94",
+                                onTap: () => store.selectContactMethod(ForgotPasswordStore.smsMethod),
+                                isSelected: triple.state == ForgotPasswordStore.smsMethod,
+                              );
+                            }
                           ),
                         ),
                         const SizedBox(width: 5,),
                         Expanded(
-                          child: ContactMethodDenseWidget(
-                            icon: Icons.email_rounded,
-                            nameOfContactMethod: "Email",
-                            contactMethod: "jos*******@gmail.com",
-                            onTap: () => store.selectContactMethod(ForgotPasswordStore.emailMethod),
+                          child: TripleBuilder(
+                            store: store,
+                            builder: (context, triple) {
+                              return ContactMethodDenseWidget(
+                                icon: Icons.email_rounded,
+                                nameOfContactMethod: "Email",
+                                contactMethod: "jos*******@gmail.com",
+                                onTap: () => store.selectContactMethod(ForgotPasswordStore.emailMethod),
+                                isSelected: triple.state == ForgotPasswordStore.emailMethod,
+                              );
+                            }
                           ),
                         ),
                       ],
