@@ -260,7 +260,7 @@ class ContactMethodDenseWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           border: Border.all(
-              color: MyColors.grayLight,
+              color: isSelected ?? false ? MyColors.primaryColor : MyColors.grayLight,
               width: 2
           ),
         ),
@@ -330,7 +330,7 @@ class ContactMethodWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           border: Border.all(
-            color: MyColors.grayLight,
+            color: isSelected ?? false ? MyColors.primaryColor : MyColors.grayLight,
             width: 2
           ),
         ),
