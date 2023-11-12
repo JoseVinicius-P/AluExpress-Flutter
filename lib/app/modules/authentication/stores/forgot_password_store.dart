@@ -5,7 +5,7 @@ class ForgotPasswordStore extends Store<int> implements IForgotPasswordStore{
   static const int emailMethod = 0;
   static const int smsMethod = 1;
 
-  ForgotPasswordStore() : super(0);
+  ForgotPasswordStore() : super(5);
 
   @override
   void selectContactMethod(int contactMethod) {
