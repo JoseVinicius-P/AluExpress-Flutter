@@ -107,7 +107,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                           ),
                         ],
                       ),
-                      const Spacer(),
+                      const SizedBox(height: 50,),
                       buttonNext,
                     ],
                   ),
