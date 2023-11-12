@@ -49,20 +49,50 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const Center(
-                child: FloatingPadlockWidget(),
-              ),
-              instructionText,
-              const SizedBox(height: 25,),
-              smsMethod,
-              const SizedBox(height: 10,),
-              emailMethod,
-              const Spacer(),
-              buttonNext,
-            ],
+          child: OrientationLayoutBuilder(
+            portrait: (context) {
+              return Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  const Center(
+                    child: FloatingPadlockWidget(),
+                  ),
+                  instructionText,
+                  const SizedBox(height: 25,),
+                  smsMethod,
+                  const SizedBox(height: 10,),
+                  emailMethod,
+                  const Spacer(),
+                  buttonNext,
+                ],
+              );
+            },
+            landscape: (context) {
+              return Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: const Center(
+                      child: FloatingPadlockWidget(),
+                    ),
+                  ),
+                  Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      instructionText,
+                      const SizedBox(height: 25,),
+                      smsMethod,
+                      const SizedBox(height: 10,),
+                      emailMethod,
+                      const Spacer(),
+                      buttonNext,
+                    ],
+                  ),
+                    )
+                ],
+              );
+            },
           ),
         ),
       ),
