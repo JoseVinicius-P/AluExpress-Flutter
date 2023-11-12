@@ -48,22 +48,31 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0),
           child: OrientationLayoutBuilder(
             portrait: (context) {
-              return Column(
-                mainAxisSize: MainAxisSize.max,
+              return Stack(
                 children: [
-                  const Center(
-                    child: FloatingPadlockWidget(),
+                  SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        const Center(
+                          child: FloatingPadlockWidget(),
+                        ),
+                        instructionText,
+                        const SizedBox(height: 25,),
+                        smsMethod,
+                        const SizedBox(height: 8,),
+                        emailMethod,
+                        SizedBox(height: 70,),
+                      ],
+                    ),
                   ),
-                  instructionText,
-                  const SizedBox(height: 25,),
-                  smsMethod,
-                  const SizedBox(height: 8,),
-                  emailMethod,
-                  const Spacer(),
-                  buttonNext,
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: buttonNext
+                  ),
                 ],
               );
             },
