@@ -70,10 +70,15 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
             landscape: (context) {
               return Row(
                 mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Expanded(
-                    child: Center(
-                      child: FloatingPadlockWidget(),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FloatingPadlockWidget(),
+                      ],
                     ),
                   ),
                   Expanded(
@@ -85,19 +90,21 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                       const Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Spacer(),
-                          ContactMethodDenseWidget(
-                            icon: Icons.message_rounded,
-                            nameOfContactMethod: "SMS",
-                            contactMethod: "(62)  9 * * * - * * 94",
+                          Expanded(
+                            child: ContactMethodDenseWidget(
+                              icon: Icons.message_rounded,
+                              nameOfContactMethod: "SMS",
+                              contactMethod: "(62)  9 * * * - * * 94",
+                            ),
                           ),
                           SizedBox(width: 5,),
-                          ContactMethodDenseWidget(
-                            icon: Icons.message_rounded,
-                            nameOfContactMethod: "SMS",
-                            contactMethod: "(62)  9 * * * - * * 94",
+                          Expanded(
+                            child: ContactMethodDenseWidget(
+                              icon: Icons.email_rounded,
+                              nameOfContactMethod: "Email",
+                              contactMethod: "jos*******@gmail.com",
+                            ),
                           ),
-                          Spacer()
                         ],
                       ),
                       const Spacer(),
