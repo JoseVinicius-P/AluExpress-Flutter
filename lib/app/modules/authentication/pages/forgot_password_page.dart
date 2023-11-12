@@ -222,28 +222,33 @@ class ContactMethodDenseWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: MyColors.primaryColor.withOpacity(0.05),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: MyColors.primaryColor.withOpacity(0.05),
+                  ),
+                  padding: const EdgeInsets.all(15),
+                  child: Icon(icon, color: MyColors.primaryColor,),
                 ),
-                padding: const EdgeInsets.all(15),
-                child: Icon(icon, color: MyColors.primaryColor,),
-              ),
-              const SizedBox(height: 8,),
-              AutoSizeText(
-                "Via $nameOfContactMethod:",
-                style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
-              ),
-              const SizedBox(height: 8,),
-              AutoSizeText(
-                contactMethod,
-                style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
-              ),
-            ],
+                const SizedBox(height: 8,),
+                AutoSizeText(
+                  "Via $nameOfContactMethod:",
+                  style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
+                  maxLines: 1,
+                ),
+                const SizedBox(height: 8,),
+                AutoSizeText(
+                  contactMethod,
+                  style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           )
         ],
       ),
