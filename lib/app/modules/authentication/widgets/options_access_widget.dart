@@ -4,6 +4,7 @@ import 'package:luguel/app/modules/authentication/widgets/google_button_widget.d
 import 'package:luguel/app/modules/authentication/widgets/question_and_button_widget.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
+import 'package:luguel/app/shared/widgets/flexible_sized_box.dart';
 
 class OptionsAccessWidget extends StatelessWidget {
   const OptionsAccessWidget({
@@ -19,29 +20,27 @@ class OptionsAccessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            GoogleButtonWidget(onTap: onTapGoogleButton),
-            const SizedBox(height: 35),
-            const DividerWidget(text: "ou"),
-            const SizedBox(height: 35),
-            DefaultButtonWidget(
-              onTap: onTapSignEmailWithPassword,
-              text: "Entrar com email e senha",
-              backgroundColor: MyColors.primaryColor,
-              textColor: Colors.white,
-              shadow: true,
-            ),
-            const SizedBox(height: 50),
-            QuestionAndButtonWidget(
-                question: "Não tem conta?",
-                buttonText: "Criar agora",
-                onPressed: onTapCreateAccount
-            ),
-          ],
-        )
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        GoogleButtonWidget(onTap: onTapGoogleButton),
+        const FlexibleSizedBox(height: 35),
+        const DividerWidget(text: "ou"),
+        const FlexibleSizedBox(height: 35),
+        DefaultButtonWidget(
+          onTap: onTapSignEmailWithPassword,
+          text: "Entrar com email e senha",
+          backgroundColor: MyColors.primaryColor,
+          textColor: Colors.white,
+          shadow: true,
+        ),
+        const FlexibleSizedBox(height: 50),
+        QuestionAndButtonWidget(
+            question: "Não tem conta?",
+            buttonText: "Criar agora",
+            onPressed: onTapCreateAccount
+        ),
+      ],
     );
   }
 }

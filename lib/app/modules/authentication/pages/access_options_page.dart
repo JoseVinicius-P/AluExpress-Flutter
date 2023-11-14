@@ -31,10 +31,11 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
                   text: "Como vamos\nentrar?",
                 ),
               ),
-              const SizedBox(height: 50),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: optionsAccessWidget,
+              Flexible(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: optionsAccessWidget,
+                ),
               ),
             ],
           ),
@@ -47,7 +48,7 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
                   text: "Como vamos\nentrar?",
                 ),
               ),
-              optionsAccessWidget,
+              Flexible(child: optionsAccessWidget),
             ],
           ),
         ),
