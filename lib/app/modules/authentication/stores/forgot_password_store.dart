@@ -4,8 +4,9 @@ import 'package:luguel/app/modules/authentication/interfaces/i_forgot_password_s
 class ForgotPasswordStore extends Store<int> implements IForgotPasswordStore{
   static const int emailMethod = 0;
   static const int smsMethod = 1;
+  static const int noMethodSelected = 9999;
 
-  ForgotPasswordStore() : super(5);
+  ForgotPasswordStore() : super(noMethodSelected);
 
   @override
   void selectContactMethod(int contactMethod) {

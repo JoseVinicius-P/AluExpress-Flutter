@@ -21,7 +21,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
 
   @override
   void dispose() {
-    store.selectContactMethod(5);
+    store.selectContactMethod(ForgotPasswordStore.noMethodSelected);
     super.dispose();
   }
 
