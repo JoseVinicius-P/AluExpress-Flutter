@@ -26,8 +26,8 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
       store: store,
       builder: (context, triple) {
         return DefaultButtonWidget(
-          onTap: triple.state! as int <= 1 ? (){} : null,
-          text: "Continuar",
+          onTap: triple.state! as int <= 1 ? () => Modular.to.pushReplacementNamed('./recovery_code') : null,
+          text: "Enviar código",
           backgroundColor: MyColors.primaryColor,
           textColor: Colors.white,
           shadow: true,

@@ -1,4 +1,5 @@
 import 'package:luguel/app/modules/authentication/interfaces/i_forgot_password_store.dart';
+import 'package:luguel/app/modules/authentication/pages/recovery_code_page.dart';
 import 'package:luguel/app/modules/authentication/stores/forgot_password_store.dart';
 import 'package:luguel/app/modules/authentication/pages/access_options_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -18,6 +19,7 @@ class AuthenticationModule extends Module {
     ChildRoute('/create_account', child: (_, args) => const CreateAccountPage()),
     ChildRoute('/login', child: (_, args) => const LoginPage()),
     ChildRoute('/forgot_password', child: (_, args) => const ForgotPasswordPage()),
+    ChildRoute('/recovery_code', child: (_, args) => const RecoveryCodePage()),
   ];
 
 }
