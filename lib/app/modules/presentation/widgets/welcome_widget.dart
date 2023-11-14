@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
+import 'package:luguel/app/shared/widgets/flexible_sized_box.dart';
 
 class WelcomeWidget extends StatelessWidget {
   const WelcomeWidget({
@@ -24,22 +25,25 @@ class WelcomeWidget extends StatelessWidget {
               style: theme.textTheme.titleMedium!.copyWith(),
               textAlign: TextAlign.left,
               maxFontSize: 50,
+              maxLines: 1,
             ),
-            const SizedBox(height: 10,),
+            const FlexibleSizedBox(height: 10,),
             AutoSizeText(
               "Luguel",
               style: theme.textTheme.titleLarge!.copyWith(),
               textAlign: TextAlign.left,
               maxFontSize: 80,
+              maxLines: 1,
             ),
-            const SizedBox(height: 25,),
+            const FlexibleSizedBox(height: 25,),
             AutoSizeText(
               "Encontre seu lar perfeito! Onde a Casa dos seus sonhos se torna um aluguel da realidade!",
               style: theme.textTheme.labelSmall!.copyWith(),
               textAlign: TextAlign.left,
               maxFontSize: 30,
+              maxLines: 3,
             ),
-            const SizedBox(height: 35,),
+            const FlexibleSizedBox(height: 35,),
             DefaultButtonWidget(
               onTap: () => Modular.to.pushNamed("/presentation_slide"),
               text: "Vamos começar",

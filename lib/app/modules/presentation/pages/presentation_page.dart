@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:luguel/app/modules/presentation/widgets/animated_background_widget.dart';
 import 'package:luguel/app/modules/presentation/widgets/gradiend_background_widget.dart';
 import 'package:luguel/app/modules/presentation/widgets/welcome_widget.dart';
+import 'package:luguel/app/shared/widgets/flexible_sized_box.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class PresentationPage extends StatefulWidget {
@@ -31,6 +32,7 @@ class PresentationPageState extends State<PresentationPage>{
               GradiendBackgroundWidget(
                 child: Column(
                   children: [
+                    //Aumenta o tamanho do gradiente
                     SizedBox(height: 105,),
                     WelcomeWidget(),
                   ],
@@ -53,7 +55,7 @@ class PresentationPageState extends State<PresentationPage>{
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
+                        FlexibleSizedBox(
                           width: 100.sw,
                           height: 100.sw,
                           child: const Center(child: WelcomeWidget()),
