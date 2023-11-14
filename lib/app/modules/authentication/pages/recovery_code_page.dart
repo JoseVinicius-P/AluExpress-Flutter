@@ -20,7 +20,7 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
   @override
   void initState() {
     super.initState();
-    store.startCountdown(10);
+    store.startCountdown();
   }
 
   @override
@@ -66,7 +66,7 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
       builder: (context, triple) {
         return ResendCodeWidget(
           onTapResendCode: (){
-            store.startCountdown(60);
+            store.startCountdown();
           },
           countdownSeconds: triple.state as int,
         );
