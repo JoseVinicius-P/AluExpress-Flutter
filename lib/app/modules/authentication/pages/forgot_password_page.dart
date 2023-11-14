@@ -181,6 +181,12 @@ class _FloatingPadlockWidgetState extends State<FloatingPadlockWidget> with Tick
   late Animation<double> _floatAnimation;
   late Animation<double> _scaleAnimation;
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   void initializeAnimation(){
     _controller = AnimationController(
       vsync: this,
