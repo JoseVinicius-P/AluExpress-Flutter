@@ -1,5 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_triple/flutter_triple.dart';
+import 'package:luguel/app/modules/authentication/interfaces/i_resend_code_store.dart';
 import 'package:luguel/app/modules/authentication/widgets/resend_code_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
 import 'package:luguel/app/shared/widgets/flexible_sized_box.dart';
@@ -12,6 +15,14 @@ class RecoveryCodePage extends StatefulWidget {
   RecoveryCodePageState createState() => RecoveryCodePageState();
 }
 class RecoveryCodePageState extends State<RecoveryCodePage> {
+  var store = Modular.get<IResendCodeStore>();
+
+  @override
+  void initState() {
+    super.initState();
+    store.startCountdown(10);
+  }
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -50,6 +61,18 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
       errorBuilder: (_, s) => const SizedBox(),
     );
 
+    var resendCode = TripleBuilder(
+      store: store,
+      builder: (context, triple) {
+        return ResendCodeWidget(
+          onTapResendCode: (){
+            store.startCountdown(60);
+          },
+          countdownSeconds: triple.state as int,
+        );
+      }
+    );
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -71,16 +94,28 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
                 const FlexibleSizedBox(height: 40,),
                 pinput,
                 const FlexibleSizedBox(height: 40,),
-                ResendCodeWidget(
-                  onTapResendCode: (){},
-                  countdownSeconds: 60,
-                ),
+                resendCode,
               ],
             ),
           );
         },
         landscape: (context){
-          return SizedBox();
+          return SafeArea(
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  instructionText,
+                  const FlexibleSizedBox(height: 40,),
+                  pinput,
+                  const FlexibleSizedBox(height: 40,),
+                  resendCode,
+                ],
+              ),
+            ),
+          );
         },
       ),
     );

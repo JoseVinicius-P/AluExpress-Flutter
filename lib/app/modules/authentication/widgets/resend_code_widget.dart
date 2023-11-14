@@ -17,39 +17,11 @@ class ResendCodeWidget extends StatefulWidget {
 }
 
 class _ResendCodeWidgetState extends State<ResendCodeWidget> {
-  late int seconds;
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    seconds = widget.countdownSeconds;
-    startTimer();
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  void startTimer(){
-    _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        if (seconds < 1) {
-          timer.cancel();
-        } else {
-          seconds = seconds - 1;
-        }
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return seconds != 0 ?
+    return widget.countdownSeconds != 0 ?
     Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +31,7 @@ class _ResendCodeWidgetState extends State<ResendCodeWidget> {
           style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
         ),
         AutoSizeText(
-          " $seconds ",
+          " ${widget.countdownSeconds} ",
           style: theme.textTheme.labelSmall?.copyWith(color: MyColors.primaryColor, fontWeight: FontWeight.normal),
         ),
         AutoSizeText(
@@ -72,10 +44,6 @@ class _ResendCodeWidgetState extends State<ResendCodeWidget> {
     InkWell(
       borderRadius: BorderRadius.circular(10),
       onTap: (){
-        setState(() {
-          seconds = widget.countdownSeconds;
-        });
-        startTimer();
         widget.onTapResendCode();
       },
       child: AutoSizeText(
