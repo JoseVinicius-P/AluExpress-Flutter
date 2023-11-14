@@ -119,50 +119,50 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                   ),
                 ),
                 Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    instructionText,
-                    const SizedBox(height: 25,),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: TripleBuilder(
-                            store: store,
-                            builder: (context, triple) {
-                              return ContactMethodDenseWidget(
-                                icon: Icons.message_rounded,
-                                nameOfContactMethod: "SMS",
-                                contactMethod: "(62)  9 * * * - * * 94",
-                                onTap: () => store.selectContactMethod(ForgotPasswordStore.smsMethod),
-                                isSelected: triple.state == ForgotPasswordStore.smsMethod,
-                              );
-                            }
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      instructionText,
+                      const SizedBox(height: 25,),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: TripleBuilder(
+                              store: store,
+                              builder: (context, triple) {
+                                return ContactMethodDenseWidget(
+                                  icon: Icons.message_rounded,
+                                  nameOfContactMethod: "SMS",
+                                  contactMethod: "(62)  9 * * * - * * 94",
+                                  onTap: () => store.selectContactMethod(ForgotPasswordStore.smsMethod),
+                                  isSelected: triple.state == ForgotPasswordStore.smsMethod,
+                                );
+                              }
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 5,),
-                        Expanded(
-                          child: TripleBuilder(
-                            store: store,
-                            builder: (context, triple) {
-                              return ContactMethodDenseWidget(
-                                icon: Icons.email_rounded,
-                                nameOfContactMethod: "Email",
-                                contactMethod: "jos*******@gmail.com",
-                                onTap: () => store.selectContactMethod(ForgotPasswordStore.emailMethod),
-                                isSelected: triple.state == ForgotPasswordStore.emailMethod,
-                              );
-                            }
+                          const SizedBox(width: 5,),
+                          Expanded(
+                            child: TripleBuilder(
+                              store: store,
+                              builder: (context, triple) {
+                                return ContactMethodDenseWidget(
+                                  icon: Icons.email_rounded,
+                                  nameOfContactMethod: "Email",
+                                  contactMethod: "jos*******@gmail.com",
+                                  onTap: () => store.selectContactMethod(ForgotPasswordStore.emailMethod),
+                                  isSelected: triple.state == ForgotPasswordStore.emailMethod,
+                                );
+                              }
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 25,),
-                    buttonNext,
-                  ],
-                ),
-                  )
+                        ],
+                      ),
+                      const SizedBox(height: 25,),
+                      buttonNext,
+                    ],
+                  ),
+                )
               ],
             );
           },
