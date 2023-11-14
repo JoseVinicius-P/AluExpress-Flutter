@@ -20,6 +20,13 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
   var store = Modular.get<IForgotPasswordStore>();
 
   @override
+  void dispose() {
+    store.selectContactMethod(5);
+    super.dispose();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var buttonNext = TripleBuilder(
