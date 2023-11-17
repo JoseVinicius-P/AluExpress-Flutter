@@ -62,6 +62,7 @@ class _FloatingImageWidgetState extends State<FloatingImageWidget> with TickerPr
                   height: 22.sh,
                 ),
               ),
+              const SizedBox(height: 20,),
               Transform.scale(
                 scale: _scaleAnimation.value,
                 child: Opacity(
@@ -69,7 +70,7 @@ class _FloatingImageWidgetState extends State<FloatingImageWidget> with TickerPr
                   child: Image(
                     image: const AssetImage('assets/images/shadow.png'),
                     fit: BoxFit.cover,
-                    height: 12.sh,
+                    height: 6.sh,
                   ),
                 ),
               ),
