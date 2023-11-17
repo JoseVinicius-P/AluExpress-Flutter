@@ -31,14 +31,14 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
       textAlign: TextAlign.left,
     );
 
-    var textFieldPassword = TextFieldWidget(
+    var textFieldPassword =  const TextFieldWidget(
         hint: "Nova senha",
         enable: true,
         icon: Icons.lock,
         keyboardType: TextInputType.visiblePassword,
     );
 
-    var textFieldConfirmPassword = TextFieldWidget(
+    var textFieldConfirmPassword = const TextFieldWidget(
       hint: "Confirme a nova senha",
       enable: true,
       icon: Icons.lock,
@@ -124,26 +124,19 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                   ),
                 ),
                 Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      instructionText,
-                      const SizedBox(height: 25,),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: textFieldPassword,
-                          ),
-                          const SizedBox(width: 5,),
-                          Expanded(
-                            child: textFieldConfirmPassword,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 25,),
-                      createPassword,
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        instructionText,
+                        const SizedBox(height: 25,),
+                        textFieldPassword,
+                        const SizedBox(width: 5,),
+                        textFieldConfirmPassword,
+                        const SizedBox(height: 25,),
+                        createPassword,
+                      ],
+                    ),
                   ),
                 )
               ],
