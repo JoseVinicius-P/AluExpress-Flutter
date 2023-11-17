@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:luguel/app/modules/authentication/interfaces/i_resend_code_store.dart';
 import 'package:luguel/app/modules/authentication/widgets/resend_code_widget.dart';
+import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
 import 'package:luguel/app/shared/widgets/flexible_sized_box.dart';
 import 'package:pinput/pinput.dart';
@@ -73,6 +74,14 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
       }
     );
 
+    var verifyCodeButton = DefaultButtonWidget(
+      onTap: (){},
+      text: "Verificar",
+      backgroundColor: MyColors.primaryColor,
+      textColor: Colors.white,
+      icon: const Icon(Icons.done_rounded, color: Colors.white,),
+    );
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -82,41 +91,57 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
           style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 25),
         ),
       ),
-      body: OrientationLayoutBuilder(
-        portrait: (context){
-          return Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 15.0, bottom: 30.0, left: 15.0, right: 15.0),
+        child: OrientationLayoutBuilder(
+          portrait: (context){
+            return Stack(
               children: [
-                instructionText,
-                const FlexibleSizedBox(height: 40,),
-                pinput,
-                const FlexibleSizedBox(height: 40,),
-                resendCode,
+                Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      instructionText,
+                      const FlexibleSizedBox(height: 40,),
+                      pinput,
+                      const FlexibleSizedBox(height: 40,),
+                      resendCode,
+                    ],
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: verifyCodeButton,
+                )
               ],
-            ),
-          );
-        },
-        landscape: (context){
-          return SafeArea(
-            child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  instructionText,
-                  const FlexibleSizedBox(height: 40,),
-                  pinput,
-                  const FlexibleSizedBox(height: 40,),
-                  resendCode,
-                ],
+            );
+          },
+          landscape: (context){
+            return SafeArea(
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    instructionText,
+                    const FlexibleSizedBox(height: 40,),
+                    pinput,
+                    const FlexibleSizedBox(height: 40,),
+                    resendCode,
+                    const FlexibleSizedBox(height: 40,),
+                    SizedBox(
+                      width: 100.sw,
+                      child: verifyCodeButton
+                    )
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
