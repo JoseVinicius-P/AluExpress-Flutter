@@ -6,7 +6,7 @@ import 'package:luguel/app/modules/authentication/interfaces/i_forgot_password_s
 import 'package:luguel/app/modules/authentication/stores/forgot_password_store.dart';
 import 'package:luguel/app/modules/authentication/widgets/contact_method_dense_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/contact_method_widget%5D.dart';
-import 'package:luguel/app/modules/authentication/widgets/floating_padlock_widget.dart';
+import 'package:luguel/app/modules/authentication/widgets/floating_image_widget.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -46,6 +46,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
       "Selecione qual o contato você quer usar para redefinir sua senha.",
       style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
     );
+    var floatingPadlock = const FloatingImageWidget(assetImage: AssetImage('assets/images/padlock2.png'));
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -67,8 +68,8 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        const Center(
-                          child: FloatingPadlockWidget(),
+                        Center(
+                          child: floatingPadlock,
                         ),
                         instructionText,
                         const SizedBox(height: 25,),
@@ -114,13 +115,13 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Expanded(
+                Expanded(
                   child: SafeArea(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        FloatingPadlockWidget(),
+                        floatingPadlock,
                       ],
                     ),
                   ),

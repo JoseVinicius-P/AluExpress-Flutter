@@ -2,14 +2,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class FloatingPadlockWidget extends StatefulWidget {
-  const FloatingPadlockWidget({Key? key}) : super(key: key);
+class FloatingImageWidget extends StatefulWidget {
+  const FloatingImageWidget({Key? key, required this.assetImage}) : super(key: key);
+
+  final AssetImage assetImage;
 
   @override
-  State<FloatingPadlockWidget> createState() => _FloatingPadlockWidgetState();
+  State<FloatingImageWidget> createState() => _FloatingImageWidgetState();
 }
 
-class _FloatingPadlockWidgetState extends State<FloatingPadlockWidget> with TickerProviderStateMixin{
+class _FloatingImageWidgetState extends State<FloatingImageWidget> with TickerProviderStateMixin{
   late AnimationController _controller;
   late Animation<double> _floatAnimation;
   late Animation<double> _scaleAnimation;
@@ -55,7 +57,7 @@ class _FloatingPadlockWidgetState extends State<FloatingPadlockWidget> with Tick
               Transform.translate(
                 offset: Offset(0, _floatAnimation.value),
                 child: Image(
-                  image: const AssetImage('assets/images/padlock2.png'),
+                  image: widget.assetImage,
                   fit: BoxFit.cover,
                   height: 22.sh,
                 ),
