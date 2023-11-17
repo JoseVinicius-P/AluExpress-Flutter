@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:luguel/app/modules/authentication/interfaces/i_resend_code_store.dart';
+import 'package:luguel/app/modules/authentication/interfaces/i_verify_code_store.dart';
 import 'package:luguel/app/modules/authentication/widgets/resend_code_widget.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
 import 'package:luguel/app/shared/my_colors.dart';
@@ -16,12 +17,19 @@ class RecoveryCodePage extends StatefulWidget {
   RecoveryCodePageState createState() => RecoveryCodePageState();
 }
 class RecoveryCodePageState extends State<RecoveryCodePage> {
-  var store = Modular.get<IResendCodeStore>();
+  var resendCodeStore = Modular.get<IResendCodeStore>();
+  var verifyCodeStore = Modular.get<IVerifyCodeStore>();
 
   @override
   void initState() {
     super.initState();
-    store.startCountdown();
+    resendCodeStore.startCountdown();
+  }
+
+  @override
+  void dispose() {
+    verifyCodeStore.setCode("");
+    super.dispose();
   }
 
   @override
@@ -52,34 +60,38 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
       defaultPinTheme: defaultPinTheme,
       focusedPinTheme: focusedPinTheme,
       submittedPinTheme: defaultPinTheme,
-      validator: (correctPin) {
-        return "";
-      },
       pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
       showCursor: true,
       toolbarEnabled: false,
-      onCompleted: (pin) => debugPrint(pin),
+      onChanged: (code) => verifyCodeStore.setCode(code),
       errorBuilder: (_, s) => const SizedBox(),
     );
 
     var resendCode = TripleBuilder(
-      store: store,
+      store: resendCodeStore,
       builder: (context, triple) {
         return ResendCodeWidget(
           onTapResendCode: (){
-            store.startCountdown();
+            resendCodeStore.startCountdown();
           },
           countdownSeconds: triple.state as int,
         );
       }
     );
 
-    var verifyCodeButton = DefaultButtonWidget(
-      onTap: (){},
-      text: "Verificar",
-      backgroundColor: MyColors.primaryColor,
-      textColor: Colors.white,
-      icon: const Icon(Icons.done_rounded, color: Colors.white,),
+    var verifyCodeButton = TripleBuilder(
+      store: verifyCodeStore,
+      builder: (context, triple) {
+        String code = triple.state as String;
+        return DefaultButtonWidget(
+          onTap: code.length == 4 ? (){} : null,
+          text: "Verificar",
+          backgroundColor: MyColors.primaryColor,
+          textColor: Colors.white,
+          icon: const Icon(Icons.done_rounded, color: Colors.white,),
+          shadow: true,
+        );
+      }
     );
 
     return Scaffold(
