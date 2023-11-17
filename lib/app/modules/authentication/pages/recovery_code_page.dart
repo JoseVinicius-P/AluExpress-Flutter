@@ -84,7 +84,7 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
       builder: (context, triple) {
         String code = triple.state as String;
         return DefaultButtonWidget(
-          onTap: code.length == 4 ? (){} : null,
+          onTap: code.length == 4 ? () => Modular.to.pushReplacementNamed("./create_new_password") : null,
           text: "Verificar",
           backgroundColor: MyColors.primaryColor,
           textColor: Colors.white,
