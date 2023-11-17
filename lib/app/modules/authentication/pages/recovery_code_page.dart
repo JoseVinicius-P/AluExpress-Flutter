@@ -96,6 +96,7 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         forceMaterialTransparency: true,
         title: Text(
