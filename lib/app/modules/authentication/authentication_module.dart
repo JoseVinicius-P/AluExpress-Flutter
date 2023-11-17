@@ -1,4 +1,5 @@
 import 'package:luguel/app/modules/authentication/interfaces/i_verify_code_store.dart';
+import 'package:luguel/app/modules/authentication/pages/create_new_password_page.dart';
 import 'package:luguel/app/modules/authentication/stores/verify_code_store.dart';
 import 'package:luguel/app/modules/authentication/interfaces/i_resend_code_store.dart';
 import 'package:luguel/app/modules/authentication/stores/resend_code_store.dart';
@@ -26,6 +27,7 @@ class AuthenticationModule extends Module {
     ChildRoute('/login', child: (_, args) => const LoginPage()),
     ChildRoute('/forgot_password', child: (_, args) => const ForgotPasswordPage()),
     ChildRoute('/recovery_code', child: (_, args) => const RecoveryCodePage()),
+    ChildRoute('/create_new_password', child: (_, args) => const CreateNewPasswordPage()),
   ];
 
 }
