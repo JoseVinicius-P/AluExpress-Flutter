@@ -50,6 +50,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
       icon: Icons.lock,
       keyboardType: TextInputType.visiblePassword,
       onChanged: (text) => store.setPassword(text),
+      controller: store.passwordController,
     );
 
     var textFieldConfirmPassword = TextFieldWidget(
@@ -58,6 +59,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
       icon: Icons.lock,
       keyboardType: TextInputType.visiblePassword,
       onChanged: (text) => store.setConfirmationPassword(text),
+      controller: store.confirmPasswordController,
     );
 
     var floatingPadlock = const FloatingImageWidget(assetImage: AssetImage('assets/images/security.png'));
