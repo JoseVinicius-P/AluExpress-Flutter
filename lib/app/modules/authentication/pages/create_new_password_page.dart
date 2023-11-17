@@ -1,6 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_triple/flutter_triple.dart';
+import 'package:luguel/app/modules/authentication/interfaces/i_new_password_store.dart';
 import 'package:luguel/app/modules/authentication/widgets/floating_image_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
@@ -13,16 +16,26 @@ class CreateNewPasswordPage extends StatefulWidget {
   CreateNewPasswordPageState createState() => CreateNewPasswordPageState();
 }
 class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
+  var store = Modular.get<INewPasswordStore>();
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var createPassword = DefaultButtonWidget(
-      onTap: (){},
-      text: "Criar senha",
-      backgroundColor: MyColors.primaryColor,
-      textColor: Colors.white,
-      shadow: true,
-      icon: const Icon(Icons.lock_reset_outlined, color: Colors.white,),
+
+    var createPasswordButton = TripleBuilder(
+      store: store,
+      builder: (context, triple) {
+        if((triple.state as List).length == 2){
+          print("${(triple.state as List)[0]} | ${(triple.state as List)[1]}");
+        }
+        return DefaultButtonWidget(
+          onTap: store.arePasswordsSame(triple.state as List<String>) ? (){} : null,
+          text: "Criar senha",
+          backgroundColor: MyColors.primaryColor,
+          textColor: Colors.white,
+          shadow: true,
+          icon: const Icon(Icons.lock_reset_outlined, color: Colors.white,),
+        );
+      }
     );
 
     var instructionText = AutoSizeText(
@@ -31,18 +44,20 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
       textAlign: TextAlign.left,
     );
 
-    var textFieldPassword =  const TextFieldWidget(
-        hint: "Nova senha",
-        enable: true,
-        icon: Icons.lock,
-        keyboardType: TextInputType.visiblePassword,
+    var textFieldPassword = TextFieldWidget(
+      hint: "Nova senha",
+      enable: true,
+      icon: Icons.lock,
+      keyboardType: TextInputType.visiblePassword,
+      onChanged: (text) => store.setPassword(text),
     );
 
-    var textFieldConfirmPassword = const TextFieldWidget(
+    var textFieldConfirmPassword = TextFieldWidget(
       hint: "Confirme a nova senha",
       enable: true,
       icon: Icons.lock,
       keyboardType: TextInputType.visiblePassword,
+      onChanged: (text) => store.setConfirmationPassword(text),
     );
 
     var floatingPadlock = const FloatingImageWidget(assetImage: AssetImage('assets/images/security.png'));
@@ -98,7 +113,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                         const SizedBox(height: 8,),
                         textFieldConfirmPassword,
                         const SizedBox(height: 20,),
-                        createPassword,
+                        createPasswordButton,
                         const SizedBox(height: 40,),
                       ],
                     ),
@@ -134,7 +149,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                         const SizedBox(width: 5,),
                         textFieldConfirmPassword,
                         const SizedBox(height: 25,),
-                        createPassword,
+                        createPasswordButton,
                       ],
                     ),
                   ),

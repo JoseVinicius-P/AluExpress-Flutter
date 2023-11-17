@@ -1,3 +1,5 @@
+import 'package:luguel/app/modules/authentication/interfaces/i_new_password_store.dart';
+import 'package:luguel/app/modules/authentication/stores/new_password_store.dart';
 import 'package:luguel/app/modules/authentication/interfaces/i_verify_code_store.dart';
 import 'package:luguel/app/modules/authentication/pages/create_new_password_page.dart';
 import 'package:luguel/app/modules/authentication/stores/verify_code_store.dart';
@@ -15,6 +17,7 @@ import 'package:luguel/app/modules/authentication/pages/login_page.dart';
 class AuthenticationModule extends Module {
   @override
   final List<Bind> binds = [
+    Bind.lazySingleton<INewPasswordStore>((i) => NewPasswordStore()),
     Bind.lazySingleton<IVerifyCodeStore>((i) => VerifyCodeStore()),
     Bind.lazySingleton<IResendCodeStore>((i) => ResendCodeStore()),
     Bind.lazySingleton<IForgotPasswordStore>((i) => ForgotPasswordStore()),
