@@ -17,6 +17,8 @@ class CreateNewPasswordPage extends StatefulWidget {
 }
 class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
   var store = Modular.get<INewPasswordStore>();
+  var focusNodeTextFieldConfirmPassword = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -24,9 +26,6 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
     var createPasswordButton = TripleBuilder(
       store: store,
       builder: (context, triple) {
-        if((triple.state as List).length == 2){
-          print("${(triple.state as List)[0]} | ${(triple.state as List)[1]}");
-        }
         return DefaultButtonWidget(
           onTap: store.arePasswordsSame(triple.state as List<String>) ? (){} : null,
           text: "Criar senha",
@@ -51,6 +50,10 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
       keyboardType: TextInputType.visiblePassword,
       onChanged: (text) => store.setPassword(text),
       controller: store.passwordController,
+      textInputAction: TextInputAction.next,
+      onFieldSubmitted: (_){
+        FocusScope.of(context).requestFocus(focusNodeTextFieldConfirmPassword);
+      },
     );
 
     var textFieldConfirmPassword = TextFieldWidget(
@@ -60,6 +63,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
       keyboardType: TextInputType.visiblePassword,
       onChanged: (text) => store.setConfirmationPassword(text),
       controller: store.confirmPasswordController,
+      focusNode: focusNodeTextFieldConfirmPassword,
     );
 
     var floatingPadlock = const FloatingImageWidget(assetImage: AssetImage('assets/images/security.png'));
