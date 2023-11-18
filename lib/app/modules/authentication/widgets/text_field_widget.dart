@@ -13,6 +13,9 @@ class TextFieldWidget extends StatefulWidget {
   final int? maxLength;
   final TextEditingController? controller;
   final Function(String)? onChanged;
+  final TextInputAction? textInputAction;
+  final FocusNode? focusNode;
+  final void Function(String)? onFieldSubmitted;
 
   const TextFieldWidget({
     Key? key,
@@ -24,7 +27,10 @@ class TextFieldWidget extends StatefulWidget {
     this.maxLength,
     this.controller,
     this.error,
-    this.onChanged
+    this.onChanged,
+    this.textInputAction,
+    this.focusNode,
+    this.onFieldSubmitted
   }) : super(key: key);
 
   @override
@@ -32,15 +38,23 @@ class TextFieldWidget extends StatefulWidget {
 }
 
 class _TextFieldWidgetState extends State<TextFieldWidget> {
-  final FocusNode _focusNode = FocusNode();
+  late FocusNode _focusNode;
   String text = "";
   late bool isPassword;
   bool obscureText = true;
 
+  void initFocus(){
+    if(widget.focusNode != null){
+      _focusNode = widget.focusNode!;
+    }else{
+      _focusNode = FocusNode();
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    initFocus();
     _focusNode.addListener(() {
       setState(() {});
     });
@@ -74,6 +88,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       children: [
         TextFormField(
           controller: widget.controller,
+          textInputAction: widget.textInputAction,
           maxLengthEnforcement: MaxLengthEnforcement.none,
           enabled: widget.enable,
           inputFormatters: widget.maskFormatter != null ?
@@ -93,6 +108,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           },
           obscureText: obscureText,
           focusNode: _focusNode,
+          onFieldSubmitted: widget.onFieldSubmitted,
           //definindo estilo do texto
           style: theme.textTheme.labelSmall!.copyWith(color: Colors.black),
           cursorColor: Colors.black,
