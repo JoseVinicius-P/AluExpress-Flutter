@@ -58,6 +58,7 @@ class DefaultButtonWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
+                    const SizedBox(width: 5,),
                     if(icon != null) icon!,
                   ],
                 ),
