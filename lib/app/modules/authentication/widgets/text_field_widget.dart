@@ -60,6 +60,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     });
 
     isPassword = widget.keyboardType == TextInputType.visiblePassword;
+    obscureText = isPassword;
   }
 
   @override
@@ -135,7 +136,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 setState(() {
                   obscureText = !obscureText;
                 });
-              } : (){},
+              } : null,
               icon: Icon(obscureText ? Icons.visibility_off_rounded : Icons.visibility_rounded, color: isPassword ? getColor() : Colors.transparent),
             ),
             filled: true,
