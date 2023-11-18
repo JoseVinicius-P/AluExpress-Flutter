@@ -4,6 +4,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:luguel/app/modules/authentication/interfaces/i_new_password_store.dart';
+import 'package:luguel/app/modules/authentication/widgets/alert_dialog_new_password_created_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/floating_image_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/shared/default_button_widget.dart';
@@ -19,6 +20,17 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
   var store = Modular.get<INewPasswordStore>();
   var focusNodeTextFieldConfirmPassword = FocusNode();
 
+  Future<bool> alertDialogNewPasswordCreated() async {
+    return await showDialog(
+      context: context,
+      barrierColor: Colors.black.withOpacity(0.4),
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const AlertDialogNewPasswordCreatedWidget();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -27,7 +39,11 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
       store: store,
       builder: (context, triple) {
         return DefaultButtonWidget(
-          onTap: store.arePasswordsSame(triple.state as List<String>) ? (){} : null,
+          onTap: store.arePasswordsSame(triple.state as List<String>) ? () async {
+            if(await alertDialogNewPasswordCreated()){
+              Modular.to.pop();
+            }
+          } : null,
           text: "Criar senha",
           backgroundColor: MyColors.primaryColor,
           textColor: Colors.white,
