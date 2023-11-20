@@ -7,6 +7,7 @@ import 'package:luguel/app/modules/authentication/stores/forgot_password_store.d
 import 'package:luguel/app/modules/authentication/widgets/contact_method_dense_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/contact_method_widget%5D.dart';
 import 'package:luguel/app/modules/authentication/widgets/floating_image_widget.dart';
+import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:luguel/app/shared/widgets/default_button_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -29,6 +30,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var globalContext = context;
     var buttonNext = TripleBuilder(
       store: store,
       builder: (context, triple) {
@@ -57,11 +59,11 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
           style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 25),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0),
-        child: OrientationLayoutBuilder(
-          portrait: (context) {
-            return SafeArea(
+      body: OrientationLayoutBuilder(
+        portrait: (context) {
+          return Padding(
+            padding: MyEdgeInsets.standard,
+            child: SafeArea(
               child: Stack(
                 children: [
                   SingleChildScrollView(
@@ -108,25 +110,28 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                   ),
                 ],
               ),
-            );
-          },
-          landscape: (context) {
-            return Row(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: SafeArea(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        floatingPadlock,
-                      ],
-                    ),
+            ),
+          );
+        },
+        landscape: (context) {
+          return Row(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: SafeArea(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      floatingPadlock,
+                    ],
                   ),
                 ),
-                Expanded(
+              ),
+              Expanded(
+                child: Padding(
+                  padding: MyEdgeInsets.getInsetsBelowStatusBar(globalContext),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -170,11 +175,11 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
                       buttonNext,
                     ],
                   ),
-                )
-              ],
-            );
-          },
-        ),
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }

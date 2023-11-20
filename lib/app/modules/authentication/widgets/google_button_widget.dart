@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class GoogleButtonWidget extends StatelessWidget {
@@ -25,8 +26,8 @@ class GoogleButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(17),
         ),
         child: Padding(
-          padding: withText == null || withText! ? const EdgeInsets.all(13) :
-          const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+          padding: withText == null || withText! ? MyEdgeInsets.insideButton :
+          MyEdgeInsets.googleButtonWithoutText,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

@@ -7,6 +7,7 @@ import 'package:luguel/app/modules/authentication/interfaces/i_new_password_stor
 import 'package:luguel/app/modules/authentication/widgets/alert_dialog_new_password_created_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/floating_image_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
+import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:luguel/app/shared/widgets/default_button_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -18,7 +19,6 @@ class CreateNewPasswordPage extends StatefulWidget {
 }
 class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
   var store = Modular.get<INewPasswordStore>();
-  var focusNodeTextFieldConfirmPassword = FocusNode();
 
   Future<bool> alertDialogNewPasswordCreated() async {
     return await showDialog(
@@ -34,6 +34,9 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var globalContext = context;
+
+    var focusNodeTextFieldConfirmPassword = FocusNode();
 
     var createPasswordButton = TripleBuilder(
       store: store,
@@ -93,11 +96,11 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
           style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 25),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0, top: 15.0),
-        child: OrientationLayoutBuilder(
-          portrait: (context) {
-            return SafeArea(
+      body: OrientationLayoutBuilder(
+        portrait: (context) {
+          return Padding(
+            padding: MyEdgeInsets.standard,
+            child: SafeArea(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -142,26 +145,29 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                   ),
                 ],
               ),
-            );
-          },
-          landscape: (context) {
-            return Row(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: SafeArea(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        floatingPadlock,
-                      ],
-                    ),
+            ),
+          );
+        },
+        landscape: (context) {
+          return Row(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: SafeArea(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      floatingPadlock,
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: SingleChildScrollView(
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: MyEdgeInsets.getInsetsBelowStatusBar(globalContext),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -175,11 +181,11 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                       ],
                     ),
                   ),
-                )
-              ],
-            );
-          },
-        ),
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }

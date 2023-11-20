@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/modules/authentication/widgets/options_access_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/title_widget.dart';
+import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class AccessOptionsPage extends StatefulWidget {
@@ -22,7 +23,7 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Padding(
-        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 15, bottom: 15.0, left: 15.0, right: 15.0),
+        padding: MyEdgeInsets.getInsetsBelowStatusBar(context),
         child: OrientationLayoutBuilder(
           portrait: (context) => Column(
             children: [

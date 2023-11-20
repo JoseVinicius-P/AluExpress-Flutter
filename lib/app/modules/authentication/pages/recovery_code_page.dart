@@ -5,6 +5,7 @@ import 'package:flutter_triple/flutter_triple.dart';
 import 'package:luguel/app/modules/authentication/interfaces/i_resend_code_store.dart';
 import 'package:luguel/app/modules/authentication/interfaces/i_verify_code_store.dart';
 import 'package:luguel/app/modules/authentication/widgets/resend_code_widget.dart';
+import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:luguel/app/shared/widgets/default_button_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/widgets/flexible_sized_box.dart';
@@ -105,7 +106,7 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 15.0, bottom: 30.0, left: 15.0, right: 15.0),
+        padding: MyEdgeInsets.standard,
         child: OrientationLayoutBuilder(
           portrait: (context){
             return Stack(

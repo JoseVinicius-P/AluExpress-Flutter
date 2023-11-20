@@ -5,6 +5,7 @@ import 'package:luguel/app/modules/presentation/interfaces/i_slide_store.dart';
 import 'package:luguel/app/modules/presentation/widgets/carousel_slider_widget.dart';
 import 'package:luguel/app/modules/presentation/widgets/slide_indicator_widget.dart';
 import 'package:luguel/app/modules/presentation/widgets/slide_page_widget.dart';
+import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:luguel/app/shared/widgets/default_button_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -114,7 +115,7 @@ class SlidePageState extends State<SlidePage>{
               Expanded(
                 flex: 1,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.sw, vertical: 10),
+                  padding: MyEdgeInsets.standard,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -152,7 +153,7 @@ class SlidePageState extends State<SlidePage>{
               Expanded(
                 flex: 1,
                 child: Padding(
-                  padding: EdgeInsets.all(5.sw),
+                  padding: MyEdgeInsets.standard,
                   child: Row(
                     children: [
                       TripleBuilder(

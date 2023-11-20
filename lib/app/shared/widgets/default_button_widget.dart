@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
+import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 
 class DefaultButtonWidget extends StatelessWidget {
   final void Function()? onTap;
@@ -44,7 +45,7 @@ class DefaultButtonWidget extends StatelessWidget {
                   ]
               ),
               child: Padding(
-                padding: const EdgeInsets.all(13),
+                padding: MyEdgeInsets.insideButton,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,

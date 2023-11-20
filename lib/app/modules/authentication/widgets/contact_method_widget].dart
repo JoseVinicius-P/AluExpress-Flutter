@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
+import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 
 class ContactMethodWidget extends StatelessWidget {
   const ContactMethodWidget({
@@ -34,7 +35,7 @@ class ContactMethodWidget extends StatelessWidget {
               width: 2
           ),
         ),
-        padding: const EdgeInsets.all(25),
+        padding: MyEdgeInsets.insideContactMethod,
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -43,7 +44,7 @@ class ContactMethodWidget extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: MyColors.primaryColor.withOpacity(0.05),
               ),
-              padding: const EdgeInsets.all(25),
+              padding: MyEdgeInsets.insideContactMethod,
               child: Icon(icon, color: MyColors.primaryColor,),
             ),
             const SizedBox(width: 15,),
