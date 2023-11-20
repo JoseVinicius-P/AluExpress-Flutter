@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:luguel/app/modules/authentication/widgets/divider_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/google_button_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/question_and_button_widget.dart';
-import 'package:luguel/app/shared/default_button_widget.dart';
-import 'package:luguel/app/shared/my_colors.dart';
+import 'package:luguel/app/shared/widgets/default_button_widget.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/widgets/flexible_sized_box.dart';
 
 class OptionsAccessWidget extends StatelessWidget {

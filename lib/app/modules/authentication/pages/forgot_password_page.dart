@@ -7,8 +7,8 @@ import 'package:luguel/app/modules/authentication/stores/forgot_password_store.d
 import 'package:luguel/app/modules/authentication/widgets/contact_method_dense_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/contact_method_widget%5D.dart';
 import 'package:luguel/app/modules/authentication/widgets/floating_image_widget.dart';
-import 'package:luguel/app/shared/default_button_widget.dart';
-import 'package:luguel/app/shared/my_colors.dart';
+import 'package:luguel/app/shared/widgets/default_button_widget.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ForgotPasswordPage extends StatefulWidget {

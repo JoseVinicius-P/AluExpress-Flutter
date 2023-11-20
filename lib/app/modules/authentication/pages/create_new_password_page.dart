@@ -7,8 +7,8 @@ import 'package:luguel/app/modules/authentication/interfaces/i_new_password_stor
 import 'package:luguel/app/modules/authentication/widgets/alert_dialog_new_password_created_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/floating_image_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
-import 'package:luguel/app/shared/default_button_widget.dart';
-import 'package:luguel/app/shared/my_colors.dart';
+import 'package:luguel/app/shared/widgets/default_button_widget.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class CreateNewPasswordPage extends StatefulWidget {

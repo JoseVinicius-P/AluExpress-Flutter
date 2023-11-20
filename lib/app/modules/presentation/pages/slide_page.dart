@@ -5,8 +5,8 @@ import 'package:luguel/app/modules/presentation/interfaces/i_slide_store.dart';
 import 'package:luguel/app/modules/presentation/widgets/carousel_slider_widget.dart';
 import 'package:luguel/app/modules/presentation/widgets/slide_indicator_widget.dart';
 import 'package:luguel/app/modules/presentation/widgets/slide_page_widget.dart';
-import 'package:luguel/app/shared/default_button_widget.dart';
-import 'package:luguel/app/shared/my_colors.dart';
+import 'package:luguel/app/shared/widgets/default_button_widget.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SlidePage extends StatefulWidget {

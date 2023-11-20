@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luguel/app/shared/my_colors.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SlideIndicatorWidget extends StatelessWidget {

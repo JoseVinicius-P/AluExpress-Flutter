@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:luguel/app/shared/my_colors.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class TextFieldWidget extends StatefulWidget {

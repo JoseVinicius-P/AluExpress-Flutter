@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:luguel/app/shared/my_colors.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 
 class AppWidget extends StatelessWidget {
   @override

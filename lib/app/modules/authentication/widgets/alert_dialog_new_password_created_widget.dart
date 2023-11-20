@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luguel/app/shared/my_colors.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 
 class AlertDialogNewPasswordCreatedWidget extends StatelessWidget {
   const AlertDialogNewPasswordCreatedWidget({Key? key}) : super(key: key);

@@ -7,8 +7,8 @@ import 'package:luguel/app/modules/authentication/widgets/form_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/google_button_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/question_and_button_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/title_widget.dart';
-import 'package:luguel/app/shared/default_button_widget.dart';
-import 'package:luguel/app/shared/my_colors.dart';
+import 'package:luguel/app/shared/widgets/default_button_widget.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class LoginPage extends StatefulWidget {
