@@ -17,11 +17,12 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
       onTapGoogleButton: (){},
       onTapSignEmailWithPassword: () => Modular.to.pushNamed("./login"),
       onTapCreateAccount: () => Modular.to.pushNamed('./create_account'),
+      onTapLoginAsVisitor: (){},
     );
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Padding(
-        padding: EdgeInsets.all(5.sw),
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 15, bottom: 15.0, left: 15.0, right: 15.0),
         child: OrientationLayoutBuilder(
           portrait: (context) => Column(
             children: [
@@ -52,7 +53,6 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
             ],
           ),
         ),
-
       ),
     );
   }

@@ -12,11 +12,13 @@ class OptionsAccessWidget extends StatelessWidget {
     required this.onTapGoogleButton,
     required this.onTapSignEmailWithPassword,
     required this.onTapCreateAccount,
+    required this.onTapLoginAsVisitor,
   });
 
   final void Function() onTapGoogleButton;
   final void Function() onTapSignEmailWithPassword;
   final void Function() onTapCreateAccount;
+  final void Function() onTapLoginAsVisitor;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +26,24 @@ class OptionsAccessWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         GoogleButtonWidget(onTap: onTapGoogleButton),
-        const FlexibleSizedBox(height: 35),
+        const FlexibleSizedBox(height: 30),
         const DividerWidget(text: "ou"),
-        const FlexibleSizedBox(height: 35),
+        const FlexibleSizedBox(height: 30),
         DefaultButtonWidget(
           onTap: onTapSignEmailWithPassword,
           text: "Entrar com email e senha",
           backgroundColor: MyColors.primaryColor,
           textColor: Colors.white,
-          shadow: true,
+          shadow: false,
+        ),
+        const FlexibleSizedBox(height: 25),
+        DefaultButtonWidget(
+          onTap: onTapLoginAsVisitor,
+          text: "Entrar como visitante",
+          backgroundColor: MyColors.secondaryColor,
+          textColor: MyColors.primaryColor,
+          shadow: false,
+          icon: const Icon(Icons.person_outlined, color: MyColors.primaryColor,),
         ),
         const FlexibleSizedBox(height: 50),
         QuestionAndButtonWidget(
