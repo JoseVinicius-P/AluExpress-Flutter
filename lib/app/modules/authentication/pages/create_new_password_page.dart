@@ -10,6 +10,7 @@ import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:luguel/app/shared/widgets/default_button_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
+import 'package:luguel/app/shared/widgets/flexible_sized_box.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class CreateNewPasswordPage extends StatefulWidget {
@@ -133,13 +134,13 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                             instructionText,
                           ],
                         ),
-                        const SizedBox(height: 25,),
+                        const FlexibleSizedBox(height: 25,),
                         textFieldPassword,
-                        const SizedBox(height: 8,),
+                        const FlexibleSizedBox(height: 8,),
                         textFieldConfirmPassword,
-                        const SizedBox(height: 20,),
+                        const FlexibleSizedBox(height: 20,),
                         createPasswordButton,
-                        const SizedBox(height: 40,),
+                        const FlexibleSizedBox(height: 40,),
                       ],
                     ),
                   ),
