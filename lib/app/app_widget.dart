@@ -13,7 +13,7 @@ class AppWidget extends StatelessWidget {
         splashFactory: InkRipple.splashFactory,
         splashColor: Colors.black.withOpacity(0.1),
         colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: MyColors.backgroundColor,
         useMaterial3: true,
         textTheme: const TextTheme(
           titleMedium: TextStyle(fontSize: 40, color: Colors.white),

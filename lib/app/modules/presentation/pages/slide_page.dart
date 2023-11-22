@@ -55,9 +55,9 @@ class SlidePageState extends State<SlidePage>{
       text: currentSlide != 2 ? "Continuar" : "Finalizar",
       icon: Icon(
         currentSlide != 2 ? Icons.keyboard_arrow_right_rounded : Icons.done_rounded,
-        color: Colors.white,),
+        color: MyColors.iconButtonColor,),
       backgroundColor: MyColors.primaryColor,
-      textColor: Colors.white,
+      textColor: MyColors.textButtonColor,
     );
   }
 
@@ -68,7 +68,7 @@ class SlidePageState extends State<SlidePage>{
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         iconTheme: const IconThemeData(
-            color: Colors.white,
+            color: MyColors.iconButtonColor,
             shadows: [
               BoxShadow(
                 color: Colors.black,

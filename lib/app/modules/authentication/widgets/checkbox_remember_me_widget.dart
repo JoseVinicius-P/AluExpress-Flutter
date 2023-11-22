@@ -48,7 +48,7 @@ class _ChekboxRememberMeWidgetState extends State<ChekboxRememberMeWidget> {
         ),
         AutoSizeText(
           "Lembrar de mim",
-          style: theme.textTheme.labelSmall!.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+          style: theme.textTheme.labelSmall!.copyWith(color: MyColors.textColor, fontWeight: FontWeight.bold),
           maxLines: 1,
         ),
       ],

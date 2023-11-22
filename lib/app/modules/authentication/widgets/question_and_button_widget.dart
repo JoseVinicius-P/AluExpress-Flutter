@@ -22,7 +22,7 @@ class QuestionAndButtonWidget extends StatelessWidget {
         Flexible(
           child: AutoSizeText(
             question,
-            style: theme.textTheme.labelSmall!.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
+            style: theme.textTheme.labelSmall!.copyWith(color: MyColors.grey, fontWeight: FontWeight.normal),
             maxLines: 1,
             softWrap: true,
           ),

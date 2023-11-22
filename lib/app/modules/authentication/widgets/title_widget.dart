@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class TitleWidget extends StatelessWidget {
@@ -21,7 +22,7 @@ class TitleWidget extends StatelessWidget {
             Expanded(
               child: AutoSizeText(
                 text,
-                style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 10.sw),
+                style: theme.textTheme.titleMedium!.copyWith(color: MyColors.textColor, fontSize: 10.sw),
                 textAlign: textAlign,
                 maxLines: 2,
               ),

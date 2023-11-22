@@ -71,13 +71,13 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 
   Color getColor(){
     if(widget.error != null){
-      return Colors.red;
+      return MyColors.errorColor;
     }else if(_focusNode.hasFocus){
       return MyColors.primaryColor;
     }else if(text.isEmpty){
-      return Colors.grey;
+      return MyColors.grey;
     }else{
-      return Colors.black;
+      return MyColors.textColor;
     }
   }
 
@@ -111,8 +111,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           focusNode: _focusNode,
           onFieldSubmitted: widget.onFieldSubmitted,
           //definindo estilo do texto
-          style: theme.textTheme.labelSmall!.copyWith(color: Colors.black),
-          cursorColor: Colors.black,
+          style: theme.textTheme.labelSmall!.copyWith(color: MyColors.textColor),
+          cursorColor: MyColors.textColor,
           //retirando autocorreção de texto
           autocorrect: false,
           //definindo estilo do container do textfield
@@ -146,7 +146,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         Text(
         widget.error != null && widget.error != "" ? "     *${widget.error}" : "",
           style: const TextStyle(
-            color: Colors.red
+            color: MyColors.errorColor
           ),
         )
       ],

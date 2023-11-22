@@ -37,7 +37,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
       onTap: (){},
       text: 'Criar conta',
       backgroundColor: MyColors.primaryColor,
-      textColor: Colors.white,
+      textColor: MyColors.textButtonColor,
       shadow: true,
     );
     var googleButton = GoogleButtonWidget(onTap: (){}, withText: false,);

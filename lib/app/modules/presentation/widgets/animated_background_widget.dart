@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 
 class AnimatedBackgroundWidget extends StatefulWidget {
   const AnimatedBackgroundWidget({
@@ -53,7 +54,7 @@ class _AnimatedBackgroundWidgetState extends State<AnimatedBackgroundWidget>
               child: Container(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height,
-                  color: Colors.white,
+                  color: MyColors.backgroundColor,
                   child: widget.image
               ),
             );

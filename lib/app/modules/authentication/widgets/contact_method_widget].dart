@@ -53,12 +53,12 @@ class ContactMethodWidget extends StatelessWidget {
               children: [
                 AutoSizeText(
                   "Via $nameOfContactMethod:",
-                  style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
+                  style: theme.textTheme.labelSmall?.copyWith(color: MyColors.grey, fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 8,),
                 AutoSizeText(
                   contactMethod,
-                  style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+                  style: theme.textTheme.labelSmall?.copyWith(color: MyColors.textColor, fontWeight: FontWeight.normal),
                 ),
               ],
             )

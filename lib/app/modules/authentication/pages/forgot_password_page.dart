@@ -38,15 +38,15 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
           onTap: triple.state! as int <= 1 ? () => Modular.to.pushReplacementNamed('./recovery_code') : null,
           text: "Enviar código",
           backgroundColor: MyColors.primaryColor,
-          textColor: Colors.white,
+          textColor: MyColors.textButtonColor,
           shadow: true,
-          icon: const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white,),
+          icon: const Icon(Icons.keyboard_arrow_right_rounded, color: MyColors.iconButtonColor,),
         );
       }
     );
     var instructionText = AutoSizeText(
       "Selecione qual o contato você quer usar para redefinir sua senha.",
-      style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+      style: theme.textTheme.labelSmall?.copyWith(color: MyColors.textColor, fontWeight: FontWeight.normal),
     );
     var floatingPadlock = const FloatingImageWidget(assetImage: AssetImage('assets/images/padlock2.png'));
 
@@ -56,7 +56,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> with TickerProvi
         forceMaterialTransparency: true,
         title: Text(
           "Esqueci minha senha",
-          style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 25),
+          style: theme.textTheme.titleMedium!.copyWith(color: MyColors.textColor, fontSize: 25),
         ),
       ),
       body: OrientationLayoutBuilder(

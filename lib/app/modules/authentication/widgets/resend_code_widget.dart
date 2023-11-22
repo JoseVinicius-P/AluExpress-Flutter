@@ -26,7 +26,7 @@ class _ResendCodeWidgetState extends State<ResendCodeWidget> {
       children: [
         AutoSizeText(
           "Você pode reenviar o código em",
-          style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+          style: theme.textTheme.labelSmall?.copyWith(color: MyColors.textColor, fontWeight: FontWeight.normal),
         ),
         AutoSizeText(
           " ${widget.countdownSeconds} ",
@@ -34,7 +34,7 @@ class _ResendCodeWidgetState extends State<ResendCodeWidget> {
         ),
         AutoSizeText(
           "s",
-          style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+          style: theme.textTheme.labelSmall?.copyWith(color: MyColors.textColor, fontWeight: FontWeight.normal),
         ),
       ],
     )

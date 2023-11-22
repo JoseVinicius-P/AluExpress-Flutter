@@ -39,7 +39,7 @@ class LoginPageState extends State<LoginPage> {
       onTap: (){},
       text: 'Login',
       backgroundColor: MyColors.primaryColor,
-      textColor: Colors.white,
+      textColor: MyColors.textButtonColor,
       shadow: true,
     );
     var googleButton = GoogleButtonWidget(onTap: (){}, withText: false,);

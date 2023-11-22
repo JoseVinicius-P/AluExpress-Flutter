@@ -9,7 +9,7 @@ class AlertDialogNewPasswordCreatedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme =  Theme.of(context);
     return AlertDialog(
-      backgroundColor: Colors.white,
+      backgroundColor: MyColors.backgroundColor,
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -29,7 +29,7 @@ class AlertDialogNewPasswordCreatedWidget extends StatelessWidget {
           ),
           Text(
             'Sua conta está pronta para ser usada!',
-            style: theme.textTheme.labelSmall!.copyWith(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w300),
+            style: theme.textTheme.labelSmall!.copyWith(fontSize: 18, color: MyColors.textColor, fontWeight: FontWeight.w300),
             textAlign: TextAlign.center,
           ),
           InkWell(
@@ -65,7 +65,7 @@ class AlertDialogNewPasswordCreatedWidget extends StatelessWidget {
                       child: Text(
                         maxLines: 1,
                         "Ir para o login",
-                        style: theme.textTheme.labelSmall?.copyWith(color: Colors.white),
+                        style: theme.textTheme.labelSmall?.copyWith(color: MyColors.textButtonColor),
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
                       ),

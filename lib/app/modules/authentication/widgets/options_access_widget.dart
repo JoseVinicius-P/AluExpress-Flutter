@@ -33,7 +33,7 @@ class OptionsAccessWidget extends StatelessWidget {
           onTap: onTapSignEmailWithPassword,
           text: "Entrar com email e senha",
           backgroundColor: MyColors.primaryColor,
-          textColor: Colors.white,
+          textColor: MyColors.textButtonColor,
           shadow: false,
         ),
         const FlexibleSizedBox(height: 25),

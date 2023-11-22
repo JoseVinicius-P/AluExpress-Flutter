@@ -54,13 +54,13 @@ class ContactMethodDenseWidget extends StatelessWidget {
                   const SizedBox(height: 8,),
                   AutoSizeText(
                     "Via $nameOfContactMethod:",
-                    style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontWeight: FontWeight.normal),
+                    style: theme.textTheme.labelSmall?.copyWith(color: MyColors.grey, fontWeight: FontWeight.normal),
                     maxLines: 1,
                   ),
                   const SizedBox(height: 8,),
                   AutoSizeText(
                     contactMethod,
-                    style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+                    style: theme.textTheme.labelSmall?.copyWith(color: MyColors.textColor, fontWeight: FontWeight.normal),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),

@@ -50,16 +50,16 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
           } : null,
           text: "Criar senha",
           backgroundColor: MyColors.primaryColor,
-          textColor: Colors.white,
+          textColor: MyColors.textButtonColor,
           shadow: true,
-          icon: const Icon(Icons.lock_reset_outlined, color: Colors.white,),
+          icon: const Icon(Icons.lock_reset_outlined, color: MyColors.iconButtonColor,),
         );
       }
     );
 
     var instructionText = AutoSizeText(
       "Crie uma nova senha para sua conta!",
-      style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+      style: theme.textTheme.labelSmall?.copyWith(color: MyColors.textColor, fontWeight: FontWeight.normal),
       textAlign: TextAlign.left,
     );
 
@@ -94,7 +94,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
         forceMaterialTransparency: true,
         title: Text(
           "Criar uma nova senha",
-          style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 25),
+          style: theme.textTheme.titleMedium!.copyWith(color: MyColors.textColor, fontSize: 25),
         ),
       ),
       body: OrientationLayoutBuilder(

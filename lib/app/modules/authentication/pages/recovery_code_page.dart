@@ -38,12 +38,12 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
     var theme = Theme.of(context);
     var instructionText = AutoSizeText(
       "Digite o código enviado para jos*******@gmail.com",
-      style: theme.textTheme.labelSmall?.copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+      style: theme.textTheme.labelSmall?.copyWith(color: MyColors.textColor, fontWeight: FontWeight.normal),
     );
     final defaultPinTheme = PinTheme(
       width: 65,
       height: 56,
-      textStyle: const TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+      textStyle: const TextStyle(fontSize: 20, color: MyColors.textColor, fontWeight: FontWeight.bold),
       decoration: BoxDecoration(
         border: Border.all(color: MyColors.grayLight),
         color: MyColors.grayLight.withOpacity(0.6),
@@ -88,8 +88,8 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
           onTap: code.length == 4 ? () => Modular.to.pushReplacementNamed("./create_new_password") : null,
           text: "Verificar",
           backgroundColor: MyColors.primaryColor,
-          textColor: Colors.white,
-          icon: const Icon(Icons.done_rounded, color: Colors.white,),
+          textColor: MyColors.textButtonColor,
+          icon: const Icon(Icons.done_rounded, color: MyColors.iconButtonColor,),
           shadow: true,
         );
       }
@@ -102,7 +102,7 @@ class RecoveryCodePageState extends State<RecoveryCodePage> {
         forceMaterialTransparency: true,
         title: Text(
           "Esqueci minha senha",
-          style: theme.textTheme.titleMedium!.copyWith(color: Colors.black, fontSize: 25),
+          style: theme.textTheme.titleMedium!.copyWith(color: MyColors.textColor, fontSize: 25),
         ),
       ),
       body: Padding(

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -21,7 +22,7 @@ class GoogleButtonWidget extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
-            color: Colors.grey.withOpacity(0.3),
+            color: MyColors.grey.withOpacity(0.3),
           ),
           borderRadius: BorderRadius.circular(17),
         ),
@@ -42,7 +43,7 @@ class GoogleButtonWidget extends StatelessWidget {
                   maxLines: 1,
                   minFontSize: 2.5.sw.roundToDouble(),
                   'Continuar com o google',
-                  style: theme.textTheme.labelSmall!.copyWith( color: Colors.black),
+                  style: theme.textTheme.labelSmall!.copyWith( color: MyColors.textColor),
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                 ),

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -43,13 +44,13 @@ class SlidePageWidget extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: const BorderRadius.all(Radius.circular(20)),
-                        color: Colors.white.withOpacity(0.99)
+                        color: MyColors.backgroundColor.withOpacity(0.99)
                     ),
                     child: Padding(
                       padding: MyEdgeInsets.insideTextBubble,
                       child: AutoSizeText(
                         title,
-                        style: theme.textTheme.titleMedium?.copyWith(color: Colors.black,
+                        style: theme.textTheme.titleMedium?.copyWith(color: MyColors.textColor,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -61,13 +62,13 @@ class SlidePageWidget extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white.withOpacity(0.99)
+                      color: MyColors.backgroundColor.withOpacity(0.99)
                   ),
                   child: Padding(
                     padding: MyEdgeInsets.insideTextBubble,
                     child: AutoSizeText(
                       subtitle,
-                      style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey, fontSize: 3.5.sw),
+                      style: theme.textTheme.labelSmall?.copyWith(color: MyColors.grey, fontSize: 3.5.sw),
                     ),
                   ),
                 ),
