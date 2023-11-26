@@ -13,6 +13,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/modules/authentication/pages/create_account_page.dart';
 import 'package:luguel/app/modules/authentication/pages/forgot_password_page.dart';
 import 'package:luguel/app/modules/authentication/pages/login_page.dart';
+import 'package:luguel/app/modules/profile/profile_module.dart';
 
 class AuthenticationModule extends Module {
   @override
@@ -31,6 +32,7 @@ class AuthenticationModule extends Module {
     ChildRoute('/forgot_password', child: (_, args) => const ForgotPasswordPage()),
     ChildRoute('/recovery_code', child: (_, args) => const RecoveryCodePage()),
     ChildRoute('/create_new_password', child: (_, args) => const CreateNewPasswordPage()),
+    ModuleRoute('/profile', module: ProfileModule()),
   ];
 
 }
