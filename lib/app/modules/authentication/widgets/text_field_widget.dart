@@ -5,11 +5,11 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final String hint;
-  final bool enable;
+  final bool? enable;
   final String? error;
   final MaskTextInputFormatter? maskFormatter;
-  final IconData icon;
-  final TextInputType keyboardType;
+  final IconData? icon;
+  final TextInputType? keyboardType;
   final int? maxLength;
   final TextEditingController? controller;
   final Function(String)? onChanged;
@@ -21,9 +21,9 @@ class TextFieldWidget extends StatefulWidget {
     Key? key,
     required this.hint,
     this.maskFormatter,
-    required this.enable,
-    required this.icon,
-    required this.keyboardType,
+    this.enable,
+    this.icon,
+    this.keyboardType,
     this.maxLength,
     this.controller,
     this.error,
@@ -130,7 +130,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             //Definindo hint usando varivel da classe personalizada MyStrings
             hintText: widget.hint,
             hintStyle: theme.textTheme.labelSmall!.copyWith(color: getColor()),
-            prefixIcon: Icon(widget.icon, color: getColor()),
+            prefixIcon: widget.icon != null ? Icon(widget.icon, color: getColor()) : null,
             suffixIcon: IconButton(
               onPressed: isPassword ? (){
                 setState(() {
