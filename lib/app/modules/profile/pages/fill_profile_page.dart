@@ -12,21 +12,16 @@ class FillProfilePage extends StatefulWidget {
   FillProfilePageState createState() => FillProfilePageState();
 }
 class FillProfilePageState extends State<FillProfilePage> {
-  var focusNodeTextFieldPhoneNumber = FocusNode();
-
-  @override
-  void dispose() {
-    focusNodeTextFieldPhoneNumber.dispose();
-    super.dispose();
-  }
+  final List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var focusNodeTextFieldPhoneNumber = FocusNode();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         forceMaterialTransparency: true,
         leading: IconButton(
@@ -44,38 +39,57 @@ class FillProfilePageState extends State<FillProfilePage> {
             child: Padding(
               padding: MyEdgeInsets.standard,
               child: Column(
-                mainAxisSize: MainAxisSize.max,
                 children: [
-                  const SizedBox(height: 5,),
-                  Center(
-                    child: SizedBox(
-                      width: 40.sw,
-                      height: 40.sw,
-                      child: const AvatarWidget(
-                        placeholder: AssetImage('assets/images/profile.png'),
-                        avatarImage: AssetImage('assets/images/profile.png'),
-                      ),
+                  SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(height: 5,),
+                        Center(
+                          child: SizedBox(
+                            width: 40.sw,
+                            height: 40.sw,
+                            child: const AvatarWidget(
+                              placeholder: AssetImage('assets/images/profile.png'),
+                              avatarImage: AssetImage('assets/images/profile.png'),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 25,),
+                        TextFieldWidget(
+                          hint: "Nome completo",
+                          keyboardType: TextInputType.text,
+                          icon: Icons.person_rounded,
+                          textInputAction: TextInputAction.next,
+                          onFieldSubmitted: (_){
+                            FocusScope.of(context).requestFocus(focusNodeTextFieldPhoneNumber);
+                          },
+                        ),
+                        TextFieldWidget(
+                          hint: "Telefone",
+                          icon: Icons.phone_rounded,
+                          keyboardType: TextInputType.phone,
+                          textInputAction: TextInputAction.done,
+                          focusNode: focusNodeTextFieldPhoneNumber,
+                          maskFormatter: MaskTextInputFormatter(mask: "(##) # ####-####"),
+                        ),
+                        DropdownMenuWidget(
+                          list: list,
+                          hint: "Estado",
+                          onSelected: (item) => debugPrint(item),
+                          width: MediaQuery.of(context).size.width - MyEdgeInsets.standard.right * 2,
+                        ),
+                        const SizedBox(height: 25,),
+                        DropdownMenuWidget(
+                          list: list,
+                          hint: "Cidade",
+                          onSelected: (item) => debugPrint(item),
+                          width: MediaQuery.of(context).size.width - MyEdgeInsets.standard.right * 2,
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 25,),
-                  TextFieldWidget(
-                    hint: "Nome completo",
-                    keyboardType: TextInputType.text,
-                    icon: Icons.person_rounded,
-                    textInputAction: TextInputAction.next,
-                    onFieldSubmitted: (_){
-                      FocusScope.of(context).requestFocus(focusNodeTextFieldPhoneNumber);
-                    },
-                  ),
-                  TextFieldWidget(
-                    hint: "Telefone",
-                    icon: Icons.phone_rounded,
-                    keyboardType: TextInputType.phone,
-                    textInputAction: TextInputAction.done,
-                    focusNode: focusNodeTextFieldPhoneNumber,
-                    maskFormatter: MaskTextInputFormatter(mask: "(##) # ####-####"),
-                  ),
-                  const Spacer(),
+                  Spacer(),
                   DefaultButtonWidget(
                     onTap: (){},
                     text: "Continuar",
@@ -90,66 +104,70 @@ class FillProfilePageState extends State<FillProfilePage> {
         },
         landscape: (context) {
           return SafeArea(
-            child: Padding(
-              padding: MyEdgeInsets.standard,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Flexible(
-                        child: SizedBox(
-                          width: 40.sw,
-                          height: 40.sw,
-                          child: const AvatarWidget(
-                            placeholder: AssetImage('assets/images/profile.png'),
-                            avatarImage: AssetImage('assets/images/profile.png'),
+            child: Center(
+              child: SizedBox(
+                width: 100.sw,
+                child: Padding(
+                  padding: MyEdgeInsets.standard.copyWith(top: 0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(height: 5,),
+                        Center(
+                          child: SizedBox(
+                            width: 40.sw,
+                            height: 40.sw,
+                            child: const AvatarWidget(
+                              placeholder: AssetImage('assets/images/profile.png'),
+                              avatarImage: AssetImage('assets/images/profile.png'),
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 35,),
-                      Flexible(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            TextFieldWidget(
-                              hint: "Nome completo",
-                              keyboardType: TextInputType.text,
-                              icon: Icons.person_rounded,
-                              textInputAction: TextInputAction.next,
-                              onFieldSubmitted: (_){
-                                FocusScope.of(context).requestFocus(focusNodeTextFieldPhoneNumber);
-                              },
-                            ),
-                            TextFieldWidget(
-                              hint: "Telefone",
-                              icon: Icons.phone_rounded,
-                              keyboardType: TextInputType.phone,
-                              textInputAction: TextInputAction.done,
-                              focusNode: focusNodeTextFieldPhoneNumber,
-                              maskFormatter: MaskTextInputFormatter(mask: "(##) # ####-####"),
-                            ),
-                          ],
+                        const SizedBox(height: 25,),
+                        TextFieldWidget(
+                          hint: "Nome completo",
+                          keyboardType: TextInputType.text,
+                          icon: Icons.person_rounded,
+                          textInputAction: TextInputAction.next,
+                          onFieldSubmitted: (_){
+                            FocusScope.of(context).requestFocus(focusNodeTextFieldPhoneNumber);
+                          },
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 40,),
-                  SizedBox(
-                    width: 100.sw,
-                    child: DefaultButtonWidget(
-                      onTap: (){},
-                      text: "Continuar",
-                      backgroundColor: MyColors.primaryColor,
-                      textColor: MyColors.textButtonColor,
-                      shadow: true,
+                        TextFieldWidget(
+                          hint: "Telefone",
+                          icon: Icons.phone_rounded,
+                          keyboardType: TextInputType.phone,
+                          textInputAction: TextInputAction.done,
+                          focusNode: focusNodeTextFieldPhoneNumber,
+                          maskFormatter: MaskTextInputFormatter(mask: "(##) # ####-####"),
+                        ),
+                        DropdownMenuWidget(
+                          list: list,
+                          hint: "Estado",
+                          onSelected: (item) => debugPrint(item),
+                          width: MediaQuery.of(context).size.height - MyEdgeInsets.standard.right * 2,
+                        ),
+                        const SizedBox(height: 25,),
+                        DropdownMenuWidget(
+                          list: list,
+                          hint: "Cidade",
+                          onSelected: (item) => debugPrint(item),
+                          width: MediaQuery.of(context).size.height - MyEdgeInsets.standard.right * 2,
+                        ),
+                        const SizedBox(height: 25,),
+                        DefaultButtonWidget(
+                          onTap: (){},
+                          text: "Continuar",
+                          backgroundColor: MyColors.primaryColor,
+                          textColor: MyColors.textButtonColor,
+                          shadow: false,
+                        ),
+                        const SizedBox(height: 10,),
+                      ],
                     ),
-                  )
-                ],
+                  ),
+                ),
               ),
             ),
           );
@@ -199,8 +217,82 @@ class AvatarWidget extends StatelessWidget {
               ),
             ),
           ),
-        )
+        ),
       ],
+    );
+  }
+}
+
+class DropdownMenuWidget extends StatefulWidget {
+  final List<String> list;
+  final String hint;
+  final Function(String) onSelected;
+  final double width;
+
+  const DropdownMenuWidget({super.key, required this.list, required this.hint, required this.onSelected, required this.width});
+
+  @override
+  State<DropdownMenuWidget> createState() => _DropdownMenuWidgetState();
+}
+
+class _DropdownMenuWidgetState extends State<DropdownMenuWidget> {
+  late String dropdownValue;
+  final TextEditingController controller = TextEditingController();
+  String selected = "";
+
+  @override
+  void initState() {
+    super.initState();
+    dropdownValue = widget.list.first;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    return DropdownMenu<String>(
+      width: widget.width,
+      controller: controller,
+      enableFilter: true,
+      requestFocusOnTap: true,
+      hintText: widget.hint,
+      textStyle: theme.textTheme.labelSmall!.copyWith(color: MyColors.textColor),
+      inputDecorationTheme: InputDecorationTheme(
+        isDense: false,
+        filled: true,
+        contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 17.0),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        focusColor: MyColors.primaryColor,
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: MyColors.primaryColor),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        fillColor: MyColors.grayLight,
+        hintStyle: theme.textTheme.labelSmall!.copyWith(color: Colors.grey),
+      ),
+      onSelected: (String? item) {
+        if(item != null){
+          setState(() {
+            selected = item;
+          });
+          widget.onSelected(item);
+        }else{
+          setState(() {
+            selected = "";
+          });
+        }
+      },
+      dropdownMenuEntries:
+      widget.list.map<DropdownMenuEntry<String>>(
+            (String item) {
+          return DropdownMenuEntry<String>(
+            value: item,
+            label: item,
+          );
+        },
+      ).toList(),
     );
   }
 }
