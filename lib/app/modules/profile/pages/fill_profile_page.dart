@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
@@ -13,6 +17,29 @@ class FillProfilePage extends StatefulWidget {
 }
 class FillProfilePageState extends State<FillProfilePage> {
   final List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+  final _scrollController = ScrollController();
+  late StreamSubscription<bool> keyboardSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    listenKeyboard();
+  }
+
+  void listenKeyboard(){
+    var keyboardVisibilityController = KeyboardVisibilityController();
+    keyboardSubscription = keyboardVisibilityController.onChange.listen((bool visible) {
+      if(visible){
+        _scrollController.jumpTo(_scrollController.position.extentTotal);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    keyboardSubscription.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +48,7 @@ class FillProfilePageState extends State<FillProfilePage> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         forceMaterialTransparency: true,
         leading: IconButton(
@@ -38,64 +65,76 @@ class FillProfilePageState extends State<FillProfilePage> {
           return SafeArea(
             child: Padding(
               padding: MyEdgeInsets.standard,
-              child: Column(
+              child: Stack(
                 children: [
-                  SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const SizedBox(height: 5,),
-                        Center(
-                          child: SizedBox(
-                            width: 40.sw,
-                            height: 40.sw,
-                            child: const AvatarWidget(
-                              placeholder: AssetImage('assets/images/profile.png'),
-                              avatarImage: AssetImage('assets/images/profile.png'),
+                  Scaffold(
+                    resizeToAvoidBottomInset: true,
+                    body: SingleChildScrollView(
+                      controller: _scrollController,
+                      padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom/2,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const SizedBox(height: 5,),
+                          Center(
+                            child: SizedBox(
+                              width: 40.sw,
+                              height: 40.sw,
+                              child: const AvatarWidget(
+                                placeholder: AssetImage('assets/images/profile.png'),
+                                avatarImage: AssetImage('assets/images/profile.png'),
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 25,),
-                        TextFieldWidget(
-                          hint: "Nome completo",
-                          keyboardType: TextInputType.text,
-                          icon: Icons.person_rounded,
-                          textInputAction: TextInputAction.next,
-                          onFieldSubmitted: (_){
-                            FocusScope.of(context).requestFocus(focusNodeTextFieldPhoneNumber);
-                          },
-                        ),
-                        TextFieldWidget(
-                          hint: "Telefone",
-                          icon: Icons.phone_rounded,
-                          keyboardType: TextInputType.phone,
-                          textInputAction: TextInputAction.done,
-                          focusNode: focusNodeTextFieldPhoneNumber,
-                          maskFormatter: MaskTextInputFormatter(mask: "(##) # ####-####"),
-                        ),
-                        DropdownMenuWidget(
-                          list: list,
-                          hint: "Estado",
-                          onSelected: (item) => debugPrint(item),
-                          width: MediaQuery.of(context).size.width - MyEdgeInsets.standard.right * 2,
-                        ),
-                        const SizedBox(height: 25,),
-                        DropdownMenuWidget(
-                          list: list,
-                          hint: "Cidade",
-                          onSelected: (item) => debugPrint(item),
-                          width: MediaQuery.of(context).size.width - MyEdgeInsets.standard.right * 2,
-                        ),
-                      ],
+                          const SizedBox(height: 25,),
+                          TextFieldWidget(
+                            hint: "Nome completo",
+                            keyboardType: TextInputType.text,
+                            icon: Icons.person_rounded,
+                            textInputAction: TextInputAction.next,
+                            onFieldSubmitted: (_){
+                              FocusScope.of(context).requestFocus(focusNodeTextFieldPhoneNumber);
+                            },
+                          ),
+                          TextFieldWidget(
+                            hint: "Telefone",
+                            icon: Icons.phone_rounded,
+                            keyboardType: TextInputType.phone,
+                            textInputAction: TextInputAction.done,
+                            focusNode: focusNodeTextFieldPhoneNumber,
+                            maskFormatter: MaskTextInputFormatter(mask: "(##) # ####-####"),
+                          ),
+                          DropdownMenuWidget(
+                            list: list,
+                            hint: "Estado",
+                            onSelected: (item) => debugPrint(item),
+                            width: MediaQuery.of(context).size.width - MyEdgeInsets.standard.right * 2,
+                          ),
+                          const SizedBox(height: 25,),
+                          DropdownMenuWidget(
+                            list: list,
+                            hint: "Cidade",
+                            onSelected: (item) => debugPrint(item),
+                            width: MediaQuery.of(context).size.width - MyEdgeInsets.standard.right * 2,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  Spacer(),
-                  DefaultButtonWidget(
-                    onTap: (){},
-                    text: "Continuar",
-                    backgroundColor: MyColors.primaryColor,
-                    textColor: MyColors.textButtonColor,
-                    shadow: true,
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      DefaultButtonWidget(
+                        onTap: (){},
+                        text: "Continuar",
+                        backgroundColor: MyColors.primaryColor,
+                        textColor: MyColors.textButtonColor,
+                        shadow: true,
+                      ),
+                    ],
                   )
                 ],
               ),
