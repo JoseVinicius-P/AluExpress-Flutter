@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
+import 'package:luguel/app/modules/profile/widgets/checkbox_whatsapp_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:luguel/app/shared/widgets/default_button_widget.dart';
@@ -61,6 +62,7 @@ class FillProfilePageState extends State<FillProfilePage> {
       focusNode: focusNodeTextFieldPhoneNumber,
       maskFormatter: MaskTextInputFormatter(mask: "(##) # ####-####"),
     );
+    var checkBoxWhatsApp = CheckboxWhatsAppWidget(onChanged: (isChecked){}, checked: true);
     var dropDownMenuState = DropdownMenuWidget(
       list: list,
       hint: "Estado",
@@ -73,7 +75,6 @@ class FillProfilePageState extends State<FillProfilePage> {
       onSelected: (item) => debugPrint(item),
       width: 100.sw - MyEdgeInsets.standard.right * 2,
     );
-
     var buttonNext = DefaultButtonWidget(
       onTap: (){},
       text: "Continuar",
@@ -128,7 +129,30 @@ class FillProfilePageState extends State<FillProfilePage> {
                           ),
                           const SizedBox(height: 25,),
                           textFieldFullName,
-                          textFieldPhoneNumber,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Flexible(
+                                flex: 2,
+                                child: textFieldPhoneNumber
+                              ),
+                              Flexible(
+                                flex: 1,
+                                child: Column(
+                                  children: [
+                                    checkBoxWhatsApp,
+                                    //Esse text alinha a check box no centro do textfield, não deve ser tirado
+                                    const Text(
+                                      " ",
+                                      style: TextStyle(
+                                          color: MyColors.errorColor
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ),
+                            ],
+                          ),
                           dropDownMenuState,
                           const SizedBox(height: 25,),
                           dropDownMenuCity,
@@ -167,7 +191,30 @@ class FillProfilePageState extends State<FillProfilePage> {
                         ),
                         const SizedBox(height: 25,),
                         textFieldFullName,
-                        textFieldPhoneNumber,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Flexible(
+                                flex: 2,
+                                child: textFieldPhoneNumber
+                            ),
+                            Flexible(
+                                flex: 1,
+                                child: Column(
+                                  children: [
+                                    checkBoxWhatsApp,
+                                    //Esse text alinha a check box no centro do textfield, não deve ser tirado
+                                    const Text(
+                                      " ",
+                                      style: TextStyle(
+                                          color: MyColors.errorColor
+                                      ),
+                                    )
+                                  ],
+                                )
+                            ),
+                          ],
+                        ),
                         dropDownMenuState,
                         const SizedBox(height: 25,),
                         dropDownMenuCity,
