@@ -15,10 +15,10 @@ class AccessOptionsPageState extends State<AccessOptionsPage> {
   @override
   Widget build(BuildContext context) {
     var optionsAccessWidget = OptionsAccessWidget(
-      onTapGoogleButton: () => Modular.to.navigate("./profile"),
+      onTapGoogleButton: () => Modular.to.navigate("./profile/"),
       onTapSignEmailWithPassword: () => Modular.to.pushNamed("./login"),
       onTapCreateAccount: () => Modular.to.pushNamed('./create_account'),
-      onTapLoginAsVisitor: (){},
+      onTapLoginAsVisitor: () => Modular.to.navigate("/home/"),
     );
     return Scaffold(
       extendBodyBehindAppBar: true,
