@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
@@ -19,6 +17,7 @@ class FillProfilePageState extends State<FillProfilePage> {
   final List<String> list = <String>['One', 'Two', 'Three', 'Four'];
   final _scrollController = ScrollController();
   late StreamSubscription<bool> keyboardSubscription;
+  final focusNodeTextFieldPhoneNumber = FocusNode();
 
   @override
   void initState() {
@@ -38,13 +37,57 @@ class FillProfilePageState extends State<FillProfilePage> {
   @override
   void dispose() {
     keyboardSubscription.cancel();
+    focusNodeTextFieldPhoneNumber.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var focusNodeTextFieldPhoneNumber = FocusNode();
+    var textFieldFullName = TextFieldWidget(
+      hint: "Nome completo",
+      keyboardType: TextInputType.text,
+      icon: Icons.person_rounded,
+      textInputAction: TextInputAction.next,
+      onFieldSubmitted: (_){
+        FocusScope.of(context).requestFocus(focusNodeTextFieldPhoneNumber);
+      },
+    );
+    var textFieldPhoneNumber = TextFieldWidget(
+      hint: "Telefone",
+      icon: Icons.phone_rounded,
+      keyboardType: TextInputType.phone,
+      textInputAction: TextInputAction.done,
+      focusNode: focusNodeTextFieldPhoneNumber,
+      maskFormatter: MaskTextInputFormatter(mask: "(##) # ####-####"),
+    );
+    var dropDownMenuState = DropdownMenuWidget(
+      list: list,
+      hint: "Estado",
+      onSelected: (item) => debugPrint(item),
+      width: MediaQuery.of(context).size.height - MyEdgeInsets.standard.right * 2,
+    );
+    var dropDownMenuCity = DropdownMenuWidget(
+      list: list,
+      hint: "Cidade",
+      onSelected: (item) => debugPrint(item),
+      width: MediaQuery.of(context).size.width - MyEdgeInsets.standard.right * 2,
+    );
+    var buttonNext = DefaultButtonWidget(
+      onTap: (){},
+      text: "Continuar",
+      backgroundColor: MyColors.primaryColor,
+      textColor: MyColors.textButtonColor,
+      shadow: false,
+    );
+    var avatarImage = SizedBox(
+      width: 40.sw,
+      height: 40.sw,
+      child: const AvatarWidget(
+        placeholder: AssetImage('assets/images/profile.png'),
+        avatarImage: AssetImage('assets/images/profile.png'),
+      ),
+    );
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -79,46 +122,15 @@ class FillProfilePageState extends State<FillProfilePage> {
                         children: [
                           const SizedBox(height: 5,),
                           Center(
-                            child: SizedBox(
-                              width: 40.sw,
-                              height: 40.sw,
-                              child: const AvatarWidget(
-                                placeholder: AssetImage('assets/images/profile.png'),
-                                avatarImage: AssetImage('assets/images/profile.png'),
-                              ),
-                            ),
+                            child: avatarImage,
                           ),
                           const SizedBox(height: 25,),
-                          TextFieldWidget(
-                            hint: "Nome completo",
-                            keyboardType: TextInputType.text,
-                            icon: Icons.person_rounded,
-                            textInputAction: TextInputAction.next,
-                            onFieldSubmitted: (_){
-                              FocusScope.of(context).requestFocus(focusNodeTextFieldPhoneNumber);
-                            },
-                          ),
-                          TextFieldWidget(
-                            hint: "Telefone",
-                            icon: Icons.phone_rounded,
-                            keyboardType: TextInputType.phone,
-                            textInputAction: TextInputAction.done,
-                            focusNode: focusNodeTextFieldPhoneNumber,
-                            maskFormatter: MaskTextInputFormatter(mask: "(##) # ####-####"),
-                          ),
-                          DropdownMenuWidget(
-                            list: list,
-                            hint: "Estado",
-                            onSelected: (item) => debugPrint(item),
-                            width: MediaQuery.of(context).size.width - MyEdgeInsets.standard.right * 2,
-                          ),
+                          textFieldFullName,
+                          textFieldPhoneNumber,
+                          dropDownMenuState,
                           const SizedBox(height: 25,),
-                          DropdownMenuWidget(
-                            list: list,
-                            hint: "Cidade",
-                            onSelected: (item) => debugPrint(item),
-                            width: MediaQuery.of(context).size.width - MyEdgeInsets.standard.right * 2,
-                          ),
+                          dropDownMenuCity,
+                          const SizedBox(height: 80,),
                         ],
                       ),
                     ),
@@ -127,13 +139,7 @@ class FillProfilePageState extends State<FillProfilePage> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      DefaultButtonWidget(
-                        onTap: (){},
-                        text: "Continuar",
-                        backgroundColor: MyColors.primaryColor,
-                        textColor: MyColors.textButtonColor,
-                        shadow: true,
-                      ),
+                      buttonNext
                     ],
                   )
                 ],
@@ -154,54 +160,16 @@ class FillProfilePageState extends State<FillProfilePage> {
                       children: [
                         const SizedBox(height: 5,),
                         Center(
-                          child: SizedBox(
-                            width: 40.sw,
-                            height: 40.sw,
-                            child: const AvatarWidget(
-                              placeholder: AssetImage('assets/images/profile.png'),
-                              avatarImage: AssetImage('assets/images/profile.png'),
-                            ),
-                          ),
+                          child: avatarImage,
                         ),
                         const SizedBox(height: 25,),
-                        TextFieldWidget(
-                          hint: "Nome completo",
-                          keyboardType: TextInputType.text,
-                          icon: Icons.person_rounded,
-                          textInputAction: TextInputAction.next,
-                          onFieldSubmitted: (_){
-                            FocusScope.of(context).requestFocus(focusNodeTextFieldPhoneNumber);
-                          },
-                        ),
-                        TextFieldWidget(
-                          hint: "Telefone",
-                          icon: Icons.phone_rounded,
-                          keyboardType: TextInputType.phone,
-                          textInputAction: TextInputAction.done,
-                          focusNode: focusNodeTextFieldPhoneNumber,
-                          maskFormatter: MaskTextInputFormatter(mask: "(##) # ####-####"),
-                        ),
-                        DropdownMenuWidget(
-                          list: list,
-                          hint: "Estado",
-                          onSelected: (item) => debugPrint(item),
-                          width: MediaQuery.of(context).size.height - MyEdgeInsets.standard.right * 2,
-                        ),
+                        textFieldFullName,
+                        textFieldPhoneNumber,
+                        dropDownMenuState,
                         const SizedBox(height: 25,),
-                        DropdownMenuWidget(
-                          list: list,
-                          hint: "Cidade",
-                          onSelected: (item) => debugPrint(item),
-                          width: MediaQuery.of(context).size.height - MyEdgeInsets.standard.right * 2,
-                        ),
+                        dropDownMenuCity,
                         const SizedBox(height: 25,),
-                        DefaultButtonWidget(
-                          onTap: (){},
-                          text: "Continuar",
-                          backgroundColor: MyColors.primaryColor,
-                          textColor: MyColors.textButtonColor,
-                          shadow: false,
-                        ),
+                        buttonNext,
                         const SizedBox(height: 10,),
                       ],
                     ),
