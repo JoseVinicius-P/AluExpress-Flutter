@@ -65,14 +65,15 @@ class FillProfilePageState extends State<FillProfilePage> {
       list: list,
       hint: "Estado",
       onSelected: (item) => debugPrint(item),
-      width: MediaQuery.of(context).size.height - MyEdgeInsets.standard.right * 2,
+      width: 100.sw - MyEdgeInsets.standard.right * 2,
     );
     var dropDownMenuCity = DropdownMenuWidget(
       list: list,
       hint: "Cidade",
       onSelected: (item) => debugPrint(item),
-      width: MediaQuery.of(context).size.width - MyEdgeInsets.standard.right * 2,
+      width: 100.sw - MyEdgeInsets.standard.right * 2,
     );
+
     var buttonNext = DefaultButtonWidget(
       onTap: (){},
       text: "Continuar",
