@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
+import 'package:luguel/app/shared/widgets/text_field_widget.dart';
 
 class FormWidget extends StatelessWidget {
   const FormWidget({

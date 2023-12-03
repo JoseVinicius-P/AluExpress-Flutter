@@ -6,7 +6,7 @@ import 'package:flutter_triple/flutter_triple.dart';
 import 'package:luguel/app/modules/authentication/interfaces/i_new_password_store.dart';
 import 'package:luguel/app/modules/authentication/widgets/alert_dialog_new_password_created_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/floating_image_widget.dart';
-import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
+import 'package:luguel/app/shared/widgets/text_field_widget.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:luguel/app/shared/widgets/default_button_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';

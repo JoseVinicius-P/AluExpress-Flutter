@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:luguel/app/modules/authentication/widgets/text_field_widget.dart';
+import 'package:luguel/app/shared/widgets/text_field_widget.dart';
 import 'package:luguel/app/modules/profile/widgets/checkbox_whatsapp_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
