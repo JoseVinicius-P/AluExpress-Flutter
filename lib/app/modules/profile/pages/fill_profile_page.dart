@@ -17,7 +17,7 @@ class FillProfilePageState extends State<FillProfilePage> {
   final List<String> list = <String>['One', 'Two', 'Three', 'Four'];
   final _scrollController = ScrollController();
   late StreamSubscription<bool> keyboardSubscription;
-  final focusNodeTextFieldPhoneNumber = FocusNode();
+  FocusNode focusNodeTextFieldPhoneNumber = FocusNode();
 
   @override
   void initState() {
@@ -105,6 +105,7 @@ class FillProfilePageState extends State<FillProfilePage> {
       ),
       body: OrientationLayoutBuilder(
         portrait: (context) {
+          focusNodeTextFieldPhoneNumber = FocusNode();
           return SafeArea(
             child: Padding(
               padding: MyEdgeInsets.standard,
@@ -148,6 +149,7 @@ class FillProfilePageState extends State<FillProfilePage> {
           );
         },
         landscape: (context) {
+          focusNodeTextFieldPhoneNumber = FocusNode();
           return SafeArea(
             child: Center(
               child: SizedBox(
