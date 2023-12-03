@@ -9,7 +9,7 @@ class TextFieldWidget extends StatefulWidget {
   final String? error;
   final MaskTextInputFormatter? maskFormatter;
   final IconData? prefixIcon;
-  final Icon? suffixIcon;
+  final IconData? suffixIcon;
   final TextInputType? keyboardType;
   final int? maxLength;
   final TextEditingController? controller;
@@ -17,6 +17,7 @@ class TextFieldWidget extends StatefulWidget {
   final TextInputAction? textInputAction;
   final FocusNode? focusNode;
   final void Function(String)? onFieldSubmitted;
+  final void Function()? onPressedSuffixIcon;
 
   const TextFieldWidget({
     Key? key,
@@ -31,7 +32,8 @@ class TextFieldWidget extends StatefulWidget {
     this.onChanged,
     this.textInputAction,
     this.focusNode,
-    this.onFieldSubmitted, this.suffixIcon
+    this.onFieldSubmitted, this.suffixIcon,
+    this.onPressedSuffixIcon
   }) : super(key: key);
 
   @override
@@ -139,7 +141,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 });
               } : null,
               icon: Icon(obscureText ? Icons.visibility_off_rounded : Icons.visibility_rounded, color: isPassword ? getColor() : Colors.transparent),
-            ) : widget.suffixIcon,
+            ) :
+            IconButton(
+              onPressed: widget.onPressedSuffixIcon,
+              icon: Icon(widget.suffixIcon, color: getColor(),),
+            ),
             filled: true,
           ),
         ),
