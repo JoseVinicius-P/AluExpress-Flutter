@@ -20,7 +20,7 @@ class FormWidget extends StatelessWidget {
         TextFieldWidget(
           hint: 'Email',
           enable: true,
-          icon: Icons.email_rounded,
+          prefixIcon: Icons.email_rounded,
           keyboardType: TextInputType.emailAddress,
           onChanged: (text) => onChangedEmail(text),
         ),
@@ -28,7 +28,7 @@ class FormWidget extends StatelessWidget {
         TextFieldWidget(
           hint: 'Senha',
           enable: true,
-          icon: Icons.lock,
+          prefixIcon: Icons.lock,
           keyboardType: TextInputType.visiblePassword,
           onChanged: (text) => onChangedPassword(text),
         ),

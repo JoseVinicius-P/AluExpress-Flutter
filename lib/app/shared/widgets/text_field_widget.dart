@@ -8,7 +8,8 @@ class TextFieldWidget extends StatefulWidget {
   final bool? enable;
   final String? error;
   final MaskTextInputFormatter? maskFormatter;
-  final IconData? icon;
+  final IconData? prefixIcon;
+  final Icon? suffixIcon;
   final TextInputType? keyboardType;
   final int? maxLength;
   final TextEditingController? controller;
@@ -22,7 +23,7 @@ class TextFieldWidget extends StatefulWidget {
     required this.hint,
     this.maskFormatter,
     this.enable,
-    this.icon,
+    this.prefixIcon,
     this.keyboardType,
     this.maxLength,
     this.controller,
@@ -30,7 +31,7 @@ class TextFieldWidget extends StatefulWidget {
     this.onChanged,
     this.textInputAction,
     this.focusNode,
-    this.onFieldSubmitted
+    this.onFieldSubmitted, this.suffixIcon
   }) : super(key: key);
 
   @override
@@ -130,15 +131,15 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             //Definindo hint usando varivel da classe personalizada MyStrings
             hintText: widget.hint,
             hintStyle: theme.textTheme.labelSmall!.copyWith(color: getColor()),
-            prefixIcon: widget.icon != null ? Icon(widget.icon, color: getColor()) : null,
-            suffixIcon: IconButton(
+            prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon, color: getColor()) : null,
+            suffixIcon: isPassword ? IconButton(
               onPressed: isPassword ? (){
                 setState(() {
                   obscureText = !obscureText;
                 });
               } : null,
               icon: Icon(obscureText ? Icons.visibility_off_rounded : Icons.visibility_rounded, color: isPassword ? getColor() : Colors.transparent),
-            ),
+            ) : widget.suffixIcon,
             filled: true,
           ),
         ),

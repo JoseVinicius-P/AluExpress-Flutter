@@ -48,7 +48,7 @@ class FillProfilePageState extends State<FillProfilePage> {
     var textFieldFullName = TextFieldWidget(
       hint: "Nome completo",
       keyboardType: TextInputType.text,
-      icon: Icons.person_rounded,
+      prefixIcon: Icons.person_rounded,
       textInputAction: TextInputAction.next,
       onFieldSubmitted: (_){
         FocusScope.of(context).requestFocus(focusNodeTextFieldPhoneNumber);
@@ -56,7 +56,7 @@ class FillProfilePageState extends State<FillProfilePage> {
     );
     var textFieldPhoneNumber = TextFieldWidget(
       hint: "Telefone",
-      icon: Icons.phone_rounded,
+      prefixIcon: Icons.phone_rounded,
       keyboardType: TextInputType.phone,
       textInputAction: TextInputAction.done,
       focusNode: focusNodeTextFieldPhoneNumber,

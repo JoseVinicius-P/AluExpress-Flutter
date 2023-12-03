@@ -66,7 +66,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
     var textFieldPassword = TextFieldWidget(
       hint: "Nova senha",
       enable: true,
-      icon: Icons.lock,
+      prefixIcon: Icons.lock,
       keyboardType: TextInputType.visiblePassword,
       onChanged: (text) => store.setPassword(text),
       controller: store.passwordController,
@@ -79,7 +79,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
     var textFieldConfirmPassword = TextFieldWidget(
       hint: "Confirme a nova senha",
       enable: true,
-      icon: Icons.lock,
+      prefixIcon: Icons.lock,
       keyboardType: TextInputType.visiblePassword,
       onChanged: (text) => store.setConfirmationPassword(text),
       controller: store.confirmPasswordController,
