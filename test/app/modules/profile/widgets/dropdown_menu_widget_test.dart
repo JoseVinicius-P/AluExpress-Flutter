@@ -11,7 +11,7 @@ Widget buildTestableWidget(Widget widget) =>
 main() {
   group('DropdownMenuWidget', () {
     testWidgets('has a title and message', (WidgetTester tester) async {
-      await tester.pumpWidget(buildTestableWidget(DropdownMenuWidget()));
+      await tester.pumpWidget(buildTestableWidget(DropdownMenuWidget(list: [], hint: '', onSelected: (String ) {  }, width: 10,)));
       final titleFinder = find.text('T');
       expect(titleFinder, findsOneWidget);
     });
