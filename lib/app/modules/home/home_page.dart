@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 }
 class HomePageState extends State<HomePage> {
   final HomeStore store = Modular.get();
+  final pageViewController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,72 +46,138 @@ class HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: PageView(
+        //Controller
+        controller: pageViewController,
         children: [
-          Padding(
-            padding: MyEdgeInsets.standard,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AutoSizeText(
-                  "Olá, José 👋",
-                  style: theme.textTheme.titleMedium!.copyWith(color: MyColors.textColor, fontSize: 35),
-                ),
-                const SizedBox(height: 15,),
-                TextFieldWidget(
-                  hint: "Pesquisar",
-                  prefixIcon: Icons.search_rounded,
-                  suffixIcon: Icons.tune_rounded,
-                  onPressedSuffixIcon: (){},
-                ),
-              ],
-            ),
-          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
+              Padding(
+                padding: MyEdgeInsets.standard,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(width: MyEdgeInsets.standard.left,),
-                    SimpleFilterWidget(textFilter: "Bem avaliadas", onTap: (){}, isSelected: true,),
-                    const SizedBox(width: 5,),
-                    SimpleFilterWidget(textFilter: "Mais baratas", onTap: (){}, isSelected: false,),
-                    const SizedBox(width: 5,),
-                    SimpleFilterWidget(textFilter: "Mais Caras", onTap: (){}, isSelected: false,),
-                    const SizedBox(width: 5,),
-                    SimpleFilterWidget(textFilter: "Em alta", onTap: (){}, isSelected: false,),
-                    SizedBox(width: MyEdgeInsets.standard.right,),
+                    AutoSizeText(
+                      "Olá, José 👋",
+                      style: theme.textTheme.titleMedium!.copyWith(color: MyColors.textColor, fontSize: 35),
+                    ),
+                    const SizedBox(height: 15,),
+                    TextFieldWidget(
+                      hint: "Pesquisar",
+                      prefixIcon: Icons.search_rounded,
+                      suffixIcon: Icons.tune_rounded,
+                      onPressedSuffixIcon: (){},
+                    ),
                   ],
                 ),
               ),
-              SizedBox(height: 20,),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(width: MyEdgeInsets.standard.left,),
-                    const ItemHouseWidget(),
-                    const SizedBox(width: 15,),
-                    const ItemHouseWidget(),
-                    const SizedBox(width: 15,),
-                    const ItemHouseWidget(),
-                    const SizedBox(width: 15,),
-                    const ItemHouseWidget(),
-                    const SizedBox(width: 15,),
-                    SizedBox(width: MyEdgeInsets.standard.right,),
-                  ],
-                ),
-              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(width: MyEdgeInsets.standard.left,),
+                        SimpleFilterWidget(textFilter: "Bem avaliadas", onTap: (){}, isSelected: true,),
+                        const SizedBox(width: 5,),
+                        SimpleFilterWidget(textFilter: "Mais baratas", onTap: (){}, isSelected: false,),
+                        const SizedBox(width: 5,),
+                        SimpleFilterWidget(textFilter: "Mais Caras", onTap: (){}, isSelected: false,),
+                        const SizedBox(width: 5,),
+                        SimpleFilterWidget(textFilter: "Em alta", onTap: (){}, isSelected: false,),
+                        SizedBox(width: MyEdgeInsets.standard.right,),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20,),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(width: MyEdgeInsets.standard.left,),
+                        const ItemHouseWidget(),
+                        const SizedBox(width: 15,),
+                        const ItemHouseWidget(),
+                        const SizedBox(width: 15,),
+                        const ItemHouseWidget(),
+                        const SizedBox(width: 15,),
+                        const ItemHouseWidget(),
+                        const SizedBox(width: 15,),
+                        SizedBox(width: MyEdgeInsets.standard.right,),
+                      ],
+                    ),
+                  ),
+                ],
+              )
             ],
-          )
+          ),
+          SizedBox(),
+          SizedBox(),
+          SizedBox(),
         ],
+      ),
+
+      //Criando o BottomNavigation
+      bottomNavigationBar: AnimatedBuilder(
+        //Possibilitando a troca da current page usando o controller do PageView
+          animation: pageViewController,
+          builder: (context, snapshot) {
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(16.0)),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 5.0,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
+                child: BottomNavigationBar(
+                  showSelectedLabels: true,
+                  showUnselectedLabels: true,
+                  backgroundColor: Colors.transparent,
+                  currentIndex: pageViewController.page?.round() ?? 0,
+                  selectedItemColor: MyColors.primaryColor,
+                  unselectedItemColor: Colors.grey,
+                  onTap: (index){
+                    pageViewController.animateToPage(index, // Índice da página para animar
+                      duration: const Duration(milliseconds: 800), // Duração da animação
+                      curve: Curves.easeInOutCubicEmphasized, // Curva de animação
+                    );
+                  },
+                  items: const <BottomNavigationBarItem>[
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.home_rounded),
+                      label: 'Início',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.search_rounded),
+                      label: 'Pesquisar'
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.add_home),
+                      label: 'Casas'
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.person_rounded),
+                      label: 'Perfil'
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
       ),
     );
   }
