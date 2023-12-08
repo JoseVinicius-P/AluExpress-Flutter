@@ -2,7 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/modules/presentation/stores/presentation_store.dart';
 import 'package:flutter/material.dart';
 import 'package:luguel/app/modules/presentation/widgets/animated_background_widget.dart';
-import 'package:luguel/app/modules/presentation/widgets/gradiend_background_widget.dart';
+import 'package:luguel/app/shared/widgets/gradiend_background_widget.dart';
 import 'package:luguel/app/modules/presentation/widgets/welcome_widget.dart';
 import 'package:luguel/app/shared/widgets/flexible_sized_box.dart';
 import 'package:responsive_builder/responsive_builder.dart';
