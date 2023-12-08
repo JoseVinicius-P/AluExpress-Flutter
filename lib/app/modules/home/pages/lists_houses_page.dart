@@ -69,14 +69,19 @@ class ListsHousesPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(width: MyEdgeInsets.standard.left,),
-                    const VerticalHouseItemWidget(),
-                    const SizedBox(width: 15,),
-                    const VerticalHouseItemWidget(),
-                    const SizedBox(width: 15,),
-                    const VerticalHouseItemWidget(),
-                    const SizedBox(width: 15,),
-                    const VerticalHouseItemWidget(),
-                    const SizedBox(width: 15,),
+                    SizedBox(
+                      height: 350,
+                      child: ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return const VerticalHouseItemWidget();
+                        },
+                        separatorBuilder: (context, index) => const SizedBox(width: 15,),
+                        itemCount: 5
+                      ),
+                    ),
                     SizedBox(width: MyEdgeInsets.standard.right,),
                   ],
                 ),
