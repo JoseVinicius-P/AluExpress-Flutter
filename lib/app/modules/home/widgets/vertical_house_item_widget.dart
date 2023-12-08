@@ -4,8 +4,8 @@ import 'package:luguel/app/shared/widgets/gradiend_background_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 
-class HorizontalHouseItemWidget extends StatelessWidget {
-  const HorizontalHouseItemWidget({
+class VerticalHouseItemWidget extends StatelessWidget {
+  const VerticalHouseItemWidget({
     super.key,
   });
 

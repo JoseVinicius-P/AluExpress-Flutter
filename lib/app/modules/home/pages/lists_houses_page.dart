@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:luguel/app/modules/home/widgets/horizontal_house_item_widget.dart';
+import 'package:luguel/app/modules/home/widgets/vertical_house_item_widget.dart';
 import 'package:luguel/app/modules/home/widgets/simple_filter_item_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
@@ -68,13 +68,13 @@ class ListsHousesPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(width: MyEdgeInsets.standard.left,),
-                    const HorizontalHouseItemWidget(),
+                    const VerticalHouseItemWidget(),
                     const SizedBox(width: 15,),
-                    const HorizontalHouseItemWidget(),
+                    const VerticalHouseItemWidget(),
                     const SizedBox(width: 15,),
-                    const HorizontalHouseItemWidget(),
+                    const VerticalHouseItemWidget(),
                     const SizedBox(width: 15,),
-                    const HorizontalHouseItemWidget(),
+                    const VerticalHouseItemWidget(),
                     const SizedBox(width: 15,),
                     SizedBox(width: MyEdgeInsets.standard.right,),
                   ],
