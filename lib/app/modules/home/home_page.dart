@@ -141,6 +141,7 @@ class HomePageState extends State<HomePage> {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return Container(
+                            height: 126,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.white,
@@ -154,19 +155,19 @@ class HomePageState extends State<HomePage> {
                             ),
                             padding: MyEdgeInsets.standard,
                             child: Row(
+                              mainAxisSize: MainAxisSize.max,
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
                                   child: const Image(
                                     image: AssetImage('assets/images/house.png'),
                                     width: 100,
-                                    height: 100,
                                     fit: BoxFit.fitWidth,
                                   ),
                                 ),
                                 const SizedBox(width: 10,),
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
@@ -196,6 +197,22 @@ class HomePageState extends State<HomePage> {
                                     )
                                   ],
                                 ),
+                                const Spacer(),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    const SizedBox(height: 10,),
+                                    Text(
+                                      "R\$ 400,00",
+                                      style: theme.textTheme.titleMedium!.copyWith(color: MyColors.primaryColor, fontSize: 18),
+                                    ),
+                                    Text(
+                                      "/mês",
+                                      style: theme.textTheme.titleMedium!.copyWith(fontSize: 12, fontWeight: FontWeight.w300, color: Colors.grey),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
                           );
