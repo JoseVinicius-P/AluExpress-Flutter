@@ -23,6 +23,7 @@ class TitleAndButtonWidget extends StatelessWidget {
         ),
         InkWell(
           splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
           onTap: onTapButton,
           child: Text(
             buttonText,
