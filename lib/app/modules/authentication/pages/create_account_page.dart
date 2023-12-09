@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/modules/authentication/widgets/checkbox_remember_me_widget.dart';
-import 'package:luguel/app/modules/authentication/widgets/divider_widget.dart';
+import 'package:luguel/app/shared/widgets/divider_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/form_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/google_button_widget.dart';
 import 'package:luguel/app/modules/authentication/widgets/question_and_button_widget.dart';
