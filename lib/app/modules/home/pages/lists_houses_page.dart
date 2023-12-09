@@ -6,6 +6,7 @@ import 'package:luguel/app/modules/home/widgets/vertical_house_item_widget.dart'
 import 'package:luguel/app/modules/home/widgets/simple_filter_item_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
+import 'package:luguel/app/shared/widget/title_and_button_widget.dart';
 import 'package:luguel/app/shared/widgets/text_field_widget.dart';
 
 class ListsHousesPage extends StatelessWidget {
@@ -97,19 +98,7 @@ class ListsHousesPage extends StatelessWidget {
             padding: MyEdgeInsets.standard,
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Mais recentes",
-                      style: theme.textTheme.titleMedium!.copyWith(color: MyColors.textColor, fontSize: 18),
-                    ),
-                    Text(
-                      "Ver tudo",
-                      style: theme.textTheme.titleMedium!.copyWith(color: MyColors.primaryColor, fontSize: 16, fontWeight: FontWeight.normal),
-                    ),
-                  ],
-                ),
+                const TitleAndButtonWidget(title: "Mais recentes", buttonText: "Ver tudo"),
                 const SizedBox(height: 15,),
                 ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
