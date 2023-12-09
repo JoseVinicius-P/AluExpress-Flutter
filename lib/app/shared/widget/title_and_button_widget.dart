@@ -22,7 +22,7 @@ class TitleAndButtonWidget extends StatelessWidget {
           style: theme.textTheme.titleMedium!.copyWith(color: MyColors.textColor, fontSize: 18),
         ),
         InkWell(
-          enableFeedback: false,
+          splashColor: Colors.transparent,
           onTap: onTapButton,
           child: Text(
             buttonText,
