@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:luguel/app/modules/home/widgets/horizontal_house_item_widget.dart';
 import 'package:luguel/app/modules/home/widgets/vertical_house_item_widget.dart';
 import 'package:luguel/app/modules/home/widgets/simple_filter_item_widget.dart';
@@ -11,6 +12,10 @@ class ListsHousesPage extends StatelessWidget {
   const ListsHousesPage({
     super.key,
   });
+
+  void toHouseDetails(){
+    Modular.to.pushNamed('./houses/');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +81,10 @@ class ListsHousesPage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return const VerticalHouseItemWidget();
+                          return VerticalHouseItemWidget(onTap: toHouseDetails);
                         },
                         separatorBuilder: (context, index) => const SizedBox(width: 15,),
-                        itemCount: 5
+                        itemCount: 5,
                       ),
                     ),
                     SizedBox(width: MyEdgeInsets.standard.right,),
@@ -110,7 +115,7 @@ class ListsHousesPage extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return const HorizontalHouseItemWidget();
+                      return HorizontalHouseItemWidget(onTap: toHouseDetails);
                     },
                     separatorBuilder: (context, index) => const SizedBox(height: 15,),
                     itemCount: 25)

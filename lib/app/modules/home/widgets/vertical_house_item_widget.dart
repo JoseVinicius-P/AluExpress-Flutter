@@ -6,99 +6,104 @@ import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 
 class VerticalHouseItemWidget extends StatelessWidget {
   const VerticalHouseItemWidget({
-    super.key,
+    super.key, this.onTap,
   });
+
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return SizedBox(
-      height: 350,
-      width: 262,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(45),
-        child: Stack(
-          children: [
-            const Image(
-              image: AssetImage('assets/images/house.png'),
-              fit: BoxFit.cover,
-            ),
-            Padding(
-              padding: MyEdgeInsets.standard,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: MyColors.primaryColor
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
-                        child: Row(
-                          children: [
-                            const Icon(Icons.star_rounded, color: MyColors.iconButtonColor, size: 15,),
-                            const SizedBox(width: 3,),
-                            AutoSizeText(
-                              "4,8",
-                              style: theme.textTheme.labelSmall,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ],
+    return InkWell(
+      onTap: onTap,
+      child: SizedBox(
+        height: 350,
+        width: 262,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(45),
+          child: Stack(
+            children: [
+              const Image(
+                image: AssetImage('assets/images/house.png'),
+                fit: BoxFit.cover,
               ),
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: GradiendBackgroundWidget(
-                  child: Padding(
-                    padding: MyEdgeInsets.standard,
-                    child: Row(
+              Padding(
+                padding: MyEdgeInsets.standard,
+                child: Column(
+                  children: [
+                    Row(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Casa grande",
-                              style: theme.textTheme.titleMedium!.copyWith(fontSize: 30),
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              "Iaciara - Go",
-                              style: theme.textTheme.titleMedium!.copyWith(fontSize: 20, fontWeight: FontWeight.w100),
-                              textAlign: TextAlign.left,
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  "R\$  400,00",
-                                  style: theme.textTheme.titleMedium!.copyWith(fontSize: 25),
-                                  textAlign: TextAlign.left,
-                                ),
-                                Text(
-                                  "/mês",
-                                  style: theme.textTheme.titleMedium!.copyWith(fontSize: 15, fontWeight: FontWeight.w100),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: MyColors.primaryColor
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.star_rounded, color: MyColors.iconButtonColor, size: 15,),
+                              const SizedBox(width: 3,),
+                              AutoSizeText(
+                                "4,8",
+                                style: theme.textTheme.labelSmall,
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
-                  )
+                  ],
+                ),
               ),
-            )
-          ],
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: GradiendBackgroundWidget(
+                    child: Padding(
+                      padding: MyEdgeInsets.standard,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Casa grande",
+                                style: theme.textTheme.titleMedium!.copyWith(fontSize: 30),
+                                textAlign: TextAlign.left,
+                              ),
+                              Text(
+                                "Iaciara - Go",
+                                style: theme.textTheme.titleMedium!.copyWith(fontSize: 20, fontWeight: FontWeight.w100),
+                                textAlign: TextAlign.left,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "R\$  400,00",
+                                    style: theme.textTheme.titleMedium!.copyWith(fontSize: 25),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  Text(
+                                    "/mês",
+                                    style: theme.textTheme.titleMedium!.copyWith(fontSize: 15, fontWeight: FontWeight.w100),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
