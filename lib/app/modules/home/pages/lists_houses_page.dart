@@ -96,7 +96,7 @@ class ListsHousesPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Add recentemente",
+                      "Mais recentes",
                       style: theme.textTheme.titleMedium!.copyWith(color: MyColors.textColor, fontSize: 18),
                     ),
                     Text(
