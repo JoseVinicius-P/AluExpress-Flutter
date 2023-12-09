@@ -3,10 +3,11 @@ import 'package:luguel/app/shared/utilities/my_colors.dart';
 
 class DividerWidget extends StatelessWidget {
   const DividerWidget({
-    super.key, required this.text,
+    super.key, this.text, this.verticalPadding,
   });
 
-  final String text;
+  final String? text;
+  final double? verticalPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +16,16 @@ class DividerWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         children: [
-          const SizedBox(width: 10,),
+          SizedBox(width: verticalPadding),
           Expanded(child: Container(color: MyColors.grey.withOpacity(0.5), height: 1)),
-          const SizedBox(width: 8,),
-          Text(
-            text,
+          if(text != null) const SizedBox(width: 8,),
+          if(text != null)  Text(
+            text ?? '',
             style: theme.textTheme.labelSmall!.copyWith(color: MyColors.textColor.withOpacity(0.6), fontWeight: FontWeight.normal, fontSize: 18),
           ),
-          const SizedBox(width: 8,),
+          if(text != null)  const SizedBox(width: 8,),
           Expanded(child: Container(color: MyColors.grey.withOpacity(0.5), height: 1)),
-          const SizedBox(width: 10,),
+          SizedBox(width: verticalPadding),
         ],
       ),
     );
