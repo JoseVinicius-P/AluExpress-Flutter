@@ -1,4 +1,4 @@
-import 'package:luguel/app/modules/houses/houses_page.dart';
+import 'package:luguel/app/modules/houses/details_house_page.dart';
 import 'package:luguel/app/modules/houses/details_house_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -8,7 +8,7 @@ class HousesModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) => HousesPage()),
+    ChildRoute('/', child: (_, args) => DetailsHousePage()),
   ];
 
 }

@@ -12,12 +12,12 @@ import 'package:luguel/app/shared/widgets/divider_widget.dart';
 import 'package:luguel/app/shared/widgets/slide_indicator_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class HousesPage extends StatefulWidget {
-  const HousesPage({Key? key}) : super(key: key);
+class DetailsHousePage extends StatefulWidget {
+  const DetailsHousePage({Key? key}) : super(key: key);
   @override
-  HousesPageState createState() => HousesPageState();
+  DetailsHousePageState createState() => DetailsHousePageState();
 }
-class HousesPageState extends State<HousesPage> {
+class DetailsHousePageState extends State<DetailsHousePage> {
   final DetailsHouseStore store = Modular.get();
 
   final List<IconData> icons = [
