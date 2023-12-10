@@ -1,14 +1,15 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:luguel/app/modules/houses/houses_store.dart';
+import 'package:flutter_triple/flutter_triple.dart';
+import 'package:luguel/app/modules/houses/details_house_store.dart';
 import 'package:flutter/material.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
 import 'package:luguel/app/shared/widget/title_and_button_widget.dart';
 import 'package:luguel/app/shared/widgets/carousel_slider_widget.dart';
 import 'package:luguel/app/shared/widgets/divider_widget.dart';
+import 'package:luguel/app/shared/widgets/slide_indicator_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HousesPage extends StatefulWidget {
@@ -17,8 +18,7 @@ class HousesPage extends StatefulWidget {
   HousesPageState createState() => HousesPageState();
 }
 class HousesPageState extends State<HousesPage> {
-  final HousesStore store = Modular.get();
-  final CarouselController _carouselController = CarouselController();
+  final DetailsHouseStore store = Modular.get();
 
   final List<IconData> icons = [
     Icons.home,
@@ -30,10 +30,33 @@ class HousesPageState extends State<HousesPage> {
     // Adicione mais ícones conforme necessário
   ];
 
-
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    final slidePages = [
+      SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: const Image(
+          image: AssetImage('assets/images/house.png'),
+          fit: BoxFit.fitWidth,
+        ),
+      ),
+      SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: const Image(
+          image: AssetImage('assets/images/house.png'),
+          fit: BoxFit.fitWidth,
+        ),
+      ),
+      SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: const Image(
+          image: AssetImage('assets/images/house.png'),
+          fit: BoxFit.fitWidth,
+        ),
+      ),
+    ];
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -55,20 +78,39 @@ class HousesPageState extends State<HousesPage> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CarouselSliderWidget(
-              carouselController: _carouselController,
-              onPageChanged: (index) {},
-              axis: Axis.horizontal,
-              height: 100.sw * 0.8,
-              autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 10),
-              enableInfiniteScroll: true,
+            Stack(
               children: [
-                Container(
-                  constraints: const BoxConstraints.expand(),
-                  child: Image(
-                    image: AssetImage('assets/images/house.png'),
-                    fit: BoxFit.fitWidth,
+                CarouselSliderWidget(
+                  carouselController: store.getCarouselController(),
+                  onPageChanged: (index) => store.updateCurrentSlide(index),
+                  axis: Axis.horizontal,
+                  height: 100.sw * 0.8,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 10),
+                  enableInfiniteScroll: true,
+                  children: slidePages,
+                ),
+                SizedBox(
+                  height: 100.sw * 0.8,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TripleBuilder(
+                          store: store,
+                          builder: (context, triple) {
+                            return SlideIndicatorWidget(
+                              seletedItem: triple.state as int,
+                              numberOfItems: slidePages.length,
+                              axis: Axis.horizontal,
+                              onItemTap: (index) => store.setCarouselPage(index),
+                              color: Colors.white,
+                              shadow: true,
+                            );
+                          }
+                      ),
+                      const SizedBox(height: 15,),
+                    ],
                   ),
                 ),
               ],
@@ -120,7 +162,7 @@ class HousesPageState extends State<HousesPage> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return SizedBox(
-                    width: 120,
+                    width: 140,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Image(

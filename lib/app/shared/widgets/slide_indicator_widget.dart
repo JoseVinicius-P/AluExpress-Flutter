@@ -9,12 +9,16 @@ class SlideIndicatorWidget extends StatelessWidget {
     this.onItemTap,
     required this.seletedItem,
     required this.axis,
+    this.color,
+    this.shadow,
   });
 
   final int numberOfItems;
   final void Function(int)? onItemTap;
   final int seletedItem;
   final Axis axis;
+  final Color? color;
+  final bool? shadow;
 
   List<Widget> generateItems(){
     return List.generate(numberOfItems, (index) =>
@@ -25,8 +29,16 @@ class SlideIndicatorWidget extends StatelessWidget {
             height: 1.sh,
             margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
             decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: MyColors.primaryColor.withOpacity(seletedItem == index ? 0.7 : 0.1)
+              shape: BoxShape.circle,
+              color: (color ?? MyColors.primaryColor).withOpacity(seletedItem == index ? 0.7 : 0.2),
+              boxShadow: [
+                BoxShadow(
+                  color: (shadow ?? false) ? Colors.black.withOpacity(0.3) : Colors.transparent,
+                  blurRadius: 8.0,
+                  spreadRadius: 7,
+                  offset: const Offset(0, 3)
+                ),
+              ],
             ),
           ),
         ));

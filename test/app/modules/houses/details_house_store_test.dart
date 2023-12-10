@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:luguel/app/modules/houses/houses_store.dart';
+import 'package:luguel/app/modules/houses/details_house_store.dart';
  
 void main() {
-  late HousesStore store;
+  late DetailsHouseStore store;
 
   setUpAll(() {
-    store = HousesStore();
+    store = DetailsHouseStore();
   });
 
   test('increment count', () async {
