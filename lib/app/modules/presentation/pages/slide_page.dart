@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:luguel/app/modules/presentation/interfaces/i_slide_store.dart';
+import 'package:luguel/app/shared/interfaces/i_slide_store.dart';
 import 'package:luguel/app/shared/widgets/carousel_slider_widget.dart';
 import 'package:luguel/app/shared/widgets/slide_indicator_widget.dart';
 import 'package:luguel/app/modules/presentation/widgets/slide_page_widget.dart';

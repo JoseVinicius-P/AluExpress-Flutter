@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:luguel/app/modules/presentation/interfaces/i_slide_store.dart';
+import 'package:luguel/app/shared/interfaces/i_slide_store.dart';
 
 class SlideStore extends Store<int> implements ISlideStore{
   final CarouselController _carouselController = CarouselController();

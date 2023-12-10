@@ -6,7 +6,7 @@ import 'package:luguel/app/modules/houses/details_house_store.dart';
 import 'package:flutter/material.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
-import 'package:luguel/app/shared/widget/title_and_button_widget.dart';
+import 'package:luguel/app/shared/widgets/title_and_button_widget.dart';
 import 'package:luguel/app/shared/widgets/carousel_slider_widget.dart';
 import 'package:luguel/app/shared/widgets/divider_widget.dart';
 import 'package:luguel/app/shared/widgets/slide_indicator_widget.dart';

@@ -6,7 +6,7 @@ import 'package:luguel/app/modules/home/widgets/vertical_house_item_widget.dart'
 import 'package:luguel/app/modules/home/widgets/simple_filter_item_widget.dart';
 import 'package:luguel/app/shared/utilities/my_colors.dart';
 import 'package:luguel/app/shared/utilities/my_edge_insets.dart';
-import 'package:luguel/app/shared/widget/title_and_button_widget.dart';
+import 'package:luguel/app/shared/widgets/title_and_button_widget.dart';
 import 'package:luguel/app/shared/widgets/text_field_widget.dart';
 
 class ListsHousesPage extends StatelessWidget {

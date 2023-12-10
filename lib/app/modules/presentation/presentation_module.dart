@@ -1,6 +1,6 @@
 import 'package:luguel/app/modules/authentication/authentication_module.dart';
 import 'package:luguel/app/modules/presentation/interfaces/i_presentation_store.dart';
-import 'package:luguel/app/modules/presentation/interfaces/i_slide_store.dart';
+import 'package:luguel/app/shared/interfaces/i_slide_store.dart';
 import 'package:luguel/app/modules/presentation/stores/slide_store.dart';
 import 'package:luguel/app/modules/presentation/pages/presentation_page.dart';
 import 'package:luguel/app/modules/presentation/pages/slide_page.dart';
