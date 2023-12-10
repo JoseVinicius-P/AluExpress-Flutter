@@ -92,11 +92,13 @@ class SlidePageState extends State<SlidePage>{
                 flex: 3,
                 child: Column(
                   children: [
-                    CarouselSliderWidget(
-                      carouselController: store.getCarouselController(),
-                      onPageChanged: (index) => store.updateCurrentSlide(index),
-                      axis: Axis.horizontal,
-                      children: _buildElementsList(false),
+                    Flexible(
+                      child: CarouselSliderWidget(
+                        carouselController: store.getCarouselController(),
+                        onPageChanged: (index) => store.updateCurrentSlide(index),
+                        axis: Axis.horizontal,
+                        children: _buildElementsList(false),
+                      ),
                     ),
                     TripleBuilder(
                         store: store,
@@ -141,11 +143,13 @@ class SlidePageState extends State<SlidePage>{
                 flex: 1,
                 child: Row(
                   children: [
-                    CarouselSliderWidget(
-                      carouselController: store.getCarouselController(),
-                      onPageChanged: (index) => store.updateCurrentSlide(index),
-                      axis: Axis.vertical,
-                      children: _buildElementsList(true),
+                    Flexible(
+                      child: CarouselSliderWidget(
+                        carouselController: store.getCarouselController(),
+                        onPageChanged: (index) => store.updateCurrentSlide(index),
+                        axis: Axis.vertical,
+                        children: _buildElementsList(true),
+                      ),
                     ),
                   ],
                 ),

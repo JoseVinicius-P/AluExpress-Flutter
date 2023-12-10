@@ -28,23 +28,21 @@ class CarouselSliderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: CarouselSlider(
-        carouselController: _carouselController,
-        options: CarouselOptions(
-            scrollDirection: axis,
-            height: height ?? 100.sh,
-            enlargeCenterPage: false,
-            autoPlay: autoPlay ?? false,
-            autoPlayInterval: autoPlayInterval ?? const Duration(),
-            autoPlayCurve: autoPlayCurve ?? Curves.linear,
-            enableInfiniteScroll: enableInfiniteScroll ?? false,
-            viewportFraction: 1,
-            onPageChanged: (index, reason) {
-              onPageChanged(index);
-            }),
-        items: children,
-      ),
+    return CarouselSlider(
+      carouselController: _carouselController,
+      options: CarouselOptions(
+          scrollDirection: axis,
+          height: height ?? 100.sh,
+          enlargeCenterPage: false,
+          autoPlay: autoPlay ?? false,
+          autoPlayInterval: autoPlayInterval ?? const Duration(),
+          autoPlayCurve: autoPlayCurve ?? Curves.linear,
+          enableInfiniteScroll: enableInfiniteScroll ?? false,
+          viewportFraction: 1,
+          onPageChanged: (index, reason) {
+            onPageChanged(index);
+          }),
+      items: children,
     );
   }
 }
