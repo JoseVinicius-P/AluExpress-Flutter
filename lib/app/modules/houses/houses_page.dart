@@ -165,7 +165,7 @@ class HousesPageState extends State<HousesPage> {
                     width: 140,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Image(
+                      child: const Image(
                         image: AssetImage('assets/images/house.png'),
                         fit: BoxFit.fitWidth,
                       ),
@@ -176,14 +176,14 @@ class HousesPageState extends State<HousesPage> {
                 itemCount: 5
               ),
             ),
-            const SizedBox(height: 15,),
+            const SizedBox(height: 20,),
             Padding(
               padding: MyEdgeInsets.standard,
               child: Column(
                 children: [
-                  TitleAndButtonWidget(title: "Detalhes", buttonText: ' '),
+                  const TitleAndButtonWidget(title: "Detalhes", buttonText: ' '),
                   GridView.builder(
-                    padding: EdgeInsets.only(top: 0),
+                    padding: const EdgeInsets.only(top: 0),
                     itemCount: icons.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 5,
@@ -209,14 +209,40 @@ class HousesPageState extends State<HousesPage> {
                       );
                     },
                   ),
-                  const SizedBox(height: 15,),
-                  TitleAndButtonWidget(title: "Descrição", buttonText: ' '),
+                  const SizedBox(height: 20,),
+                  const TitleAndButtonWidget(title: "Descrição", buttonText: ' '),
                   const SizedBox(height: 15,),
                   AutoSizeText(
                     "Na residência, uma sala ampla e elegante abre-se com uma lareira central, enquanto a cozinha moderna se integra a uma generosa área de jantar. Os quartos oferecem suítes luxuosas, e o pátio externo apresenta uma piscina convidativa. Complementada por uma sala de entretenimento e espaços versáteis, a casa une conforto e sofisticação.",
                     style: theme.textTheme.labelSmall!.copyWith(color: MyColors.grey, fontWeight: FontWeight.normal),
                     textAlign: TextAlign.justify,
                   ),
+                  const SizedBox(height: 20,),
+                  const TitleAndButtonWidget(title: "Localização", buttonText: ' '),
+                  const SizedBox(height: 15,),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        return SizedBox(
+                          height: constraints.maxWidth * 8/16,
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Image(
+                                  image: AssetImage('assets/images/map.png'),
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                    ),
+                  ),
+
+
                 ],
               ),
             )
